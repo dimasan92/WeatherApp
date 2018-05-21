@@ -2,7 +2,6 @@
     <string name="app_name">Погода</string>
     <string name="week_day_thursday">Четверг</string>
     <string name="day_of_may">17 мая</string>
-    <string name="city_saint_petersburg">Санкт-Петербург</string>
     <string name="temperature_11">+11 &#8451;</string>
     <string name="temperature_22">+22 &#8451;</string>
     <string name="temperature_10">+10 &#8451;</string>
@@ -15,4 +14,6 @@
     <string name="wind_calm">Штиль</string>
     <string name="pressure_759">759 мм рт. ст.</string>
     <string name="humidity_93">93%</string>
+    <string name="city_name_request">Город</string>
+    <string name="button_transition">Смотреть погоду</string>
 </resources>
