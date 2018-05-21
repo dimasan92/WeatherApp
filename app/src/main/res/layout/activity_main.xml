@@ -45,12 +45,11 @@
         app:layout_constraintTop_toBottomOf="@+id/week_day" />
 
     <TextView
-        android:id="@+id/city"
+        android:id="@+id/tv_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
-        android:text="@string/city_saint_petersburg"
         android:textSize="@dimen/text_standart"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,21 +141,21 @@
         app:layout_constraintTop_toBottomOf="@+id/divider">
 
         <TextView
-            android:id="@+id/wind"
+            android:id="@+id/tv_wind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
             android:text="@string/wind_calm" />
 
         <TextView
-            android:id="@+id/pressure"
+            android:id="@+id/tv_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/pressure_759" />
 
         <TextView
-            android:id="@+id/humidity"
+            android:id="@+id/tv_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
@@ -172,7 +171,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider">
 
         <TextView
-            android:id="@+id/title_wind"
+            android:id="@+id/tv_title_wind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -181,7 +180,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/title_pressure"
+            android:id="@+id/tv_title_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -190,7 +189,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/title_humidity"
+            android:id="@+id/tv_title_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
