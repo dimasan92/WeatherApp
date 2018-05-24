@@ -6,4 +6,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CityEditText">
+        <item name="android:ems">@dimen/standart_ems</item>
+        <item name="android:textSize">@dimen/text_middle</item>
+    </style>
+
+    <style name="MainTemperatureText">
+        <item name = "android:textSize">@dimen/text_very_big</item>
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

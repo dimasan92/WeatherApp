@@ -21,11 +21,10 @@
         tools:ignore="ContentDescription" />
 
     <EditText
+        style="@style/CityEditText"
         android:id="@+id/et_city_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="25sp"
         android:hint="@string/city_name_request"
         android:inputType="text"
         app:layout_constraintTop_toTopOf="parent"

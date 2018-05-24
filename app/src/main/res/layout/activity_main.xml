@@ -56,13 +56,12 @@
 
     <TextView
         android:id="@+id/current_weather"
+        style="@style/MainTemperatureText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_very_small"
         android:drawableStart="@drawable/weather_clear_sun_big"
-        android:gravity="center_vertical"
         android:text="@string/temperature_11"
-        android:textSize="@dimen/text_very_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
@@ -173,7 +172,6 @@
             android:id="@+id/tv_title_wind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/margin_small"
             android:text="@string/title_wind"
             android:textStyle="bold" />
@@ -182,7 +180,6 @@
             android:id="@+id/tv_title_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/title_pressure"
             android:textStyle="bold" />
@@ -191,7 +188,6 @@
             android:id="@+id/tv_title_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/title_humidity"
             android:textStyle="bold" />
