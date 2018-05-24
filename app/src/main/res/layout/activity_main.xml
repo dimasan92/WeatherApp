@@ -10,13 +10,13 @@
         android:id="@+id/background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:foreground="@color/filterMedium"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background"
-        android:foreground="@color/filterMedium"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -173,6 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
+            android:visibility="gone"
             android:text="@string/title_wind"
             android:textStyle="bold" />
 
@@ -181,6 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
+            android:visibility="gone"
             android:text="@string/title_pressure"
             android:textStyle="bold" />
 
@@ -189,6 +191,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
+            android:visibility="gone"
             android:text="@string/title_humidity"
             android:textStyle="bold" />
     </LinearLayout>

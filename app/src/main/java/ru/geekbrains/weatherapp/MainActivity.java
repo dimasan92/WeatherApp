@@ -24,26 +24,17 @@ public class MainActivity extends AppCompatActivity {
         TextView tvHumidity = findViewById(R.id.tv_humidity);
 
         tvCity.setText(intent.getStringExtra(WelcomeActivity.CITY_NAME));
-        if(intent.getBooleanExtra(WelcomeActivity.WIND, true)){
+        if(intent.getBooleanExtra(WelcomeActivity.WIND, false)){
             tvWindTitle.setVisibility(View.VISIBLE);
             tvWind.setVisibility(View.VISIBLE);
-        }else{
-            tvWindTitle.setVisibility(View.GONE);
-            tvWind.setVisibility(View.GONE);
         }
-        if(intent.getBooleanExtra(WelcomeActivity.PRESSURE, true)){
+        if(intent.getBooleanExtra(WelcomeActivity.PRESSURE, false)){
             tvPressureTitle.setVisibility(View.VISIBLE);
             tvPressure.setVisibility(View.VISIBLE);
-        }else{
-            tvPressureTitle.setVisibility(View.GONE);
-            tvPressure.setVisibility(View.GONE);
         }
-        if(intent.getBooleanExtra(WelcomeActivity.HUMIDITY, true)){
+        if(intent.getBooleanExtra(WelcomeActivity.HUMIDITY, false)){
             tvHumidityTitle.setVisibility(View.VISIBLE);
             tvHumidity.setVisibility(View.VISIBLE);
-        }else{
-            tvHumidityTitle.setVisibility(View.GONE);
-            tvHumidity.setVisibility(View.GONE);
         }
     }
 }
