@@ -13,11 +13,10 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/background"
+        android:foreground="@color/filterMedium"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -27,7 +26,7 @@
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
         android:text="@string/week_day_thursday"
-        android:textSize="@dimen/text_standart"
+        android:textSize="@dimen/text_tiny"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +38,7 @@
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_very_small"
         android:text="@string/day_of_may"
-        android:textSize="@dimen/text_standart"
+        android:textSize="@dimen/text_tiny"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/week_day" />
@@ -50,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
-        android:textSize="@dimen/text_standart"
+        android:textSize="@dimen/text_tiny"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cloudiness_clearly"
-        android:textSize="@dimen/text_middle"
+        android:textSize="@dimen/text_little"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +106,7 @@
         android:layout_height="wrap_content"
         android:drawableBottom="@drawable/weather_cloudy_sun_small"
         android:text="@string/temperature_22"
-        android:textSize="@dimen/text_middle"
+        android:textSize="@dimen/text_little"
         app:layout_constraintEnd_toStartOf="@+id/cloudiness"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_day" />
@@ -118,7 +117,7 @@
         android:layout_height="wrap_content"
         android:drawableBottom="@drawable/weather_cloudy_moon_small"
         android:text="@string/temperature_10"
-        android:textSize="@dimen/text_middle"
+        android:textSize="@dimen/text_little"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cloudiness"
         app:layout_constraintTop_toBottomOf="@+id/title_night" />
