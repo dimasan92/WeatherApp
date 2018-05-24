@@ -143,6 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
+            android:visibility="gone"
             android:text="@string/wind_calm" />
 
         <TextView
@@ -150,6 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
+            android:visibility="gone"
             android:text="@string/pressure_759" />
 
         <TextView
@@ -157,6 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
+            android:visibility="gone"
             android:text="@string/humidity_93" />
 
     </LinearLayout>
