@@ -7,7 +7,7 @@
     </style>
 
     <style name="CityEditText">
-        <item name="android:ems">@dimen/standart_ems</item>
+        <item name="android:ems">10</item>
         <item name="android:textSize">@dimen/text_middle</item>
     </style>
 

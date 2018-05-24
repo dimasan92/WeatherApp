@@ -7,6 +7,4 @@
     <dimen name="text_middle">25sp</dimen>
     <dimen name="text_little">18sp</dimen>
     <dimen name="text_tiny">14sp</dimen>
-
-    <dimen name="standart_ems">10</dimen>
 </resources>

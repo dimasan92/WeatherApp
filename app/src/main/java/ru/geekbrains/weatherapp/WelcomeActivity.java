@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -31,6 +32,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void onClickTransit(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        if(etCityName.getText().toString().trim().equals("")){
+            Toast.makeText(getApplicationContext(), "Введите название города!",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
         intent.putExtra(CITY_NAME, etCityName.getText().toString());
         intent.putExtra(PRESSURE, cbPressure.isChecked());
         intent.putExtra(WIND, cbWind.isChecked());
