@@ -3,6 +3,7 @@
     <dimen name="margin_small">16dp</dimen>
     <dimen name="margin_very_small">8dp</dimen>
     <dimen name="text_very_big">56sp</dimen>
-    <dimen name="text_middle">18sp</dimen>
-    <dimen name="text_standart">14sp</dimen>
+    <dimen name="text_middle">25sp</dimen>
+    <dimen name="text_little">18sp</dimen>
+    <dimen name="text_tiny">14sp</dimen>
 </resources>
