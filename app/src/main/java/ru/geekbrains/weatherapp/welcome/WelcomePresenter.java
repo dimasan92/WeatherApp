@@ -46,8 +46,8 @@ public class WelcomePresenter extends Fragment {
 
         WeatherFragment fragment = WeatherFragment.init(bundle);
 
-        if (getFragmentManager() != null) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
+        if (getActivity() != null) {
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_fragment, fragment);
             ft.addToBackStack(null);
             ft.commit();

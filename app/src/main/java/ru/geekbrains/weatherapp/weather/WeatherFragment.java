@@ -67,8 +67,8 @@ public class WeatherFragment extends Fragment {
     }
 
     private void initPresenter() {
-        FragmentManager fm = getFragmentManager();
-        if (fm != null) {
+        if (getActivity() != null) {
+            FragmentManager fm = getActivity().getSupportFragmentManager();
             mPresenter = (WeatherPresenter) fm.findFragmentByTag(Constants.WEATHER_PRESENTER_TAG);
             if (mPresenter == null) {
                 mPresenter = WeatherPresenter.init();

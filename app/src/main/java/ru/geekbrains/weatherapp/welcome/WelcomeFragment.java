@@ -57,8 +57,8 @@ public class WelcomeFragment extends Fragment {
     }
 
     private void initPresenter() {
-        FragmentManager fm = getFragmentManager();
-        if (fm != null) {
+        if (getActivity() != null) {
+            FragmentManager fm = getActivity().getSupportFragmentManager();
             mPresenter = (WelcomePresenter) fm.findFragmentByTag(Constants.WELCOME_PRESENTER_TAG);
             if (mPresenter == null) {
                 mPresenter = WelcomePresenter.init();
