@@ -18,7 +18,6 @@ import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.weather.WeatherFragment;
 
 public class WelcomeFragment extends Fragment {
 
@@ -41,9 +40,7 @@ public class WelcomeFragment extends Fragment {
         cbHumidity = layout.findViewById(R.id.checkbox_humidity);
 
         Button buttonTransition = layout.findViewById(R.id.button_transition);
-        buttonTransition.setOnClickListener((v) -> {
-            mPresenter.transitionClick();
-        });
+        buttonTransition.setOnClickListener((v) -> mPresenter.transitionClick());
 
         return layout;
     }

@@ -57,7 +57,8 @@
         android:layout_marginEnd="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_small"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Saint-Petersburg"/>
 
     <LinearLayout
         android:id="@+id/current_weather_layout"
@@ -67,7 +68,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_layout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/current_weather"
@@ -93,9 +94,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@id/param_values"
         app:layout_constraintEnd_toStartOf="@id/night_weather_layout"
-        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout">
+        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/title_day"
@@ -103,6 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_very_small"
             android:text="@string/time_of_day_day"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_weather_layout" />
@@ -125,9 +129,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/day_weather_layout"
-        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout">
+        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/title_night"
@@ -135,6 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_very_small"
             android:text="@string/time_of_day_night"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cloudiness"
@@ -153,16 +160,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day_weather_layout"
-        app:srcCompat="@drawable/divider"
-        tools:ignore="ContentDescription" />
-
     <LinearLayout
         android:id="@+id/param_titles"
         android:layout_width="wrap_content"
@@ -170,7 +167,8 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/param_values"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_weather_layout"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
@@ -189,7 +187,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/title_pressure"
-            android:textStyle="bold"
             android:visibility="gone" />
 
         <TextView
@@ -199,8 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/title_humidity"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -210,8 +206,8 @@
         android:orientation="vertical"
         android:gravity="end"
         app:layout_constraintStart_toEndOf="@id/param_titles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="@id/day_weather_layout"
+        app:layout_constraintTop_toBottomOf="@id/current_weather_layout"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
@@ -239,7 +235,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/humidity_93"
-            android:visibility="gone" />
+            android:visibility="invisible" />
 
     </LinearLayout>
 

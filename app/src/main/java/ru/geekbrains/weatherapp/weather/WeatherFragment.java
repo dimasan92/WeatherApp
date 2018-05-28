@@ -1,6 +1,5 @@
 package ru.geekbrains.weatherapp.weather;
 
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
