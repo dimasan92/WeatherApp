@@ -199,7 +199,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/title_humidity"
-            android:textStyle="bold"
             android:visibility="gone" />
     </LinearLayout>
 

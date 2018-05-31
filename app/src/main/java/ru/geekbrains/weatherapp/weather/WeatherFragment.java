@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -16,7 +17,8 @@ import ru.geekbrains.weatherapp.common.Constants;
 
 public class WeatherFragment extends Fragment {
 
-    WeatherPresenter mPresenter;
+    private WeatherPresenter mPresenter;
+    private FragmentActivity currentActivity;
 
     public static WeatherFragment init(Bundle bundle) {
         WeatherFragment fragment = new WeatherFragment();
@@ -30,15 +32,39 @@ public class WeatherFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_weather, container, false);
 
-        TextView tvCity = layout.findViewById(R.id.tv_city);
-        TextView tvWindTitle = layout.findViewById(R.id.tv_title_wind);
-        TextView tvWind = layout.findViewById(R.id.tv_wind);
-        TextView tvPressureTitle = layout.findViewById(R.id.tv_title_pressure);
-        TextView tvPressure = layout.findViewById(R.id.tv_pressure);
-        TextView tvHumidityTitle = layout.findViewById(R.id.tv_title_humidity);
-        TextView tvHumidity = layout.findViewById(R.id.tv_humidity);
+        setBeginVisibleParams(layout);
+        return layout;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        super.onCreate(savedInstanceState);
+        currentActivity = getActivity();
+        initPresenter();
+        mPresenter.attachView(this);
+    }
+
+    private void initPresenter() {
+        FragmentManager fm = currentActivity.getSupportFragmentManager();
+        mPresenter = (WeatherPresenter) fm.findFragmentByTag(Constants.WEATHER_PRESENTER_TAG);
+        mPresenter = WeatherPresenter.init();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(mPresenter, Constants.WEATHER_PRESENTER_TAG);
+        ft.commit();
+    }
+
+    private void setBeginVisibleParams(View layout) {
+        final TextView tvCity = layout.findViewById(R.id.tv_city);
+        final TextView tvWindTitle = layout.findViewById(R.id.tv_title_wind);
+        final TextView tvWind = layout.findViewById(R.id.tv_wind);
+        final TextView tvPressureTitle = layout.findViewById(R.id.tv_title_pressure);
+        final TextView tvPressure = layout.findViewById(R.id.tv_pressure);
+        final TextView tvHumidityTitle = layout.findViewById(R.id.tv_title_humidity);
+        final TextView tvHumidity = layout.findViewById(R.id.tv_humidity);
 
         Bundle bundle = getArguments();
+
         if (bundle != null) {
             tvCity.setText(bundle.getString(Constants.CITY_NAME));
             if (bundle.getBoolean(Constants.PARAM_WIND, false)) {
@@ -52,28 +78,6 @@ public class WeatherFragment extends Fragment {
             if (bundle.getBoolean(Constants.PARAM_HUMIDITY, false)) {
                 tvHumidityTitle.setVisibility(View.VISIBLE);
                 tvHumidity.setVisibility(View.VISIBLE);
-            }
-        }
-        return layout;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        super.onCreate(savedInstanceState);
-        initPresenter();
-        mPresenter.attachView(this);
-    }
-
-    private void initPresenter() {
-        if (getActivity() != null) {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            mPresenter = (WeatherPresenter) fm.findFragmentByTag(Constants.WEATHER_PRESENTER_TAG);
-            if (mPresenter == null) {
-                mPresenter = WeatherPresenter.init();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.add(mPresenter, Constants.WEATHER_PRESENTER_TAG);
-                ft.commit();
             }
         }
     }

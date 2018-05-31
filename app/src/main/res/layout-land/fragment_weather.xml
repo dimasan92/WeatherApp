@@ -58,7 +58,7 @@
         android:layout_marginTop="@dimen/margin_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Saint-Petersburg"/>
+        tools:text="Saint-Petersburg" />
 
     <LinearLayout
         android:id="@+id/current_weather_layout"
@@ -93,20 +93,20 @@
         android:id="@+id/day_weather_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
-        app:layout_constraintStart_toEndOf="@id/param_values"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/night_weather_layout"
-        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toEndOf="@id/param_values"
+        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout">
 
         <TextView
             android:id="@+id/title_day"
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
             android:layout_marginBottom="@dimen/margin_very_small"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/time_of_day_day"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_weather_layout" />
@@ -128,20 +128,20 @@
         android:id="@+id/night_weather_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/day_weather_layout"
-        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/current_weather_layout">
 
         <TextView
             android:id="@+id/title_night"
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
             android:layout_marginBottom="@dimen/margin_very_small"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/time_of_day_night"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cloudiness"
@@ -165,11 +165,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/param_values"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_weather_layout"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_weather_layout">
 
         <TextView
             android:id="@+id/tv_title_wind"
@@ -203,12 +202,12 @@
         android:id="@+id/param_values"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="end"
-        app:layout_constraintStart_toEndOf="@id/param_titles"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/day_weather_layout"
-        app:layout_constraintTop_toBottomOf="@id/current_weather_layout"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toEndOf="@id/param_titles"
+        app:layout_constraintTop_toBottomOf="@id/current_weather_layout">
 
         <TextView
             android:id="@+id/tv_wind"
