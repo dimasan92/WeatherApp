@@ -12,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.utils.DateUtil;
 
 public class WeatherFragment extends Fragment {
 
@@ -33,6 +36,7 @@ public class WeatherFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_weather, container, false);
 
         setBeginVisibleParams(layout);
+        setDate(layout);
         return layout;
     }
 
@@ -80,6 +84,14 @@ public class WeatherFragment extends Fragment {
                 tvHumidity.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    private void setDate(View layout) {
+        final TextView weekDay = layout.findViewById(R.id.week_day);
+        final TextView date = layout.findViewById(R.id.date);
+        Locale locale = getResources().getConfiguration().locale;
+        weekDay.setText(DateUtil.getDayOfWeek(locale));
+        date.setText(String.format("%s %s", DateUtil.getDayOfMonth(locale), DateUtil.getMonth(locale)));
     }
 
     @Override
