@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="week_day_thursday">Thursday</string>
-    <string name="day_of_may">17 may</string>
     <string name="temperature_11">+11 &#8451;</string>
     <string name="temperature_22">+22 &#8451;</string>
     <string name="temperature_10">+10 &#8451;</string>

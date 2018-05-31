@@ -1,9 +1,11 @@
 package ru.geekbrains.weatherapp.welcome;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
+import ru.geekbrains.weatherapp.StartActivity;
 import ru.geekbrains.weatherapp.common.Constants;
 
 public class WelcomeFragment extends Fragment {
@@ -27,6 +30,7 @@ public class WelcomeFragment extends Fragment {
     private CheckBox cbPressure;
     private CheckBox cbWind;
     private CheckBox cbHumidity;
+    private FragmentActivity currentActivity;
 
     @Nullable
     @Override
@@ -49,21 +53,20 @@ public class WelcomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         super.onCreate(savedInstanceState);
+        currentActivity = getActivity();
         initPresenter();
         mPresenter.attachView(this);
     }
 
     private void initPresenter() {
-        if (getActivity() != null) {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            mPresenter = (WelcomePresenter) fm.findFragmentByTag(Constants.WELCOME_PRESENTER_TAG);
-            if (mPresenter == null) {
-                mPresenter = WelcomePresenter.init();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.add(mPresenter, Constants.WELCOME_PRESENTER_TAG);
-                ft.commit();
-            }
-        }
+        FragmentManager fm = currentActivity.getSupportFragmentManager();
+
+        mPresenter = (WelcomePresenter) fm.findFragmentByTag(Constants.WELCOME_PRESENTER_TAG);
+        mPresenter = WelcomePresenter.init();
+
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(mPresenter, Constants.WELCOME_PRESENTER_TAG);
+        ft.commit();
     }
 
     public String getCityName() {
@@ -83,8 +86,7 @@ public class WelcomeFragment extends Fragment {
     }
 
     public void makeToast(int stringId) {
-        Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(),
-                stringId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(currentActivity.getApplicationContext(), stringId, Toast.LENGTH_SHORT).show();
     }
 
     @Override

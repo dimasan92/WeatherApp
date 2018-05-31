@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="@string/week_day_thursday"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_very_small"
-            android:text="@string/day_of_may"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/week_day" />
 
@@ -199,7 +197,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_very_small"
             android:text="@string/title_humidity"
-            android:textStyle="bold"
             android:visibility="gone" />
     </LinearLayout>
 
