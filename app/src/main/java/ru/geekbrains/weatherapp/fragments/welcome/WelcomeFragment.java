@@ -32,7 +32,7 @@ public class WelcomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_welcome, container, false);
 
-        etCityName = layout.findViewById(R.id.et_city_name);
+        etCityName = layout.findViewById(R.id.et_enter_city_name);
         cbPressure = layout.findViewById(R.id.cb_pressure);
         cbWind = layout.findViewById(R.id.cb_wind);
         cbHumidity = layout.findViewById(R.id.cb_humidity);

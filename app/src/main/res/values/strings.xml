@@ -16,4 +16,5 @@
     <string name="button_transition">Proceed</string>
     <string name="empty_city_name">Enter the name of the city!</string>
     <string name="choose_city">Choose city from list</string>
+    <string name="add_city_name">Add the city</string>
 </resources>
