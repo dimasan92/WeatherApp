@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 public class WeatherPresenter extends Fragment {
     private WeatherFragment mFragment;
 
-    public static WeatherPresenter init() {
+    public static WeatherPresenter newInstance() {
         return new WeatherPresenter();
     }
 

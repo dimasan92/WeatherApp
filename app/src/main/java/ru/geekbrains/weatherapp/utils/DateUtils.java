@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateUtil {
+public class DateUtils {
 
     public static String getDayOfWeek(Locale locale) {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE", locale);

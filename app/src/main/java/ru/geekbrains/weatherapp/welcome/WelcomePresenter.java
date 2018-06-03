@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 import ru.geekbrains.weatherapp.R;
@@ -14,9 +13,8 @@ import ru.geekbrains.weatherapp.weather.WeatherFragment;
 public class WelcomePresenter extends Fragment {
 
     private WelcomeFragment mFragment;
-    private FragmentActivity mCurrentActivity;
 
-    public static WelcomePresenter init() {
+    public static WelcomePresenter newInstance() {
         return new WelcomePresenter();
     }
 
@@ -24,12 +22,6 @@ public class WelcomePresenter extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mCurrentActivity = getActivity();
     }
 
     public void attachView(WelcomeFragment fragment) {
@@ -46,9 +38,12 @@ public class WelcomePresenter extends Fragment {
             return;
         }
 
-        WeatherFragment fragment = WeatherFragment.init(createBundle());
+        WeatherFragment fragment = WeatherFragment.newInstance(createBundle());
 
-        FragmentTransaction ft = mCurrentActivity.getSupportFragmentManager().beginTransaction();
+        if(getActivity() == null){
+            return;
+        }
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main_fragment, fragment);
         ft.addToBackStack(null);
         ft.commit();

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -16,14 +15,13 @@ import java.util.Locale;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.utils.DateUtil;
+import ru.geekbrains.weatherapp.utils.DateUtils;
 
 public class WeatherFragment extends Fragment {
 
     private WeatherPresenter mPresenter;
-    private FragmentActivity currentActivity;
 
-    public static WeatherFragment init(Bundle bundle) {
+    public static WeatherFragment newInstance(Bundle bundle) {
         WeatherFragment fragment = new WeatherFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -43,19 +41,22 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        super.onCreate(savedInstanceState);
-        currentActivity = getActivity();
         initPresenter();
         mPresenter.attachView(this);
     }
 
     private void initPresenter() {
-        FragmentManager fm = currentActivity.getSupportFragmentManager();
+        if (getActivity() == null) {
+            return;
+        }
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         mPresenter = (WeatherPresenter) fm.findFragmentByTag(Constants.WEATHER_PRESENTER_TAG);
-        mPresenter = WeatherPresenter.init();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(mPresenter, Constants.WEATHER_PRESENTER_TAG);
-        ft.commit();
+        if (mPresenter == null) {
+            mPresenter = WeatherPresenter.newInstance();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(mPresenter, Constants.WEATHER_PRESENTER_TAG);
+            ft.commit();
+        }
     }
 
     private void setBeginVisibleParams(View layout) {
@@ -70,7 +71,7 @@ public class WeatherFragment extends Fragment {
         Bundle bundle = getArguments();
 
         if (bundle != null) {
-            tvCity.setText(bundle.getString(Constants.CITY_NAME));
+            tvCity.setText(bundle.getString(Constants.CITY_NAME, ""));
             if (bundle.getBoolean(Constants.PARAM_WIND, false)) {
                 tvWindTitle.setVisibility(View.VISIBLE);
                 tvWind.setVisibility(View.VISIBLE);
@@ -90,8 +91,8 @@ public class WeatherFragment extends Fragment {
         final TextView weekDay = layout.findViewById(R.id.week_day);
         final TextView date = layout.findViewById(R.id.date);
         Locale locale = getResources().getConfiguration().locale;
-        weekDay.setText(DateUtil.getDayOfWeek(locale));
-        date.setText(String.format("%s %s", DateUtil.getDayOfMonth(locale), DateUtil.getMonth(locale)));
+        weekDay.setText(DateUtils.getDayOfWeek(locale));
+        date.setText(String.format("%s %s", DateUtils.getDayOfMonth(locale), DateUtils.getMonth(locale)));
     }
 
     @Override
