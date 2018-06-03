@@ -39,7 +39,7 @@ public class Model extends Fragment {
         cities.add(cityName);
         mSharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.clear().apply();
+        editor.remove(Constants.SAVED_SET_OF_CITIES).apply();
         editor.putStringSet(Constants.SAVED_SET_OF_CITIES, cities);
         editor.apply();
         return true;
