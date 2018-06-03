@@ -26,6 +26,13 @@ public class WelcomeFragment extends Fragment {
     private CheckBox cbWind;
     private CheckBox cbHumidity;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initPresenter();
+        mPresenter.attachView(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -44,14 +51,6 @@ public class WelcomeFragment extends Fragment {
         buttonChooseCity.setOnClickListener(v -> mPresenter.onChooseCityClick());
 
         return layout;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        super.onCreate(savedInstanceState);
-        initPresenter();
-        mPresenter.attachView(this);
     }
 
     private void initPresenter() {
