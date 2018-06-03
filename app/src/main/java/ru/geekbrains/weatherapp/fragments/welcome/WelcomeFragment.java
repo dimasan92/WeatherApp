@@ -50,6 +50,9 @@ public class WelcomeFragment extends Fragment {
         final Button buttonChooseCity = layout.findViewById(R.id.btn_choose_city);
         buttonChooseCity.setOnClickListener(v -> mPresenter.onChooseCityClick());
 
+        final Button buttonAddCity = layout.findViewById(R.id.btn_add_city_name);
+        buttonAddCity.setOnClickListener(v -> mPresenter.onAddCityClick());
+
         return layout;
     }
 
@@ -62,6 +65,7 @@ public class WelcomeFragment extends Fragment {
 
         if (mPresenter == null) {
             mPresenter = WelcomePresenter.newInstance();
+            mPresenter.assignModel(getActivity());
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(mPresenter, Constants.WELCOME_PRESENTER_TAG);
             ft.commit();

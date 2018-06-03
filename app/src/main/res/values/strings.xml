@@ -17,4 +17,6 @@
     <string name="empty_city_name">Enter the name of the city!</string>
     <string name="btn_choose_city">Choose city from list</string>
     <string name="add_city_name">Add the city</string>
+    <string name="success_add_city">The city was successfully added</string>
+    <string name="fail_add_city">Error adding city</string>
 </resources>
