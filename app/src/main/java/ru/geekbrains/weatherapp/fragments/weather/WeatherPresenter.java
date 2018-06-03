@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.weather;
+package ru.geekbrains.weatherapp.fragments.weather;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

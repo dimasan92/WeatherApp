@@ -7,7 +7,7 @@
     android:theme="@style/WeatherFragmentTheme">
 
     <ImageView
-        android:id="@+id/background_image"
+        android:id="@+id/iv_background_image"
         style="@style/WeatherBackgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

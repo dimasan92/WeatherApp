@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.welcome;
+package ru.geekbrains.weatherapp.fragments.welcome;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.weather.WeatherFragment;
+import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
 public class WelcomePresenter extends Fragment {
 
@@ -32,7 +32,7 @@ public class WelcomePresenter extends Fragment {
         mFragment = null;
     }
 
-    public void transitionClick() {
+    public void onTransitionClick() {
         if (mFragment.getCityName().trim().equals("")) {
             mFragment.makeToast(R.string.empty_city_name);
             return;
@@ -49,7 +49,10 @@ public class WelcomePresenter extends Fragment {
         ft.commit();
     }
 
-    @NonNull
+    public void onChooseCityClick(){
+
+    }
+
     private Bundle createBundle() {
         Bundle bundle = new Bundle();
         bundle.putString(Constants.CITY_NAME, mFragment.getCityName());

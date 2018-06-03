@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.welcome;
+package ru.geekbrains.weatherapp.fragments.welcome;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,12 +33,15 @@ public class WelcomeFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_welcome, container, false);
 
         etCityName = layout.findViewById(R.id.et_city_name);
-        cbPressure = layout.findViewById(R.id.checkbox_pressure);
-        cbWind = layout.findViewById(R.id.checkbox_wind);
-        cbHumidity = layout.findViewById(R.id.checkbox_humidity);
+        cbPressure = layout.findViewById(R.id.cb_pressure);
+        cbWind = layout.findViewById(R.id.cb_wind);
+        cbHumidity = layout.findViewById(R.id.cb_humidity);
 
-        Button buttonTransition = layout.findViewById(R.id.button_transition);
-        buttonTransition.setOnClickListener((v) -> mPresenter.transitionClick());
+        final Button buttonTransition = layout.findViewById(R.id.btn_transition);
+        buttonTransition.setOnClickListener(v -> mPresenter.onTransitionClick());
+
+        final Button buttonChooseCity = layout.findViewById(R.id.btn_choose_city);
+        buttonChooseCity.setOnClickListener(v -> mPresenter.onChooseCityClick());
 
         return layout;
     }

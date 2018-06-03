@@ -16,4 +16,5 @@
     <string name="city_name_request">Город</string>
     <string name="button_transition">Перейти</string>
     <string name="empty_city_name">Введите название города!</string>
+    <string name="choose_city">Выбрать город из списка</string>
 </resources>
