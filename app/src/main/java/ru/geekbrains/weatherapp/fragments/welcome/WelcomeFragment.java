@@ -1,11 +1,9 @@
-package ru.geekbrains.weatherapp.welcome;
+package ru.geekbrains.weatherapp.fragments.welcome;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -16,10 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Objects;
-
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.StartActivity;
 import ru.geekbrains.weatherapp.common.Constants;
 
 public class WelcomeFragment extends Fragment {
@@ -30,7 +25,13 @@ public class WelcomeFragment extends Fragment {
     private CheckBox cbPressure;
     private CheckBox cbWind;
     private CheckBox cbHumidity;
-    private FragmentActivity currentActivity;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initPresenter();
+        mPresenter.attachView(this);
+    }
 
     @Nullable
     @Override
@@ -38,35 +39,37 @@ public class WelcomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_welcome, container, false);
 
-        etCityName = layout.findViewById(R.id.et_city_name);
-        cbPressure = layout.findViewById(R.id.checkbox_pressure);
-        cbWind = layout.findViewById(R.id.checkbox_wind);
-        cbHumidity = layout.findViewById(R.id.checkbox_humidity);
+        etCityName = layout.findViewById(R.id.et_enter_city_name);
+        cbPressure = layout.findViewById(R.id.cb_pressure);
+        cbWind = layout.findViewById(R.id.cb_wind);
+        cbHumidity = layout.findViewById(R.id.cb_humidity);
 
-        Button buttonTransition = layout.findViewById(R.id.button_transition);
-        buttonTransition.setOnClickListener((v) -> mPresenter.transitionClick());
+        final Button buttonTransition = layout.findViewById(R.id.btn_transition);
+        buttonTransition.setOnClickListener(v -> mPresenter.onTransitionClick());
+
+        final Button buttonChooseCity = layout.findViewById(R.id.btn_choose_city);
+        buttonChooseCity.setOnClickListener(v -> mPresenter.onChooseCityClick());
+
+        final Button buttonAddCity = layout.findViewById(R.id.btn_add_city_name);
+        buttonAddCity.setOnClickListener(v -> mPresenter.onAddCityClick());
 
         return layout;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        super.onCreate(savedInstanceState);
-        currentActivity = getActivity();
-        initPresenter();
-        mPresenter.attachView(this);
-    }
-
     private void initPresenter() {
-        FragmentManager fm = currentActivity.getSupportFragmentManager();
-
+        if (getActivity() == null) {
+            return;
+        }
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         mPresenter = (WelcomePresenter) fm.findFragmentByTag(Constants.WELCOME_PRESENTER_TAG);
-        mPresenter = WelcomePresenter.init();
 
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(mPresenter, Constants.WELCOME_PRESENTER_TAG);
-        ft.commit();
+        if (mPresenter == null) {
+            mPresenter = WelcomePresenter.newInstance();
+            mPresenter.assignModel(getActivity());
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(mPresenter, Constants.WELCOME_PRESENTER_TAG);
+            ft.commit();
+        }
     }
 
     public String getCityName() {
@@ -86,7 +89,7 @@ public class WelcomeFragment extends Fragment {
     }
 
     public void makeToast(int stringId) {
-        Toast.makeText(currentActivity.getApplicationContext(), stringId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), stringId, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.weather;
+package ru.geekbrains.weatherapp.fragments.weather;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 public class WeatherPresenter extends Fragment {
     private WeatherFragment mFragment;
 
-    public static WeatherPresenter init() {
+    public static WeatherPresenter newInstance() {
         return new WeatherPresenter();
     }
 

@@ -7,7 +7,7 @@
     android:theme="@style/WeatherFragmentTheme">
 
     <ImageView
-        android:id="@+id/background_image"
+        android:id="@+id/iv_background_image"
         style="@style/WeatherBackgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,8 +29,8 @@
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginStart="@dimen/offset_small"
+            android:layout_marginTop="@dimen/offset_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +39,8 @@
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_very_small"
+            android:layout_marginStart="@dimen/offset_small"
+            android:layout_marginTop="@dimen/offset_very_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/week_day" />
 
@@ -52,8 +52,8 @@
         style="@style/TinyLightText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/offset_small"
+        android:layout_marginTop="@dimen/offset_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Saint-Petersburg" />
@@ -73,7 +73,7 @@
             style="@style/MainTemperatureParam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_very_small"
+            android:layout_marginTop="@dimen/offset_very_small"
             android:drawableStart="@drawable/weather_clear_sun_big"
             android:text="@string/temperature_11" />
 
@@ -103,8 +103,8 @@
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_very_small"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/offset_very_small"
+            android:layout_marginTop="@dimen/offset_small"
             android:text="@string/time_of_day_day"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_weather_layout" />
@@ -138,8 +138,8 @@
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_very_small"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/offset_very_small"
+            android:layout_marginTop="@dimen/offset_small"
             android:text="@string/time_of_day_night"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cloudiness"
@@ -173,7 +173,7 @@
             style="@style/TinyDarkText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/offset_small"
             android:text="@string/title_wind"
             android:visibility="gone" />
 
@@ -182,7 +182,7 @@
             style="@style/TinyDarkText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_very_small"
+            android:layout_marginTop="@dimen/offset_very_small"
             android:text="@string/title_pressure"
             android:visibility="gone" />
 
@@ -191,7 +191,7 @@
             style="@style/TinyDarkText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_very_small"
+            android:layout_marginTop="@dimen/offset_very_small"
             android:text="@string/title_humidity"
             android:visibility="invisible" />
     </LinearLayout>
@@ -212,7 +212,7 @@
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/offset_small"
             android:text="@string/wind_calm"
             android:visibility="gone" />
 
@@ -221,7 +221,7 @@
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_very_small"
+            android:layout_marginTop="@dimen/offset_very_small"
             android:text="@string/pressure_759"
             android:visibility="gone" />
 
@@ -230,7 +230,7 @@
             style="@style/TinyLightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_very_small"
+            android:layout_marginTop="@dimen/offset_very_small"
             android:text="@string/humidity_93"
             android:visibility="invisible" />
 

@@ -14,6 +14,10 @@
     <string name="pressure_759">759 мм рт. ст.</string>
     <string name="humidity_93">93%</string>
     <string name="city_name_request">Город</string>
-    <string name="button_transition">Перейти</string>
+    <string name="btn_watch_the_weather">Смотреть погоду</string>
     <string name="empty_city_name">Введите название города!</string>
+    <string name="btn_choose_city">Выбрать город из списка</string>
+    <string name="add_city_name">Добавить город</string>
+    <string name="success_add_city">Город был успешно добавлен</string>
+    <string name="fail_add_city">Ошибка при добавлении города</string>
 </resources>

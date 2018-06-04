@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/welcome_fragment"
-        android:name="ru.geekbrains.weatherapp.welcome.WelcomeFragment"
+        android:name="ru.geekbrains.weatherapp.fragments.welcome.WelcomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

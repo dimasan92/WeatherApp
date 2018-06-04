@@ -11,8 +11,8 @@
     </style>
 
     <style name="CityNameEnter">
-        <item name="android:ems">10</item>
-        <item name="android:textSize">@dimen/text_middle</item>
+        <item name="android:ems">8</item>
+        <item name="android:textSize">@dimen/text_little</item>
         <item name="android:textColorHint">@color/colorAzure</item>
         <item name="android:textColor">@color/colorAzure</item>
     </style>
@@ -21,18 +21,18 @@
         <item name="android:textSize">@dimen/text_very_big</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-    
+
     <style name="TinyLightText">
         <item name="android:textSize">@dimen/text_tiny</item>
         <item name="android:textStyle">bold</item>
     </style>
-    
+
     <style name="TinyDarkText">
         <item name="android:textSize">@dimen/text_tiny</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
-    
+
     <style name="LittleLightText">
         <item name="android:textSize">@dimen/text_little</item>
         <item name="android:textStyle">bold</item>
@@ -46,6 +46,15 @@
     <style name="WeatherBackgroundImage">
         <item name="android:foreground">@color/filterMedium</item>
         <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="chooseCityItem">
+        <item name="android:textSize">@dimen/text_middle</item>
+        <item name="android:background">@color/filterDark</item>
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:layout_marginTop">@dimen/offset_very_small</item>
+        <item name="android:padding">@dimen/offset_very_small</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
 </resources>
