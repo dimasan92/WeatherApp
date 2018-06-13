@@ -53,7 +53,7 @@ public class AddCityDialog extends DialogFragment {
                 .setView(v)
                 .setTitle(R.string.add_city_dialog_title)
                 .setPositiveButton(android.R.string.paste, (dialog, which)->{
-
+                    mPresenter.onConfirmAddClick();
                 })
                 .create();
     }

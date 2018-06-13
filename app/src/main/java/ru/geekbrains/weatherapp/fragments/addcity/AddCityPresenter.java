@@ -37,4 +37,8 @@ public class AddCityPresenter extends Fragment{
     public void detachView() {
         mDialog = null;
     }
+
+    public void onConfirmAddClick(){
+        
+    }
 }
