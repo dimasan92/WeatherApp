@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.Model;
 
@@ -39,6 +40,14 @@ public class AddCityPresenter extends Fragment{
     }
 
     public void onConfirmAddClick(){
-        
+        if (emptyCityName()) {
+            return;
+        }
+
+        if (mModel.addCity(mDialog.getCityName())) {
+            mDialog.makeToast(R.string.success_add_city);
+        } else {
+            mDialog.makeToast(R.string.fail_add_city);
+        }
     }
 }
