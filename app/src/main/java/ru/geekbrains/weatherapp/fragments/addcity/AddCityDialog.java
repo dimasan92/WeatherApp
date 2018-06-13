@@ -57,4 +57,10 @@ public class AddCityDialog extends DialogFragment {
                 })
                 .create();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.detachView();
+    }
 }
