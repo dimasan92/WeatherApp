@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.fragments.addcity;
+package ru.geekbrains.weatherapp.fragments.dialogs;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.fragments.CommonPresenter;

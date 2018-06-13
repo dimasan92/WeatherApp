@@ -1,12 +1,8 @@
-package ru.geekbrains.weatherapp.fragments.addcity;
+package ru.geekbrains.weatherapp.fragments.dialogs;
 
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +12,7 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.fragments.CommonDialog;
-import ru.geekbrains.weatherapp.fragments.CommonPresenter;
 
 public class AddCityDialog extends CommonDialog {
 
@@ -26,18 +20,6 @@ public class AddCityDialog extends CommonDialog {
 
     public static AddCityDialog newInstance() {
         return new AddCityDialog();
-    }
-
-    @Override
-    protected CommonPresenter createPresenter() {
-        return DialogPresenter.newInstance();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initPresenter(Constants.DIALOG_PRESENTER_TAG);
-        mPresenter.attachView(this);
     }
 
     @NonNull
@@ -51,7 +33,7 @@ public class AddCityDialog extends CommonDialog {
                 .setView(v)
                 .setTitle(R.string.add_city_dialog_title)
                 .setPositiveButton(android.R.string.paste, (dialog, which) -> {
-                    ((DialogPresenter)mPresenter).onConfirmAddClick();
+                    mPresenter.onConfirmAddClick();
                 })
                 .create();
     }

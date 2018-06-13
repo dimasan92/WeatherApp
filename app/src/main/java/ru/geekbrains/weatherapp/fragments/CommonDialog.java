@@ -1,27 +1,38 @@
 package ru.geekbrains.weatherapp.fragments;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import java.util.Objects;
 
-public abstract class CommonDialog extends DialogFragment {
+import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.fragments.dialogs.DialogPresenter;
 
-    protected CommonPresenter mPresenter;
+public class CommonDialog extends DialogFragment {
 
-    protected abstract CommonPresenter createPresenter();
+    protected DialogPresenter mPresenter;
 
-    protected void initPresenter(String tag) {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initPresenter();
+        mPresenter.attachView(this);
+    }
+
+    protected void initPresenter() {
 
         FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-        mPresenter = (CommonPresenter) fm.findFragmentByTag(tag);
+        mPresenter = (DialogPresenter) fm.findFragmentByTag(Constants.DIALOG_PRESENTER_TAG);
 
         if (mPresenter == null) {
-            mPresenter = createPresenter();
+            mPresenter = DialogPresenter.newInstance();
             mPresenter.assignModel(getActivity());
             FragmentTransaction ft = fm.beginTransaction();
-            ft.add(mPresenter, tag);
+            ft.add(mPresenter, Constants.DIALOG_PRESENTER_TAG);
             ft.commit();
         }
     }
