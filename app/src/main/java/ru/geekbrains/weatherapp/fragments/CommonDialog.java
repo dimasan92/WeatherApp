@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -35,6 +36,11 @@ public class CommonDialog extends DialogFragment {
             ft.add(mPresenter, Constants.DIALOG_PRESENTER_TAG);
             ft.commit();
         }
+    }
+
+    public void makeToast(int stringId) {
+        Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(),
+                stringId, Toast.LENGTH_SHORT).show();
     }
 
     @Override

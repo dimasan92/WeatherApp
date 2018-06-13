@@ -38,18 +38,7 @@ public class AddCityDialog extends CommonDialog {
                 .create();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.detachView();
-    }
-
     public String getCityName() {
         return mEtCityName.getText().toString();
-    }
-
-    public void makeToast(int stringId) {
-        Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(),
-                stringId, Toast.LENGTH_SHORT).show();
     }
 }
