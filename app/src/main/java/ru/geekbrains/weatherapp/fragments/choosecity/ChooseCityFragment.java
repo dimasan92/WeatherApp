@@ -64,13 +64,13 @@ public class ChooseCityFragment extends Fragment {
             return;
         }
         FragmentManager fm = getActivity().getSupportFragmentManager();
-        mPresenter = (ChooseCityPresenter) fm.findFragmentByTag(Constants.CHOOSE_CITY_PRESENTER);
+        mPresenter = (ChooseCityPresenter) fm.findFragmentByTag(Constants.CHOOSE_CITY_PRESENTER_TAG);
 
         if (mPresenter == null) {
             mPresenter = ChooseCityPresenter.newInstance();
             mPresenter.assignModel(getActivity());
             FragmentTransaction ft = fm.beginTransaction();
-            ft.add(mPresenter, Constants.CHOOSE_CITY_PRESENTER);
+            ft.add(mPresenter, Constants.CHOOSE_CITY_PRESENTER_TAG);
             ft.commit();
         }
     }

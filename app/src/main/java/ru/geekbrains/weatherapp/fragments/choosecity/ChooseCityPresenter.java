@@ -12,6 +12,7 @@ import java.util.Set;
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.Model;
+import ru.geekbrains.weatherapp.fragments.addcity.AddCityDialog;
 import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
 public class ChooseCityPresenter extends Fragment {
@@ -54,8 +55,14 @@ public class ChooseCityPresenter extends Fragment {
         ft.commit();
     }
 
-    public void onAddCityClick(){
-        
+    public void onAddCityClick() {
+        if (getActivity() == null) {
+            return;
+        }
+
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        AddCityDialog dialog = AddCityDialog.newInstance();
+        dialog.show(fm, Constants.ADD_CITY_DIALOG_TAG);
     }
 
     public void assignModel(FragmentActivity activity) {
