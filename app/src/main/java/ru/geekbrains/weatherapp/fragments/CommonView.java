@@ -8,19 +8,19 @@ import java.util.Objects;
 
 public abstract class CommonView extends Fragment {
 
-    protected CommonPresenter mCommonPresenter;
+    protected CommonPresenter mPresenter;
 
     protected abstract CommonPresenter createPresenter();
 
     protected void initPresenter(String tag) {
         FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-        mCommonPresenter = (CommonPresenter) fm.findFragmentByTag(tag);
+        mPresenter = (CommonPresenter) fm.findFragmentByTag(tag);
 
-        if (mCommonPresenter == null) {
-            mCommonPresenter = createPresenter();
-            mCommonPresenter.assignModel(getActivity());
+        if (mPresenter == null) {
+            mPresenter = createPresenter();
+            mPresenter.assignModel(getActivity());
             FragmentTransaction ft = fm.beginTransaction();
-            ft.add(mCommonPresenter, tag);
+            ft.add(mPresenter, tag);
             ft.commit();
         }
     }
@@ -28,6 +28,6 @@ public abstract class CommonView extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mCommonPresenter.detachView();
+        mPresenter.detachView();
     }
 }

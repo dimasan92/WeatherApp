@@ -22,7 +22,6 @@ import ru.geekbrains.weatherapp.fragments.CommonView;
 
 public class WelcomeView extends CommonView {
 
-    private WelcomePresenter mPresenter;
     private RecyclerView mCityRecyclerView;
 
     public static WelcomeView newInstance() {
@@ -38,7 +37,6 @@ public class WelcomeView extends CommonView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initPresenter(Constants.WELCOME_PRESENTER_TAG);
-        mPresenter = (WelcomePresenter) mCommonPresenter;
         mPresenter.attachView(this);
     }
 
@@ -55,7 +53,7 @@ public class WelcomeView extends CommonView {
         mCityRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         final FloatingActionButton fab = view.findViewById(R.id.list_fab);
-        fab.setOnClickListener(v -> mPresenter.onAddCityClick());
+        fab.setOnClickListener(v -> ((WelcomePresenter) mPresenter).onAddCityClick());
 
         mPresenter.viewIsReady();
 
@@ -76,7 +74,7 @@ public class WelcomeView extends CommonView {
             super(cityName);
             itemView.setOnClickListener(v -> {
                 String city = ((TextView) v.findViewById(R.id.item_city_name)).getText().toString();
-                mPresenter.onItemClick(city);
+                ((WelcomePresenter) mPresenter).onItemClick(city);
             });
             mCityName = itemView.findViewById(R.id.item_city_name);
         }
