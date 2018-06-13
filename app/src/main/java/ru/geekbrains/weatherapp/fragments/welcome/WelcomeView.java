@@ -9,9 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -36,6 +38,8 @@ public class WelcomeView extends CommonView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
         initPresenter(Constants.WELCOME_PRESENTER_TAG);
         mPresenter.attachView(this);
     }
@@ -44,7 +48,7 @@ public class WelcomeView extends CommonView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_welcome, container, false);
+        final View view = inflater.inflate(R.layout.view_welcome, container, false);
 
         final Toolbar toolbar = view.findViewById(R.id.main_toolbar);
         ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
@@ -58,6 +62,21 @@ public class WelcomeView extends CommonView {
         mPresenter.viewIsReady();
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.view_welcome, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_settings:
+                ((WelcomePresenter) mPresenter).itemSettingsSelect();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void updateListView(String[] cities) {
