@@ -12,7 +12,7 @@ import ru.geekbrains.weatherapp.common.Model;
 
 public class CommonPresenter extends Fragment {
 
-    protected CommonView mView;
+    protected Fragment mView;
     protected Model mModel;
 
     @Override
@@ -21,7 +21,7 @@ public class CommonPresenter extends Fragment {
         setRetainInstance(true);
     }
 
-    public void attachView(CommonView view) {
+    public void attachView(Fragment view) {
         mView = view;
     }
 
