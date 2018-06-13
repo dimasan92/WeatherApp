@@ -6,6 +6,7 @@ public class Constants {
     public static final String WELCOME_PRESENTER_TAG = "welcome presenter tag";
     public static final String WEATHER_PRESENTER_TAG = "weather presenter tag";
     public static final String CHOOSE_CITY_PRESENTER_TAG = "choose city presenter";
+    public static final String ADD_CITY_PRESENTER_TAG = "add city presenter";
 
     // model's tag
     public static final String MODEL_TAG = "model tag";
