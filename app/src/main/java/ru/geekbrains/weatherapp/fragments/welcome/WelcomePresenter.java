@@ -1,21 +1,21 @@
 package ru.geekbrains.weatherapp.fragments.welcome;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import java.util.Set;
+
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.Model;
-import ru.geekbrains.weatherapp.fragments.choosecity.ChooseCityFragment;
+import ru.geekbrains.weatherapp.fragments.addcity.AddCityDialog;
 import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
 public class WelcomePresenter extends Fragment {
-
     private WelcomeFragment mFragment;
     private Model mModel;
 
@@ -37,28 +37,32 @@ public class WelcomePresenter extends Fragment {
         mFragment = null;
     }
 
-    public void onTransitionClick() {
-        if (emptyCityName()) {
+    public void viewIsReady() {
+        Set<String> setOfCities = mModel.getCities();
+        String[] cities = setOfCities.toArray(new String[setOfCities.size()]);
+        mFragment.setListView(cities);
+    }
+
+    public void onItemClick(String city) {
+        if (getActivity() == null) {
             return;
         }
 
-        replaceNewFragment(WeatherFragment.newInstance(createBundle()));
-    }
-
-    public void onChooseCityClick() {
-        replaceNewFragment(ChooseCityFragment.newInstance(createBundle()));
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main_fragment, WeatherFragment
+                .newInstance(createBundle(city)));
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     public void onAddCityClick() {
-        if (emptyCityName()) {
+        if (getActivity() == null) {
             return;
         }
 
-        if (mModel.addCity(mFragment.getCityName())) {
-            mFragment.makeToast(R.string.success_add_city);
-        } else {
-            mFragment.makeToast(R.string.fail_add_city);
-        }
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        AddCityDialog dialog = AddCityDialog.newInstance();
+        dialog.show(fm, Constants.ADD_CITY_DIALOG_TAG);
     }
 
     public void assignModel(FragmentActivity activity) {
@@ -74,31 +78,16 @@ public class WelcomePresenter extends Fragment {
         }
     }
 
-    private boolean emptyCityName() {
-        if (mFragment.getCityName().trim().equals("")) {
-            mFragment.makeToast(R.string.empty_city_name);
-            return true;
-        }
-        return false;
-    }
-
-    private void replaceNewFragment(Fragment fragment) {
-        if (getActivity() == null) {
-            return;
-        }
-
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_fragment, fragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-
-    private Bundle createBundle() {
+    private Bundle createBundle(String city) {
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.CITY_NAME, mFragment.getCityName());
-        bundle.putBoolean(Constants.PARAM_PRESSURE, mFragment.getPressureParam());
-        bundle.putBoolean(Constants.PARAM_WIND, mFragment.getWindParam());
-        bundle.putBoolean(Constants.PARAM_HUMIDITY, mFragment.getHumidityParam());
+        Bundle tmpBundle = mFragment.getArguments();
+        if (tmpBundle != null) {
+            bundle.putString(Constants.CITY_NAME, city);
+            bundle.putBoolean(Constants.PARAM_PRESSURE, tmpBundle.getBoolean(Constants.PARAM_PRESSURE));
+            bundle.putBoolean(Constants.PARAM_WIND, tmpBundle.getBoolean(Constants.PARAM_WIND));
+            bundle.putBoolean(Constants.PARAM_HUMIDITY, tmpBundle.getBoolean(Constants.PARAM_HUMIDITY));
+            return bundle;
+        }
         return bundle;
     }
 }
