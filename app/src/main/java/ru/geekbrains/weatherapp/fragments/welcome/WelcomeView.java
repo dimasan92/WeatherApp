@@ -61,52 +61,8 @@ public class WelcomeView extends CommonView {
     }
 
     public void updateListView(String[] cities) {
-        CitiesAdapter adapter = new CitiesAdapter(cities);
+        CitiesAdapter adapter = new CitiesAdapter(cities, (WelcomePresenter) mPresenter);
         mCityRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-    }
-
-    private class CityHolder extends RecyclerView.ViewHolder {
-
-        private TextView mCityName;
-
-        CityHolder(View cityName) {
-            super(cityName);
-            itemView.setOnClickListener(v -> {
-                String city = ((TextView) v.findViewById(R.id.item_city_name)).getText().toString();
-                ((WelcomePresenter) mPresenter).onItemClick(city);
-            });
-            mCityName = itemView.findViewById(R.id.item_city_name);
-        }
-
-        void bind(String city) {
-            mCityName.setText(city);
-        }
-    }
-
-    private class CitiesAdapter extends RecyclerView.Adapter<CityHolder> {
-
-        String[] mCities;
-
-        CitiesAdapter(String[] cities) {
-            mCities = cities;
-        }
-
-        @NonNull
-        @Override
-        public CityHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
-            return new CityHolder(inflater.inflate(R.layout.list_item_city, parent, false));
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull CityHolder holder, int position) {
-            holder.bind(mCities[position]);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mCities.length;
-        }
     }
 }
