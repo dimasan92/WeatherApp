@@ -19,4 +19,5 @@
     <string name="add_city_name">Add the city</string>
     <string name="success_add_city">The city was successfully added</string>
     <string name="fail_add_city">Error adding city</string>
+    <string name="add_city_dialog_title">Adding a city</string>
 </resources>
