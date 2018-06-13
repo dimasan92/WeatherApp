@@ -46,8 +46,17 @@ public class AddCityPresenter extends Fragment{
 
         if (mModel.addCity(mDialog.getCityName())) {
             mDialog.makeToast(R.string.success_add_city);
+            mDialog.dismiss();
         } else {
             mDialog.makeToast(R.string.fail_add_city);
         }
+    }
+
+    private boolean emptyCityName() {
+        if (mDialog.getCityName().trim().equals("")) {
+            mDialog.makeToast(R.string.empty_city_name);
+            return true;
+        }
+        return false;
     }
 }
