@@ -2,7 +2,6 @@ package ru.geekbrains.weatherapp.fragments.welcome;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,11 +11,12 @@ import java.util.Set;
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.Model;
+import ru.geekbrains.weatherapp.fragments.CommonPresenter;
 import ru.geekbrains.weatherapp.fragments.addcity.AddCityDialog;
 import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
-public class WelcomePresenter extends Fragment {
-    private WelcomeFragment mFragment;
+public class WelcomePresenter extends CommonPresenter {
+    private WelcomeView mFragment;
     private Model mModel;
 
     public static WelcomePresenter newInstance() {
@@ -29,7 +29,7 @@ public class WelcomePresenter extends Fragment {
         setRetainInstance(true);
     }
 
-    public void attachView(WelcomeFragment fragment) {
+    public void attachView(WelcomeView fragment) {
         mFragment = fragment;
     }
 
@@ -40,7 +40,7 @@ public class WelcomePresenter extends Fragment {
     public void viewIsReady() {
         Set<String> setOfCities = mModel.getCities();
         String[] cities = setOfCities.toArray(new String[setOfCities.size()]);
-        mFragment.setListView(cities);
+        mFragment.updateListView(cities);
     }
 
     public void onItemClick(String city) {

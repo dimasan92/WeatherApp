@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.Model;
-import ru.geekbrains.weatherapp.fragments.welcome.WelcomeFragment;
+import ru.geekbrains.weatherapp.fragments.welcome.WelcomeView;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class StartActivity extends AppCompatActivity {
 
         Fragment fragment = fm.findFragmentById(R.id.main_fragment);
         if (fragment == null) {
-            fragment = WelcomeFragment.newInstance();
+            fragment = WelcomeView.newInstance();
             fm.beginTransaction()
                     .add(R.id.main_fragment, fragment)
                     .commit();
