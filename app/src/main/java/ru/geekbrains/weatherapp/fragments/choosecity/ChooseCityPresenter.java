@@ -36,6 +36,12 @@ public class ChooseCityPresenter extends Fragment {
         mFragment = null;
     }
 
+    public void viewIsReady() {
+        Set<String> setOfCities = mModel.getCities();
+        String[] cities = setOfCities.toArray(new String[setOfCities.size()]);
+        mFragment.setListView(cities);
+    }
+
     public void onItemClick(String city) {
         if (getActivity() == null) {
             return;
@@ -48,10 +54,8 @@ public class ChooseCityPresenter extends Fragment {
         ft.commit();
     }
 
-    public void viewIsReady() {
-        Set<String> setOfCities = mModel.getCities();
-        String[] cities = setOfCities.toArray(new String[setOfCities.size()]);
-        mFragment.setListView(cities);
+    public void onAddCityClick(){
+        
     }
 
     public void assignModel(FragmentActivity activity) {

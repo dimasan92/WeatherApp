@@ -3,6 +3,7 @@ package ru.geekbrains.weatherapp.fragments.choosecity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
@@ -43,10 +46,13 @@ public class ChooseCityFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_choose_city, container, false);
 
         final Toolbar toolbar = view.findViewById(R.id.main_toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
 
         mCityRecyclerView = view.findViewById(R.id.rw_cities);
         mCityRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        final FloatingActionButton fab = view.findViewById(R.id.list_fab);
+        fab.setOnClickListener(v -> mPresenter.onAddCityClick());
 
         mPresenter.viewIsReady();
 
