@@ -17,10 +17,10 @@ import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.fragments.CommonDialog;
+import ru.geekbrains.weatherapp.fragments.CommonPresenter;
 
-public class AddCityDialog extends DialogFragment {
-
-    private DialogPresenter mPresenter;
+public class AddCityDialog extends CommonDialog {
 
     private EditText mEtCityName;
 
@@ -29,23 +29,15 @@ public class AddCityDialog extends DialogFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initPresenter();
-        mPresenter.attachView(this);
+    protected CommonPresenter createPresenter() {
+        return DialogPresenter.newInstance();
     }
 
-    private void initPresenter() {
-        FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-        mPresenter = (DialogPresenter) fm.findFragmentByTag(Constants.ADD_CITY_PRESENTER_TAG);
-
-        if (mPresenter == null) {
-            mPresenter = DialogPresenter.newInstance();
-            mPresenter.assignModel(getActivity());
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.add(mPresenter, Constants.ADD_CITY_PRESENTER_TAG);
-            ft.commit();
-        }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initPresenter(Constants.DIALOG_PRESENTER_TAG);
+        mPresenter.attachView(this);
     }
 
     @NonNull
@@ -59,7 +51,7 @@ public class AddCityDialog extends DialogFragment {
                 .setView(v)
                 .setTitle(R.string.add_city_dialog_title)
                 .setPositiveButton(android.R.string.paste, (dialog, which) -> {
-                    mPresenter.onConfirmAddClick();
+                    ((DialogPresenter)mPresenter).onConfirmAddClick();
                 })
                 .create();
     }
