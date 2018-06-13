@@ -20,7 +20,7 @@ import ru.geekbrains.weatherapp.common.Constants;
 
 public class AddCityDialog extends DialogFragment {
 
-    private AddCityPresenter mPresenter;
+    private DialogPresenter mPresenter;
 
     private EditText mEtCityName;
 
@@ -37,10 +37,10 @@ public class AddCityDialog extends DialogFragment {
 
     private void initPresenter() {
         FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-        mPresenter = (AddCityPresenter) fm.findFragmentByTag(Constants.ADD_CITY_PRESENTER_TAG);
+        mPresenter = (DialogPresenter) fm.findFragmentByTag(Constants.ADD_CITY_PRESENTER_TAG);
 
         if (mPresenter == null) {
-            mPresenter = AddCityPresenter.newInstance();
+            mPresenter = DialogPresenter.newInstance();
             mPresenter.assignModel(getActivity());
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(mPresenter, Constants.ADD_CITY_PRESENTER_TAG);
