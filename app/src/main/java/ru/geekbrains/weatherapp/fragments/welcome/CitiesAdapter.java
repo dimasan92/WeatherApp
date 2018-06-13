@@ -45,7 +45,7 @@ class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityHolder>{
 
             itemView.setOnClickListener(v -> {
                 String city = ((TextView) v.findViewById(R.id.item_city_name)).getText().toString();
-                mPresenter.onItemClick(city);
+                mPresenter.onListItemClick(city);
             });
             mCityName = itemView.findViewById(R.id.item_city_name);
         }
