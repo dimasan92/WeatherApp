@@ -36,6 +36,10 @@ class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityHolder>{
         return mCities.length;
     }
 
+    public void setCities(String[] cities){
+        mCities = cities;
+    }
+
     class CityHolder extends RecyclerView.ViewHolder {
 
         private TextView mCityName;
