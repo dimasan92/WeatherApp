@@ -7,14 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import ru.geekbrains.weatherapp.R;
 
-class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityHolder>{
+class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityHolder> {
 
-    private String[] mCities;
+    private List<String> mCities;
     private WelcomePresenter mPresenter;
 
-    CitiesAdapter(String[] cities, WelcomePresenter presenter) {
+    CitiesAdapter(List<String> cities, WelcomePresenter presenter) {
         mCities = cities;
         mPresenter = presenter;
     }
@@ -28,15 +30,15 @@ class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CityHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull CityHolder holder, int position) {
-        holder.bind(mCities[position]);
+        holder.bind(mCities.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mCities.length;
+        return mCities.size();
     }
 
-    public void setCities(String[] cities){
+    public void setCities(List<String> cities) {
         mCities = cities;
     }
 

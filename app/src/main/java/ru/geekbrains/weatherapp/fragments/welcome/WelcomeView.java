@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
@@ -87,7 +88,7 @@ public class WelcomeView extends CommonView {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateListView(String[] cities) {
+    public void updateListView(List<String> cities) {
         if(mAdapter == null){
             mAdapter = new CitiesAdapter(cities, (WelcomePresenter) mPresenter);
             mCityRecyclerView.setAdapter(mAdapter);

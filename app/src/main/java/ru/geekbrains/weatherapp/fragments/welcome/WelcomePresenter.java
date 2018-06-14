@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -74,8 +76,7 @@ public class WelcomePresenter extends CommonPresenter {
     }
 
     public void updateList() {
-        Set<String> setOfCities = mModel.getCities();
-        String[] cities = setOfCities.toArray(new String[setOfCities.size()]);
+        List<String> cities = new ArrayList<>(mModel.getCities());
         ((WelcomeView) mView).updateListView(cities);
     }
 
