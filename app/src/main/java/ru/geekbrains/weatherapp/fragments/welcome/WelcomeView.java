@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
@@ -25,6 +26,7 @@ import ru.geekbrains.weatherapp.fragments.CommonView;
 public class WelcomeView extends CommonView {
 
     private RecyclerView mCityRecyclerView;
+    private CitiesAdapter mAdapter;
 
     public static WelcomeView newInstance() {
         return new WelcomeView();
@@ -65,6 +67,12 @@ public class WelcomeView extends CommonView {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        ((WelcomePresenter) mPresenter).updateList();
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.view_welcome, menu);
@@ -74,14 +82,18 @@ public class WelcomeView extends CommonView {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_settings:
-                ((WelcomePresenter) mPresenter).itemSettingsSelect();
+                ((WelcomePresenter) mPresenter).onMenuItemSettingsClick();
         }
         return super.onOptionsItemSelected(item);
     }
 
     public void updateListView(String[] cities) {
-        CitiesAdapter adapter = new CitiesAdapter(cities, (WelcomePresenter) mPresenter);
-        mCityRecyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        if(mAdapter == null){
+            mAdapter = new CitiesAdapter(cities, (WelcomePresenter) mPresenter);
+            mCityRecyclerView.setAdapter(mAdapter);
+        } else{
+            mAdapter.setCities(cities);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }
