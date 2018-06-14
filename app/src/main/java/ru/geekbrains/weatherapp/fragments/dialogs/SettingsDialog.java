@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
+import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.fragments.CommonDialog;
 
 public class SettingsDialog extends CommonDialog {
@@ -21,8 +22,10 @@ public class SettingsDialog extends CommonDialog {
     private CheckBox mCbWind;
     private CheckBox mCbHumidity;
 
-    public static SettingsDialog newInstance() {
-        return new SettingsDialog();
+    public static SettingsDialog newInstance(Bundle bundle) {
+        SettingsDialog dialog = new SettingsDialog();
+        dialog.setArguments(bundle);
+        return dialog;
     }
 
     @NonNull
@@ -33,6 +36,13 @@ public class SettingsDialog extends CommonDialog {
         mCbPressure = v.findViewById(R.id.cb_pressure);
         mCbWind = v.findViewById(R.id.cb_wind);
         mCbHumidity = v.findViewById(R.id.cb_humidity);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            mCbPressure.setChecked(bundle.getBoolean(Constants.PARAM_PRESSURE));
+            mCbWind.setChecked(bundle.getBoolean(Constants.PARAM_WIND));
+            mCbHumidity.setChecked(bundle.getBoolean(Constants.PARAM_HUMIDITY));
+        }
 
         return new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setView(v)
