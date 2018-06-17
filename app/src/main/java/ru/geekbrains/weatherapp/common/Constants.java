@@ -8,7 +8,7 @@ public class Constants {
     public static final String DIALOG_PRESENTER_TAG = "dialog presenter";
 
     // model's tag
-    public static final String MODEL_TAG = "model tag";
+    public static final String DATA_MODEL_TAG = "data model tag";
 
     // dialog's tag
     public static final String ADD_CITY_DIALOG_TAG = "add city dialog";
