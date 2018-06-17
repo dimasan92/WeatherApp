@@ -10,9 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.listener.Observer;
 import ru.geekbrains.weatherapp.model.DataModel;
-import ru.geekbrains.weatherapp.model.SimpleDataModel;
 
-public abstract class AbstractPresenter extends Fragment implements Presenter, Observer {
+public abstract class AbstractPresenter extends Fragment{
 
     protected Fragment mScreen;
     protected DataModel mModel;
@@ -23,25 +22,26 @@ public abstract class AbstractPresenter extends Fragment implements Presenter, O
         setRetainInstance(true);
     }
 
-    @Override
     public void attachView(Fragment view) {
         mScreen = view;
     }
 
-    @Override
     public void detachView() {
         mScreen = null;
     }
 
-    @Override
+    public void viewIsReady(){
+
+    }
+
     public void assignModel(FragmentActivity activity) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        mModel = (SimpleDataModel) fm.findFragmentByTag(Constants.DATA_MODEL_TAG);
+        mModel = (DataModel) fm.findFragmentByTag(Constants.DATA_MODEL_TAG);
 
         if (mModel == null) {
-            mModel = SimpleDataModel.newInstance();
+            mModel = DataModel.newInstance();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.add(((SimpleDataModel)mModel), Constants.DATA_MODEL_TAG);
+            ft.add(mModel, Constants.DATA_MODEL_TAG);
             ft.commit();
         }
     }
