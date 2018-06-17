@@ -7,4 +7,5 @@
     <dimen name="text_little">18sp</dimen>
     <dimen name="text_tiny">14sp</dimen>
     <dimen name="fab_margin">20dp</dimen>
+    <dimen name="AddCityMarginTop">30dp</dimen>
 </resources>
