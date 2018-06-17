@@ -20,4 +20,7 @@
     <string name="add_city_name">Добавить город</string>
     <string name="success_add_city">Город был успешно добавлен</string>
     <string name="fail_add_city">Ошибка при добавлении города</string>
+    <string name="add_city_dialog_title">Добавление города</string>
+    <string name="settings_dialog_title">Настройки</string>
+    <string name="menu_item_settings">Настройки</string>
 </resources>
