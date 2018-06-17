@@ -15,16 +15,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.fragments.CommonPresenter;
-import ru.geekbrains.weatherapp.fragments.CommonView;
+import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
+import ru.geekbrains.weatherapp.fragments.base.AbstractScreen;
 
-public class WelcomeView extends CommonView {
+public class WelcomeView extends AbstractScreen {
 
     private RecyclerView mCityRecyclerView;
     private CitiesAdapter mAdapter;
@@ -34,7 +33,7 @@ public class WelcomeView extends CommonView {
     }
 
     @Override
-    protected CommonPresenter createPresenter() {
+    protected AbstractPresenter createPresenter() {
         return WelcomePresenter.newInstance();
     }
 
@@ -68,8 +67,15 @@ public class WelcomeView extends CommonView {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("OnPause");
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        System.out.println("OnResume");
         ((WelcomePresenter) mPresenter).updateList();
     }
 
@@ -93,6 +99,7 @@ public class WelcomeView extends CommonView {
             mAdapter = new CitiesAdapter(cities, (WelcomePresenter) mPresenter);
             mCityRecyclerView.setAdapter(mAdapter);
         } else{
+            mCityRecyclerView.setAdapter(mAdapter);
             mAdapter.setCities(cities);
             mAdapter.notifyDataSetChanged();
         }
