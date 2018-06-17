@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.fragments;
+package ru.geekbrains.weatherapp.fragments.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.common.listener.Observer;
 import ru.geekbrains.weatherapp.model.DataModel;
+import ru.geekbrains.weatherapp.model.SimpleDataModel;
 
-public class CommonPresenter extends Fragment {
+public abstract class AbstractPresenter extends Fragment implements Presenter, Observer {
 
     protected Fragment mView;
     protected DataModel mModel;
@@ -21,26 +23,25 @@ public class CommonPresenter extends Fragment {
         setRetainInstance(true);
     }
 
+    @Override
     public void attachView(Fragment view) {
         mView = view;
     }
 
+    @Override
     public void detachView() {
         mView = null;
     }
 
-    public void viewIsReady() {
-
-    }
-
+    @Override
     public void assignModel(FragmentActivity activity) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        mModel = (DataModel) fm.findFragmentByTag(Constants.MODEL_TAG);
+        mModel = (SimpleDataModel) fm.findFragmentByTag(Constants.DATA_MODEL_TAG);
 
         if (mModel == null) {
-            mModel = DataModel.newInstance();
+            mModel = SimpleDataModel.newInstance();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.add(mModel, Constants.MODEL_TAG);
+            ft.add(((SimpleDataModel)mModel), Constants.DATA_MODEL_TAG);
             ft.commit();
         }
     }
