@@ -14,7 +14,7 @@
     <string name="humidity_93">93%</string>
     <string name="city_name_request">City</string>
     <string name="btn_watch_the_weather">Watch the weather</string>
-    <string name="empty_city_name">Enter the name of the city!</string>
+    <string name="incorrect_city_name">Enter the name of the city!</string>
     <string name="btn_choose_city">Choose city from list</string>
     <string name="add_city_name">Add the city</string>
     <string name="success_add_city">The city was successfully added</string>

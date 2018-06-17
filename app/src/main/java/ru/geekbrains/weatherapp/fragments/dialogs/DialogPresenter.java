@@ -2,6 +2,9 @@ package ru.geekbrains.weatherapp.fragments.dialogs;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.widget.TextView;
+
+import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
@@ -10,16 +13,19 @@ import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 
 public class DialogPresenter extends AbstractPresenter {
 
+    Pattern checkCityName = Pattern.compile("^[A-Z][a-z]+$");
+
     public static DialogPresenter newInstance() {
         return new DialogPresenter();
     }
 
     public void onConfirmAddClick() {
-        if (emptyCityName()) {
+
+        if (incorrectCityName()) {
             return;
         }
 
-        if (mModel.addCity(((AddCityDialog) mScreen).getCityName())) {
+        if (mModel.addCity(((AddCityDialog) mScreen).getEnteredText())) {
             ((AbstractDialog) mScreen).makeToast(R.string.success_add_city);
         } else {
             ((AbstractDialog) mScreen).makeToast(R.string.fail_add_city);
@@ -34,11 +40,13 @@ public class DialogPresenter extends AbstractPresenter {
         ((SettingsDialog) mScreen).sendResult(Activity.RESULT_OK, intent);
     }
 
-    private boolean emptyCityName() {
-        if (((AddCityDialog) mScreen).getCityName().trim().equals("")) {
-            ((AbstractDialog) mScreen).makeToast(R.string.empty_city_name);
+    private boolean incorrectCityName() {
+        String enteredText = ((AddCityDialog) mScreen).getEnteredText();
+        if (checkCityName.matcher(enteredText).matches()) {
+            ((AddCityDialog) mScreen).hideError();
             return true;
         }
+        ((AddCityDialog) mScreen).showError(R.string.incorrect_city_name);
         return false;
     }
 }

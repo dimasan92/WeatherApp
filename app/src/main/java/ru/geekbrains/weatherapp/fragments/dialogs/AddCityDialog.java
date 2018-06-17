@@ -3,10 +3,10 @@ package ru.geekbrains.weatherapp.fragments.dialogs;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ import ru.geekbrains.weatherapp.fragments.base.AbstractDialog;
 
 public class AddCityDialog extends AbstractDialog {
 
-    private EditText mEtCityName;
+    private TextInputEditText mCityNameEditText;
 
     public static AddCityDialog newInstance() {
         return new AddCityDialog();
@@ -26,7 +26,7 @@ public class AddCityDialog extends AbstractDialog {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_add_city, null);
 
-        mEtCityName = v.findViewById(R.id.et_enter_city_name);
+        mCityNameEditText = v.findViewById(R.id.et_enter_city_name);
 
         return new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setView(v)
@@ -37,7 +37,17 @@ public class AddCityDialog extends AbstractDialog {
                 .create();
     }
 
-    public String getCityName() {
-        return mEtCityName.getText().toString();
+    public String getEnteredText() {
+        return mCityNameEditText.getText().toString();
+    }
+
+    public void showError(int stringResource){
+        String message = Objects.requireNonNull(getActivity()).getResources()
+                .getString(R.string.incorrect_city_name);
+        mCityNameEditText.setError(message);
+    }
+
+    public void hideError(){
+        mCityNameEditText.setError(null);
     }
 }
