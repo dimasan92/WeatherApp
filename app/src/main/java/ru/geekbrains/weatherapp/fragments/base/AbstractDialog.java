@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.fragments;
+package ru.geekbrains.weatherapp.fragments.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,10 +12,9 @@ import java.util.Objects;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.fragments.dialogs.DialogPresenter;
 
-public class CommonDialog extends DialogFragment {
+public abstract class AbstractDialog extends DialogFragment {
 
     protected DialogPresenter mPresenter;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class CommonDialog extends DialogFragment {
     }
 
     protected void initPresenter() {
-
         FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         mPresenter = (DialogPresenter) fm.findFragmentByTag(Constants.DIALOG_PRESENTER_TAG);
 

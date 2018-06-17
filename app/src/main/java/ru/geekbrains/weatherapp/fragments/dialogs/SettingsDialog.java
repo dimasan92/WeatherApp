@@ -14,13 +14,13 @@ import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.fragments.CommonDialog;
+import ru.geekbrains.weatherapp.fragments.base.AbstractDialog;
 
-public class SettingsDialog extends CommonDialog {
+public class SettingsDialog extends AbstractDialog {
 
-    private CheckBox mCbPressure;
-    private CheckBox mCbWind;
-    private CheckBox mCbHumidity;
+    private CheckBox mPressureCheckBox;
+    private CheckBox mCbWindCheckBox;
+    private CheckBox mCbHumidityCheckBox;
 
     public static SettingsDialog newInstance(Bundle bundle) {
         SettingsDialog dialog = new SettingsDialog();
@@ -33,15 +33,15 @@ public class SettingsDialog extends CommonDialog {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_settings, null);
 
-        mCbPressure = v.findViewById(R.id.cb_pressure);
-        mCbWind = v.findViewById(R.id.cb_wind);
-        mCbHumidity = v.findViewById(R.id.cb_humidity);
+        mPressureCheckBox = v.findViewById(R.id.cb_pressure);
+        mCbWindCheckBox = v.findViewById(R.id.cb_wind);
+        mCbHumidityCheckBox = v.findViewById(R.id.cb_humidity);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mCbPressure.setChecked(bundle.getBoolean(Constants.PARAM_PRESSURE));
-            mCbWind.setChecked(bundle.getBoolean(Constants.PARAM_WIND));
-            mCbHumidity.setChecked(bundle.getBoolean(Constants.PARAM_HUMIDITY));
+            mPressureCheckBox.setChecked(bundle.getBoolean(Constants.PARAM_PRESSURE));
+            mCbWindCheckBox.setChecked(bundle.getBoolean(Constants.PARAM_WIND));
+            mCbHumidityCheckBox.setChecked(bundle.getBoolean(Constants.PARAM_HUMIDITY));
         }
 
         return new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
@@ -56,15 +56,15 @@ public class SettingsDialog extends CommonDialog {
     }
 
     public boolean getPressureParam() {
-        return mCbPressure.isChecked();
+        return mPressureCheckBox.isChecked();
     }
 
     public boolean getWindParam() {
-        return mCbWind.isChecked();
+        return mCbWindCheckBox.isChecked();
     }
 
     public boolean getHumidityParam() {
-        return mCbHumidity.isChecked();
+        return mCbHumidityCheckBox.isChecked();
     }
 
     public void sendResult(int resultCode, Intent intent) {
