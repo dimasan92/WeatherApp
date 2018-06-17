@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.fragments;
+package ru.geekbrains.weatherapp.fragments.base;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,15 +6,15 @@ import android.support.v4.app.FragmentTransaction;
 
 import java.util.Objects;
 
-public abstract class CommonView extends Fragment {
+public abstract class AbstarctScreen extends Fragment {
 
-    protected CommonPresenter mPresenter;
+    protected AbstractPresenter mPresenter;
 
-    protected abstract CommonPresenter createPresenter();
+    protected abstract AbstractPresenter createPresenter();
 
     protected void initPresenter(String tag) {
         FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-        mPresenter = (CommonPresenter) fm.findFragmentByTag(tag);
+        mPresenter = (AbstractPresenter) fm.findFragmentByTag(tag);
 
         if (mPresenter == null) {
             mPresenter = createPresenter();
