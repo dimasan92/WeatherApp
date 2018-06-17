@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.Objects;
 
@@ -28,13 +29,19 @@ public class AddCityDialog extends AbstractDialog {
 
         mCityNameEditText = v.findViewById(R.id.et_enter_city_name);
 
-        return new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
+        Dialog newDialog = new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setView(v)
                 .setTitle(R.string.add_city_dialog_title)
-                .setPositiveButton(android.R.string.paste, (dialog, which) -> {
-                    mPresenter.onConfirmAddClick();
-                })
+                .setPositiveButton(android.R.string.paste, null)
                 .create();
+        newDialog.setOnShowListener((dialog -> {
+            Button button = ((AlertDialog)dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+            button.setOnClickListener((v1 -> {
+                mPresenter.onConfirmAddClick();
+            }));
+        }));
+
+        return newDialog;
     }
 
     public String getEnteredText() {

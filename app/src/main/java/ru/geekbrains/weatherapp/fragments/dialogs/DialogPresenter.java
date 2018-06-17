@@ -13,7 +13,7 @@ import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 
 public class DialogPresenter extends AbstractPresenter {
 
-    Pattern checkCityName = Pattern.compile("^[A-Z][a-z]+$");
+    Pattern checkCityName = Pattern.compile("^[А-ЯA-Z][а-яa-z]+$");
 
     public static DialogPresenter newInstance() {
         return new DialogPresenter();
@@ -27,6 +27,7 @@ public class DialogPresenter extends AbstractPresenter {
 
         if (mModel.addCity(((AddCityDialog) mScreen).getEnteredText())) {
             ((AbstractDialog) mScreen).makeToast(R.string.success_add_city);
+            ((AddCityDialog) mScreen).dismiss();
         } else {
             ((AbstractDialog) mScreen).makeToast(R.string.fail_add_city);
         }
@@ -44,9 +45,9 @@ public class DialogPresenter extends AbstractPresenter {
         String enteredText = ((AddCityDialog) mScreen).getEnteredText();
         if (checkCityName.matcher(enteredText).matches()) {
             ((AddCityDialog) mScreen).hideError();
-            return true;
+            return false;
         }
         ((AddCityDialog) mScreen).showError(R.string.incorrect_city_name);
-        return false;
+        return true;
     }
 }
