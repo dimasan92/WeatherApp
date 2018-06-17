@@ -7,14 +7,13 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.fragments.CommonDialog;
+import ru.geekbrains.weatherapp.fragments.base.AbstractDialog;
 
-public class AddCityDialog extends CommonDialog {
+public class AddCityDialog extends AbstractDialog {
 
     private EditText mEtCityName;
 
