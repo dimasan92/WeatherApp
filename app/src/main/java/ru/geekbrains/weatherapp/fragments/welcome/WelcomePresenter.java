@@ -3,32 +3,28 @@ package ru.geekbrains.weatherapp.fragments.welcome;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.fragments.CommonPresenter;
+import ru.geekbrains.weatherapp.common.listener.Observer;
+import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 import ru.geekbrains.weatherapp.fragments.dialogs.AddCityDialog;
 import ru.geekbrains.weatherapp.fragments.dialogs.SettingsDialog;
 import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
-public class WelcomePresenter extends CommonPresenter {
+public class WelcomePresenter extends AbstractPresenter implements Observer{
 
     private static final int REQUEST_PARAMS = 0;
 
     public static WelcomePresenter newInstance() {
         return new WelcomePresenter();
-    }
-
-    @Override
-    public void viewIsReady() {
-        updateList();
     }
 
     @Override
@@ -47,6 +43,22 @@ public class WelcomePresenter extends CommonPresenter {
                     data.getBooleanExtra(Constants.PARAM_HUMIDITY, false));
             setArguments(bundle);
         }
+    }
+
+    @Override
+    public void assignModel(FragmentActivity activity) {
+        super.assignModel(activity);
+        mModel.registerObserver(this);
+    }
+
+    @Override
+    public void update() {
+        updateList();
+    }
+
+    @Override
+    public void viewIsReady() {
+        updateList();
     }
 
     public void onMenuItemSettingsClick() {
@@ -77,7 +89,7 @@ public class WelcomePresenter extends CommonPresenter {
 
     public void updateList() {
         List<String> cities = new ArrayList<>(mModel.getCities());
-        ((WelcomeView) mView).updateListView(cities);
+        ((WelcomeScreen) mScreen).updateListView(cities);
     }
 
     private Bundle createBundle(String city) {
