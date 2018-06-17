@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.SimpleDataModel;
+import ru.geekbrains.weatherapp.model.DataModel;
 import ru.geekbrains.weatherapp.fragments.welcome.WelcomeView;
 
 public class StartActivity extends AppCompatActivity {
@@ -22,7 +22,7 @@ public class StartActivity extends AppCompatActivity {
 
         fragment = fm.findFragmentByTag(Constants.DATA_MODEL_TAG);
         if (fragment == null) {
-            fragment = SimpleDataModel.newInstance();
+            fragment = DataModel.newInstance();
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(fragment, Constants.DATA_MODEL_TAG);
             ft.commit();
