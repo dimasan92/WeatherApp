@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import java.util.Objects;
 
-public abstract class AbstarctScreen extends Fragment {
+public abstract class AbstractScreen extends Fragment {
 
     protected AbstractPresenter mPresenter;
 

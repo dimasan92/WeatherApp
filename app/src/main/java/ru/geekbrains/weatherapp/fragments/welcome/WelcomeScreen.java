@@ -23,13 +23,13 @@ import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 import ru.geekbrains.weatherapp.fragments.base.AbstractScreen;
 
-public class WelcomeView extends AbstractScreen {
+public class WelcomeScreen extends AbstractScreen {
 
     private RecyclerView mCityRecyclerView;
     private CitiesAdapter mAdapter;
 
-    public static WelcomeView newInstance() {
-        return new WelcomeView();
+    public static WelcomeScreen newInstance() {
+        return new WelcomeScreen();
     }
 
     @Override
@@ -67,19 +67,6 @@ public class WelcomeView extends AbstractScreen {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        System.out.println("OnPause");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        System.out.println("OnResume");
-        ((WelcomePresenter) mPresenter).updateList();
-    }
-
-    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.view_welcome, menu);
@@ -95,10 +82,10 @@ public class WelcomeView extends AbstractScreen {
     }
 
     public void updateListView(List<String> cities) {
-        if(mAdapter == null){
+        if (mAdapter == null) {
             mAdapter = new CitiesAdapter(cities, (WelcomePresenter) mPresenter);
             mCityRecyclerView.setAdapter(mAdapter);
-        } else{
+        } else {
             mCityRecyclerView.setAdapter(mAdapter);
             mAdapter.setCities(cities);
             mAdapter.notifyDataSetChanged();
