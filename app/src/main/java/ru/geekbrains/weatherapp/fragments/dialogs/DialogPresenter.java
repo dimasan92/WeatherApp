@@ -5,10 +5,10 @@ import android.content.Intent;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.fragments.CommonDialog;
-import ru.geekbrains.weatherapp.fragments.CommonPresenter;
+import ru.geekbrains.weatherapp.fragments.base.AbstractDialog;
+import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 
-public class DialogPresenter extends CommonPresenter {
+public class DialogPresenter extends AbstractPresenter {
 
     public static DialogPresenter newInstance() {
         return new DialogPresenter();
@@ -19,24 +19,24 @@ public class DialogPresenter extends CommonPresenter {
             return;
         }
 
-        if (mModel.addCity(((AddCityDialog) mView).getCityName())) {
-            ((CommonDialog) mView).makeToast(R.string.success_add_city);
+        if (mModel.addCity(((AddCityDialog) mScreen).getCityName())) {
+            ((AbstractDialog) mScreen).makeToast(R.string.success_add_city);
         } else {
-            ((CommonDialog) mView).makeToast(R.string.fail_add_city);
+            ((AbstractDialog) mScreen).makeToast(R.string.fail_add_city);
         }
     }
 
     public void onParamsChooseClick() {
         Intent intent = new Intent();
-        intent.putExtra(Constants.PARAM_PRESSURE, ((SettingsDialog) mView).getPressureParam());
-        intent.putExtra(Constants.PARAM_WIND, ((SettingsDialog) mView).getWindParam());
-        intent.putExtra(Constants.PARAM_HUMIDITY, ((SettingsDialog) mView).getHumidityParam());
-        ((SettingsDialog) mView).sendResult(Activity.RESULT_OK, intent);
+        intent.putExtra(Constants.PARAM_PRESSURE, ((SettingsDialog) mScreen).getPressureParam());
+        intent.putExtra(Constants.PARAM_WIND, ((SettingsDialog) mScreen).getWindParam());
+        intent.putExtra(Constants.PARAM_HUMIDITY, ((SettingsDialog) mScreen).getHumidityParam());
+        ((SettingsDialog) mScreen).sendResult(Activity.RESULT_OK, intent);
     }
 
     private boolean emptyCityName() {
-        if (((AddCityDialog) mView).getCityName().trim().equals("")) {
-            ((CommonDialog) mView).makeToast(R.string.empty_city_name);
+        if (((AddCityDialog) mScreen).getCityName().trim().equals("")) {
+            ((AbstractDialog) mScreen).makeToast(R.string.empty_city_name);
             return true;
         }
         return false;
