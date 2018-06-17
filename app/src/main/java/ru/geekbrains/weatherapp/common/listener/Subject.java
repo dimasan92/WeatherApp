@@ -2,9 +2,9 @@ package ru.geekbrains.weatherapp.common.listener;
 
 public interface Subject {
 
-    void registerObservers();
+    void registerObserver(Observer o);
 
-    void removeObservers();
+    void removeObserver(Observer o);
 
-    void notifyObserver();
+    void notifyObservers();
 }

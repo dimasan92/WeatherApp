@@ -8,12 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.common.Model;
+import ru.geekbrains.weatherapp.model.DataModel;
 
 public class CommonPresenter extends Fragment {
 
     protected Fragment mView;
-    protected Model mModel;
+    protected DataModel mModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,10 +35,10 @@ public class CommonPresenter extends Fragment {
 
     public void assignModel(FragmentActivity activity) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        mModel = (Model) fm.findFragmentByTag(Constants.MODEL_TAG);
+        mModel = (DataModel) fm.findFragmentByTag(Constants.MODEL_TAG);
 
         if (mModel == null) {
-            mModel = Model.newInstance();
+            mModel = DataModel.newInstance();
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(mModel, Constants.MODEL_TAG);
             ft.commit();
