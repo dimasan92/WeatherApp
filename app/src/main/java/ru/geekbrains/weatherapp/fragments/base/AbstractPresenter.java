@@ -14,7 +14,7 @@ import ru.geekbrains.weatherapp.model.SimpleDataModel;
 
 public abstract class AbstractPresenter extends Fragment implements Presenter, Observer {
 
-    protected Fragment mView;
+    protected Fragment mScreen;
     protected DataModel mModel;
 
     @Override
@@ -25,12 +25,12 @@ public abstract class AbstractPresenter extends Fragment implements Presenter, O
 
     @Override
     public void attachView(Fragment view) {
-        mView = view;
+        mScreen = view;
     }
 
     @Override
     public void detachView() {
-        mView = null;
+        mScreen = null;
     }
 
     @Override
