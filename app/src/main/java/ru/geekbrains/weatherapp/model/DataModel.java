@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.listener.Observer;
 import ru.geekbrains.weatherapp.common.listener.Subject;
@@ -36,7 +37,7 @@ public class DataModel extends Fragment implements Subject{
 
         mSharedPreferences = Objects.requireNonNull(getActivity())
                 .getPreferences(Context.MODE_PRIVATE);
-        mCities = mSharedPreferences.getStringSet(Constants.SAVED_SET_OF_CITIES, new HashSet<>());
+        mCities = mSharedPreferences.getStringSet(Constants.SAVED_SET_OF_CITIES, initialSet());
     }
 
     @Override
@@ -70,5 +71,12 @@ public class DataModel extends Fragment implements Subject{
 
     public Set<String> getCities() {
         return mCities;
+    }
+
+    private Set<String> initialSet(){
+        Set<String> set = new HashSet<>();
+        set.add(Objects.requireNonNull(getActivity())
+                .getResources().getString(R.string.weather_through_sensors));
+        return set;
     }
 }

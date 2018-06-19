@@ -23,4 +23,5 @@
     <string name="add_city_dialog_title">Добавление города</string>
     <string name="settings_dialog_title">Настройки</string>
     <string name="menu_item_settings">Настройки</string>
+    <string name="weather_through_sensors">Текущее местоположение(через датчики телефона)</string>
 </resources>
