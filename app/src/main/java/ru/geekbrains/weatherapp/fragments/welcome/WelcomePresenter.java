@@ -13,14 +13,14 @@ import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.common.listener.Observer;
+import ru.geekbrains.weatherapp.model.listener.DataObserver;
 import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 import ru.geekbrains.weatherapp.fragments.dialogs.AddCityDialog;
 import ru.geekbrains.weatherapp.fragments.dialogs.SensorsDialog;
 import ru.geekbrains.weatherapp.fragments.dialogs.SettingsDialog;
 import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
-public class WelcomePresenter extends AbstractPresenter implements Observer {
+public class WelcomePresenter extends AbstractPresenter implements DataObserver {
 
     private static final int REQUEST_PARAMS = 0;
 
@@ -49,11 +49,11 @@ public class WelcomePresenter extends AbstractPresenter implements Observer {
     @Override
     public void assignModel(FragmentActivity activity) {
         super.assignModel(activity);
-        mModel.registerObserver(this);
+        mModel.registerDataObserver(this);
     }
 
     @Override
-    public void update() {
+    public void updateData() {
         updateList();
     }
 

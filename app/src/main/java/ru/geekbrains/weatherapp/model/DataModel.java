@@ -14,15 +14,15 @@ import java.util.Set;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.common.listener.Observer;
-import ru.geekbrains.weatherapp.common.listener.Subject;
+import ru.geekbrains.weatherapp.model.listener.DataObserver;
+import ru.geekbrains.weatherapp.model.listener.DataSubject;
 
-public class DataModel extends Fragment implements Subject{
+public class DataModel extends Fragment implements DataSubject {
 
     private SharedPreferences mSharedPreferences;
     private Set<String> mCities;
 
-    private List<Observer> mObservers;
+    private List<DataObserver> mObservers;
 
     public static DataModel newInstance() {
         return new DataModel();
@@ -41,19 +41,19 @@ public class DataModel extends Fragment implements Subject{
     }
 
     @Override
-    public void registerObserver(Observer o) {
+    public void registerDataObserver(DataObserver o) {
         mObservers.add(o);
     }
 
     @Override
-    public void removeObserver(Observer o) {
+    public void removeDataObserver(DataObserver o) {
         mObservers.remove(o);
     }
 
     @Override
-    public void notifyObservers() {
-        for (Observer o : mObservers) {
-            o.update();
+    public void notifyDataObservers() {
+        for (DataObserver o : mObservers) {
+            o.updateData();
         }
     }
 
@@ -65,7 +65,7 @@ public class DataModel extends Fragment implements Subject{
         editor.remove(Constants.SAVED_SET_OF_CITIES).apply();
         editor.putStringSet(Constants.SAVED_SET_OF_CITIES, mCities);
         editor.apply();
-        notifyObservers();
+        notifyDataObservers();
         return true;
     }
 
