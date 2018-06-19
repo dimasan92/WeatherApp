@@ -4,21 +4,59 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="WeatherFragmentTheme" parent="WeatherAppTheme">
+        <item name="android:textColor">@color/colorAzure</item>
     </style>
 
     <style name="CityNameEnter">
-        <item name="android:ems">10</item>
-        <item name="android:textSize">@dimen/text_middle</item>
+        <item name="android:ems">8</item>
+        <item name="android:textSize">@dimen/text_little</item>
+        <item name="android:textColorHint">@android:color/black</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="MainTemperatureParam">
         <item name="android:textSize">@dimen/text_very_big</item>
-        <item name="android:textColor">@color/colorAzure</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="MainBackgroundImage">
+    <style name="TinyLightText">
+        <item name="android:textSize">@dimen/text_tiny</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TinyDarkText">
+        <item name="android:textSize">@dimen/text_tiny</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="LittleLightText">
+        <item name="android:textSize">@dimen/text_little</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WelcomeBackgroundImage">
         <item name="android:foreground">@color/filterDark</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="WeatherBackgroundImage">
+        <item name="android:foreground">@color/filterMedium</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="chooseCityItem">
+        <item name="android:textSize">@dimen/text_middle</item>
+        <item name="android:background">@color/filterDark</item>
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:layout_marginTop">@dimen/offset_very_small</item>
+        <item name="android:padding">@dimen/offset_very_small</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
 </resources>
