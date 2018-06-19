@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.model;
+package ru.geekbrains.weatherapp.model.datamodel;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,8 +14,6 @@ import java.util.Set;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.listener.DataObserver;
-import ru.geekbrains.weatherapp.model.listener.DataSubject;
 
 public class DataModel extends Fragment implements DataSubject {
 

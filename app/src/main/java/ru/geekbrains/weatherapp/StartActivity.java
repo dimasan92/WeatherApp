@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.DataModel;
+import ru.geekbrains.weatherapp.model.datamodel.DataModel;
 import ru.geekbrains.weatherapp.fragments.welcome.WelcomeScreen;
 
 public class StartActivity extends AppCompatActivity {

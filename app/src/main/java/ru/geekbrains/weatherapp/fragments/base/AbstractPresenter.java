@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.DataModel;
+import ru.geekbrains.weatherapp.model.datamodel.DataModel;
 
 public abstract class AbstractPresenter extends Fragment{
 

@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.model.listener;
+package ru.geekbrains.weatherapp.model.datamodel;
 
 public interface DataSubject {
 

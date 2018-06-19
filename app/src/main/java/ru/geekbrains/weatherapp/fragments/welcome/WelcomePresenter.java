@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.listener.DataObserver;
+import ru.geekbrains.weatherapp.model.datamodel.DataObserver;
 import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 import ru.geekbrains.weatherapp.fragments.dialogs.AddCityDialog;
 import ru.geekbrains.weatherapp.fragments.dialogs.SensorsDialog;
