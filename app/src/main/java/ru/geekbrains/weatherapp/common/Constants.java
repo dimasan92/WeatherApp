@@ -13,6 +13,7 @@ public class Constants {
     // dialog's tag
     public static final String ADD_CITY_DIALOG_TAG = "add city dialog";
     public static final String SETTINGS_DIALOG_TAG = "settings dialog tag";
+    public static final String SENSORS_DIALOG_TAG = "sensor's dialog tag";
 
     // params
     public static final String CITY_NAME = "city name";
