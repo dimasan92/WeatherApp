@@ -11,16 +11,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_gravity="start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_temperature"/>
+            android:layout_gravity="start"
+            android:text="@string/title_temperature" />
 
         <TextView
-            android:layout_gravity="end"
             android:id="@+id/tv_sensor_temperature"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="end" />
     </FrameLayout>
 
     <FrameLayout
@@ -29,16 +29,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_gravity="start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_pressure"/>
+            android:layout_gravity="start"
+            android:text="@string/title_pressure" />
 
         <TextView
             android:id="@+id/tv_tv_sensor_pressure"
-            android:layout_gravity="end"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="end" />
     </FrameLayout>
 
     <FrameLayout
@@ -47,15 +47,15 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_gravity="start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_humidity"/>
+            android:layout_gravity="start"
+            android:text="@string/title_humidity" />
 
         <TextView
-            android:layout_gravity="end"
             android:id="@+id/tv_sensor_humidity"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="end" />
     </FrameLayout>
 </LinearLayout>
