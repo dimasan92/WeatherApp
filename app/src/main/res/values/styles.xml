@@ -59,4 +59,13 @@
         <item name="android:gravity">center_horizontal</item>
     </style>
 
+    <style name="SensorDialogTheme" parent="WeatherAppTheme">
+        <item name="android:layout_marginTop">@dimen/sensor_dialog_margin_ver</item>
+        <item name="android:layout_marginBottom">@dimen/sensor_dialog_margin_ver</item>
+        <item name="android:layout_marginLeft">@dimen/sensor_dialog_margin_hor</item>
+        <item name="android:layout_marginRight">@dimen/sensor_dialog_margin_hor</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/sensor_dialog_text_size</item>
+    </style>
+
 </resources>

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="sensor_dialog_margin_hor">10dp</dimen>
+    <dimen name="sensor_dialog_margin_ver">10dp</dimen>
     <dimen name="offset_small">16dp</dimen>
     <dimen name="offset_very_small">8dp</dimen>
     <dimen name="text_very_big">56sp</dimen>
     <dimen name="text_middle">25sp</dimen>
     <dimen name="text_little">18sp</dimen>
     <dimen name="text_tiny">14sp</dimen>
+    <dimen name="sensor_dialog_text_size">16sp</dimen>
     <dimen name="fab_margin">20dp</dimen>
     <dimen name="AddCityMarginTop">30dp</dimen>
 </resources>

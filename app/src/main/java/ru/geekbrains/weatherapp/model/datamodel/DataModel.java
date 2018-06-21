@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.model;
+package ru.geekbrains.weatherapp.model.datamodel;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,16 +12,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.common.listener.Observer;
-import ru.geekbrains.weatherapp.common.listener.Subject;
 
-public class DataModel extends Fragment implements Subject{
+public class DataModel extends Fragment implements DataSubject {
 
     private SharedPreferences mSharedPreferences;
     private Set<String> mCities;
 
-    private List<Observer> mObservers;
+    private List<DataObserver> mObservers;
 
     public static DataModel newInstance() {
         return new DataModel();
@@ -36,23 +35,23 @@ public class DataModel extends Fragment implements Subject{
 
         mSharedPreferences = Objects.requireNonNull(getActivity())
                 .getPreferences(Context.MODE_PRIVATE);
-        mCities = mSharedPreferences.getStringSet(Constants.SAVED_SET_OF_CITIES, new HashSet<>());
+        mCities = mSharedPreferences.getStringSet(Constants.SAVED_SET_OF_CITIES, initialSet());
     }
 
     @Override
-    public void registerObserver(Observer o) {
+    public void registerDataObserver(DataObserver o) {
         mObservers.add(o);
     }
 
     @Override
-    public void removeObserver(Observer o) {
+    public void removeDataObserver(DataObserver o) {
         mObservers.remove(o);
     }
 
     @Override
-    public void notifyObservers() {
-        for (Observer o : mObservers) {
-            o.update();
+    public void notifyDataObservers() {
+        for (DataObserver o : mObservers) {
+            o.updateData();
         }
     }
 
@@ -64,11 +63,18 @@ public class DataModel extends Fragment implements Subject{
         editor.remove(Constants.SAVED_SET_OF_CITIES).apply();
         editor.putStringSet(Constants.SAVED_SET_OF_CITIES, mCities);
         editor.apply();
-        notifyObservers();
+        notifyDataObservers();
         return true;
     }
 
     public Set<String> getCities() {
         return mCities;
+    }
+
+    private Set<String> initialSet(){
+        Set<String> set = new HashSet<>();
+        set.add(Objects.requireNonNull(getActivity())
+                .getResources().getString(R.string.weather_through_sensors));
+        return set;
     }
 }

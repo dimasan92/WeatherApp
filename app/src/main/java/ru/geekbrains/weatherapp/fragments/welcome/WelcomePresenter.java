@@ -13,13 +13,14 @@ import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.common.listener.Observer;
+import ru.geekbrains.weatherapp.model.datamodel.DataObserver;
 import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 import ru.geekbrains.weatherapp.fragments.dialogs.AddCityDialog;
+import ru.geekbrains.weatherapp.fragments.dialogs.SensorDialog;
 import ru.geekbrains.weatherapp.fragments.dialogs.SettingsDialog;
 import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
-public class WelcomePresenter extends AbstractPresenter implements Observer{
+public class WelcomePresenter extends AbstractPresenter implements DataObserver {
 
     private static final int REQUEST_PARAMS = 0;
 
@@ -48,11 +49,11 @@ public class WelcomePresenter extends AbstractPresenter implements Observer{
     @Override
     public void assignModel(FragmentActivity activity) {
         super.assignModel(activity);
-        mModel.registerObserver(this);
+        mModel.registerDataObserver(this);
     }
 
     @Override
-    public void update() {
+    public void updateData() {
         updateList();
     }
 
@@ -69,20 +70,16 @@ public class WelcomePresenter extends AbstractPresenter implements Observer{
     }
 
     public void onListItemClick(String city) {
-        FragmentTransaction ft = Objects.requireNonNull(getActivity())
-                .getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_fragment, WeatherFragment
-                .newInstance(createBundle(city)));
-        ft.addToBackStack(null);
-        ft.commit();
+        if (city.equals(Objects.requireNonNull(getActivity())
+                .getResources().getString(R.string.weather_through_sensors))) {
+            createWeatherDialog();
+        } else {
+            createWeatherScreen(city);
+        }
     }
 
     public void onAddCityClick() {
-        if (getActivity() == null) {
-            return;
-        }
-
-        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
         AddCityDialog dialog = AddCityDialog.newInstance();
         dialog.show(fm, Constants.ADD_CITY_DIALOG_TAG);
     }
@@ -103,5 +100,20 @@ public class WelcomePresenter extends AbstractPresenter implements Observer{
             return bundle;
         }
         return bundle;
+    }
+
+    private void createWeatherScreen(String city) {
+        FragmentTransaction ft = Objects.requireNonNull(getActivity())
+                .getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main_fragment, WeatherFragment
+                .newInstance(createBundle(city)));
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    private void createWeatherDialog() {
+        FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+        SensorDialog dialog = SensorDialog.newInstance();
+        dialog.show(fm, Constants.SENSORS_DIALOG_TAG);
     }
 }

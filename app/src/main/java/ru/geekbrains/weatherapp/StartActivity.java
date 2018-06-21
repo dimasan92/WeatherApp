@@ -7,8 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.DataModel;
 import ru.geekbrains.weatherapp.fragments.welcome.WelcomeScreen;
+import ru.geekbrains.weatherapp.model.datamodel.DataModel;
+import ru.geekbrains.weatherapp.model.sensormodel.SensorModel;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -17,23 +18,28 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment;
+        addNewFragment(Constants.DATA_MODEL_TAG, DataModel.newInstance());
+        addNewFragment(Constants.SENSOR_MODEL_TAG, SensorModel.newInstance());
+        addNewFragment(R.id.main_fragment, WelcomeScreen.newInstance());
+    }
 
-        fragment = fm.findFragmentByTag(Constants.DATA_MODEL_TAG);
-        if (fragment == null) {
-            fragment = DataModel.newInstance();
+    private void addNewFragment(String tag, Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentByTag(tag);
+        if (f == null) {
             FragmentTransaction ft = fm.beginTransaction();
-            ft.add(fragment, Constants.DATA_MODEL_TAG);
+            ft.add(fragment, tag);
             ft.commit();
         }
+    }
 
-        fragment = fm.findFragmentById(R.id.main_fragment);
-        if (fragment == null) {
-            fragment = WelcomeScreen.newInstance();
-            fm.beginTransaction()
-                    .add(R.id.main_fragment, fragment)
-                    .commit();
+    private void addNewFragment(int id, Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentById(id);
+        if (f == null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(id, fragment);
+            ft.commit();
         }
     }
 }
