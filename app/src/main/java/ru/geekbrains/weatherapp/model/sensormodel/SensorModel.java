@@ -1,25 +1,46 @@
 package ru.geekbrains.weatherapp.model.sensormodel;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.datamodel.DataObserver;
-import ru.geekbrains.weatherapp.model.datamodel.DataSubject;
 
 public class SensorModel extends Fragment implements SensorSubject {
 
     private List<SensorObserver> mObservers;
+    private SensorManager mSensorManager;
+    private Sensor mSensorTemp;
+    private Sensor mSensorPress;
+    private Sensor mSensorHumm;
+
+    private String mNoSensor;
+    private String mDegree;
+    private String mGPa;
+    private String mTempInd;
+    private String mPressInd;
+    private String mHummInd;
+
+    public String getTempInd() {
+        return mTempInd;
+    }
+
+    public String getPressInd() {
+        return mPressInd;
+    }
+
+    public String getHummInd() {
+        return mHummInd;
+    }
 
     public static SensorModel newInstance() {
         return new SensorModel();
@@ -30,7 +51,21 @@ public class SensorModel extends Fragment implements SensorSubject {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
+        mNoSensor = Objects.requireNonNull(getActivity())
+                .getResources().getString(R.string.no_sensor);
+        mDegree = getActivity().getResources().getString(R.string.celsius_degree);
+        mGPa = getActivity().getResources().getString(R.string.gPa);
+
         mObservers = new ArrayList<>();
+
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+
+        if (mSensorManager == null) {
+            return;
+        }
+        mSensorTemp = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        mSensorPress = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        mSensorHumm = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
     }
 
     @Override
@@ -49,4 +84,89 @@ public class SensorModel extends Fragment implements SensorSubject {
             o.updateSensor();
         }
     }
+
+    public void sensorsActivate() {
+        if (mSensorTemp != null) {
+            mSensorManager.registerListener(listenerTemp, mSensorTemp,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+        if (mSensorPress != null) {
+            mSensorManager.registerListener(listenerPress, mSensorPress,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+        if (mSensorHumm != null) {
+            mSensorManager.registerListener(listenerHumm, mSensorHumm,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    public void sensorsDeactivate() {
+        if (mSensorTemp != null) {
+            mSensorManager.unregisterListener(listenerTemp, mSensorTemp);
+        }
+
+        if (mSensorPress != null) {
+            mSensorManager.unregisterListener(listenerPress, mSensorPress);
+        }
+
+        if (mSensorHumm != null) {
+            mSensorManager.unregisterListener(listenerHumm, mSensorHumm);
+        }
+    }
+
+    private SensorEventListener listenerTemp = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (mSensorTemp == null) {
+                mTempInd = mNoSensor;
+            } else {
+                mTempInd = String.format(getResources().getConfiguration().locale,
+                        "%f %s", event.values[0], mDegree);
+            }
+            notifySensorObservers();
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
+
+    private SensorEventListener listenerPress = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (mSensorPress == null) {
+                mPressInd = mNoSensor;
+            } else {
+                mPressInd = String.format(getResources().getConfiguration().locale,
+                        "%f %s", event.values[0], mGPa);
+            }
+            notifySensorObservers();
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
+
+    private SensorEventListener listenerHumm = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            if (mSensorPress == null) {
+                mPressInd = mNoSensor;
+            } else {
+                mPressInd = String.format(getResources().getConfiguration().locale,
+                        "%f %s", event.values[0], "%");
+            }
+            notifySensorObservers();
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
+    };
 }
