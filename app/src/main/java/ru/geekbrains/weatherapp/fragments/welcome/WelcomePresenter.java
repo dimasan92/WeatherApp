@@ -16,7 +16,7 @@ import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.model.datamodel.DataObserver;
 import ru.geekbrains.weatherapp.fragments.base.AbstractPresenter;
 import ru.geekbrains.weatherapp.fragments.dialogs.AddCityDialog;
-import ru.geekbrains.weatherapp.fragments.dialogs.SensorsDialog;
+import ru.geekbrains.weatherapp.fragments.dialogs.SensorDialog;
 import ru.geekbrains.weatherapp.fragments.dialogs.SettingsDialog;
 import ru.geekbrains.weatherapp.fragments.weather.WeatherFragment;
 
@@ -113,7 +113,7 @@ public class WelcomePresenter extends AbstractPresenter implements DataObserver 
 
     private void createWeatherDialog() {
         FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-        SensorsDialog dialog = SensorsDialog.newInstance();
+        SensorDialog dialog = SensorDialog.newInstance();
         dialog.show(fm, Constants.SENSORS_DIALOG_TAG);
     }
 }
