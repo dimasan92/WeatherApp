@@ -9,6 +9,7 @@ public class Constants {
 
     // model's tag
     public static final String DATA_MODEL_TAG = "data model tag";
+    public static final String SENSOR_MODEL_TAG = "sensor model tag";
 
     // dialog's tag
     public static final String ADD_CITY_DIALOG_TAG = "add city dialog";
