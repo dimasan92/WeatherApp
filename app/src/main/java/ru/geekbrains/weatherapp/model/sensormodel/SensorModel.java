@@ -23,7 +23,6 @@ public class SensorModel extends Fragment implements SensorSubject {
     private Sensor mSensorPress;
     private Sensor mSensorHumm;
 
-    private String mNoSensor;
     private String mDegree;
     private String mGPa;
     private String mTempInd;
@@ -51,8 +50,12 @@ public class SensorModel extends Fragment implements SensorSubject {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        mNoSensor = Objects.requireNonNull(getActivity())
+        String noSensor = Objects.requireNonNull(getActivity())
                 .getResources().getString(R.string.no_sensor);
+        mPressInd = noSensor;
+        mTempInd = noSensor;
+        mHummInd = noSensor;
+
         mDegree = getActivity().getResources().getString(R.string.celsius_degree);
         mGPa = getActivity().getResources().getString(R.string.gPa);
 
@@ -119,12 +122,8 @@ public class SensorModel extends Fragment implements SensorSubject {
     private SensorEventListener listenerTemp = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            if (mSensorTemp == null) {
-                mTempInd = mNoSensor;
-            } else {
-                mTempInd = String.format(getResources().getConfiguration().locale,
-                        "%f %s", event.values[0], mDegree);
-            }
+            mTempInd = String.format(getResources().getConfiguration().locale,
+                    "%.1f %s", event.values[0], mDegree);
             notifySensorObservers();
         }
 
@@ -137,12 +136,8 @@ public class SensorModel extends Fragment implements SensorSubject {
     private SensorEventListener listenerPress = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            if (mSensorPress == null) {
-                mPressInd = mNoSensor;
-            } else {
-                mPressInd = String.format(getResources().getConfiguration().locale,
-                        "%f %s", event.values[0], mGPa);
-            }
+            mPressInd = String.format(getResources().getConfiguration().locale,
+                    "%.1f %s", event.values[0], mGPa);
             notifySensorObservers();
         }
 
@@ -155,12 +150,8 @@ public class SensorModel extends Fragment implements SensorSubject {
     private SensorEventListener listenerHumm = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            if (mSensorPress == null) {
-                mPressInd = mNoSensor;
-            } else {
-                mPressInd = String.format(getResources().getConfiguration().locale,
-                        "%f %s", event.values[0], "%");
-            }
+            mHummInd = String.format(getResources().getConfiguration().locale,
+                    "%.1f %s", event.values[0], "%");
             notifySensorObservers();
         }
 
