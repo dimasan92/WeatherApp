@@ -6,12 +6,14 @@ import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.dialogs.newcity.INewCityDialog;
+import ru.geekbrains.weatherapp.view.dialogs.sensorsindications.SensorsIndicationsDialog;
 
 public class DialogPresenter extends Presenter implements IDialogPresenter {
 
     private IView mDialog;
 
     private INewCity mNewCity;
+    private ISensorsIndications mSensorsIndications;
 
     public static DialogPresenter newInstance() {
         return new DialogPresenter();
@@ -28,16 +30,19 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
     }
 
     @Override
-    public void viewIsReady() {
-
-    }
-
-    @Override
     public INewCity newCity() {
         if(mNewCity == null){
             mNewCity = new NewCity();
         }
         return mNewCity;
+    }
+
+    @Override
+    public ISensorsIndications sensorsIndications() {
+        if(mSensorsIndications == null){
+            mSensorsIndications = new SensorsIndications();
+        }
+        return mSensorsIndications;
     }
 
     public class NewCity implements INewCity {
@@ -66,6 +71,31 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
             }
             ((INewCityDialog) mDialog).showError(R.string.incorrect_city_name);
             return true;
+        }
+    }
+
+    public class SensorsIndications implements ISensorsIndications{
+
+        @Override
+        public void viewIsReady() {
+            updateSensors();
+        }
+
+        public void dialogIsVisible(){
+            mModel.sensors().sensorsActivate();
+        }
+
+        public void dialogIsInvisible(){
+            mModel.sensors().sensorsDeactivate();
+        }
+
+        private void updateSensors() {
+            ((SensorsIndicationsDialog)mDialog)
+                    .setTemperature(mModel.sensors().getTemperatureInd());
+            ((SensorsIndicationsDialog)mDialog)
+                    .setPressure(mModel.sensors().getPressureInd());
+            ((SensorsIndicationsDialog)mDialog)
+                    .setHumidity(mModel.sensors().getHumidityInd());
         }
     }
 }
