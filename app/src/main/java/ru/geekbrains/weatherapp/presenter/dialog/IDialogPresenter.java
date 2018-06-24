@@ -7,4 +7,6 @@ public interface IDialogPresenter extends IPresenter {
     INewCity newCity();
 
     ISensorsIndications sensorsIndications();
+
+    ISettings settings();
 }

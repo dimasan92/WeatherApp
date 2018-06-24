@@ -1,12 +1,17 @@
 package ru.geekbrains.weatherapp.presenter.dialog;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
+import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.dialogs.newcity.INewCityDialog;
 import ru.geekbrains.weatherapp.view.dialogs.sensorsindications.SensorsIndicationsDialog;
+import ru.geekbrains.weatherapp.view.dialogs.settings.ISettingsDialog;
 
 public class DialogPresenter extends Presenter implements IDialogPresenter {
 
@@ -14,6 +19,7 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
 
     private INewCity mNewCity;
     private ISensorsIndications mSensorsIndications;
+    private ISettings mSettings;
 
     public static DialogPresenter newInstance() {
         return new DialogPresenter();
@@ -31,7 +37,7 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
 
     @Override
     public INewCity newCity() {
-        if(mNewCity == null){
+        if (mNewCity == null) {
             mNewCity = new NewCity();
         }
         return mNewCity;
@@ -39,10 +45,18 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
 
     @Override
     public ISensorsIndications sensorsIndications() {
-        if(mSensorsIndications == null){
+        if (mSensorsIndications == null) {
             mSensorsIndications = new SensorsIndications();
         }
         return mSensorsIndications;
+    }
+
+    @Override
+    public ISettings settings() {
+        if (mSettings == null) {
+            mSettings = new Settings();
+        }
+        return mSettings;
     }
 
     public class NewCity implements INewCity {
@@ -74,28 +88,40 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
         }
     }
 
-    public class SensorsIndications implements ISensorsIndications{
+    public class SensorsIndications implements ISensorsIndications {
 
         @Override
         public void viewIsReady() {
             updateSensors();
         }
 
-        public void dialogIsVisible(){
+        public void dialogIsVisible() {
             mModel.sensors().sensorsActivate();
         }
 
-        public void dialogIsInvisible(){
+        public void dialogIsInvisible() {
             mModel.sensors().sensorsDeactivate();
         }
 
         private void updateSensors() {
-            ((SensorsIndicationsDialog)mDialog)
+            ((SensorsIndicationsDialog) mDialog)
                     .setTemperature(mModel.sensors().getTemperatureInd());
-            ((SensorsIndicationsDialog)mDialog)
+            ((SensorsIndicationsDialog) mDialog)
                     .setPressure(mModel.sensors().getPressureInd());
-            ((SensorsIndicationsDialog)mDialog)
+            ((SensorsIndicationsDialog) mDialog)
                     .setHumidity(mModel.sensors().getHumidityInd());
+        }
+    }
+
+    public class Settings implements ISettings {
+
+        @Override
+        public void onParamsChooseClick() {
+            Intent intent = new Intent();
+            intent.putExtra(Constants.PARAM_PRESSURE, ((ISettingsDialog) mDialog).getPressureParam());
+            intent.putExtra(Constants.PARAM_WIND, ((ISettingsDialog) mDialog).getWindParam());
+            intent.putExtra(Constants.PARAM_HUMIDITY, ((ISettingsDialog) mDialog).getHumidityParam());
+            ((ISettingsDialog) mDialog).sendResult(Activity.RESULT_OK, intent);
         }
     }
 }
