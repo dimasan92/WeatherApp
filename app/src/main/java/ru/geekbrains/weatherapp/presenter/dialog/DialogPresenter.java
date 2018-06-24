@@ -61,7 +61,7 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
 
     public class NewCity implements INewCity {
 
-        private Pattern checkCityName = Pattern.compile("^[А-ЯA-Z][а-яa-z]+$");
+        private Pattern checkCityName = Pattern.compile("^[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]+$");
 
         @Override
         public void onAddNewCityClick() {
