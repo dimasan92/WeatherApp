@@ -26,7 +26,15 @@ public class WelcomePresenter extends Presenter implements IWelcomePresenter, Ci
     private IWelcomeView mView;
 
     public static WelcomePresenter newInstance() {
-        return new WelcomePresenter();
+        WelcomePresenter presenter = new WelcomePresenter();
+
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Constants.PARAM_PRESSURE, true);
+        bundle.putBoolean(Constants.PARAM_WIND, true);
+        bundle.putBoolean(Constants.PARAM_HUMIDITY, true);
+        presenter.setArguments(bundle);
+
+        return presenter;
     }
 
     @Override
