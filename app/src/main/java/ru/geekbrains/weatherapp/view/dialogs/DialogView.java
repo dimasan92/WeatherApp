@@ -7,7 +7,7 @@ import android.support.v4.app.DialogFragment;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.presenter.dialog.IDialogPresenter;
-import ru.geekbrains.weatherapp.screens.FragmentFactory;
+import ru.geekbrains.weatherapp.common.FragmentFactory;
 import ru.geekbrains.weatherapp.view.IView;
 
 public abstract class DialogView extends DialogFragment implements IView {

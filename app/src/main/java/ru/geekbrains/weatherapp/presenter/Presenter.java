@@ -5,8 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-import ru.geekbrains.weatherapp.presenter.IPresenter;
-import ru.geekbrains.weatherapp.screens.FragmentFactory;
+import ru.geekbrains.weatherapp.common.FragmentFactory;
 import ru.geekbrains.weatherapp.model.IModel;
 
 public abstract class Presenter extends Fragment implements IPresenter {

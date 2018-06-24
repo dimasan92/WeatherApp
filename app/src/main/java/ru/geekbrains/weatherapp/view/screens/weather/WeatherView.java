@@ -12,9 +12,8 @@ import android.widget.TextView;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.presenter.weather.IWeatherPresenter;
-import ru.geekbrains.weatherapp.screens.FragmentFactory;
+import ru.geekbrains.weatherapp.common.FragmentFactory;
 
 public class WeatherView extends Fragment implements IWeatherView {
 

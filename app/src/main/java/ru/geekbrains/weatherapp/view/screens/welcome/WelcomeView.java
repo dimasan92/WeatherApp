@@ -21,7 +21,7 @@ import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.presenter.welcome.IWelcomePresenter;
-import ru.geekbrains.weatherapp.screens.FragmentFactory;
+import ru.geekbrains.weatherapp.common.FragmentFactory;
 
 public class WelcomeView extends Fragment implements IWelcomeView {
 
