@@ -18,6 +18,7 @@ public abstract class DialogView extends DialogFragment implements IView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = FragmentFactory.getDialogPresenter(Objects.requireNonNull(getActivity()));
+        mPresenter.assignModel(getActivity());
         mPresenter.attachView(this);
     }
 
