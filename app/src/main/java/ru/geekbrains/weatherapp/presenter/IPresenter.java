@@ -10,8 +10,6 @@ public interface IPresenter {
 
     void detachView();
 
-    void viewIsReady();
-
     void assignModel(FragmentActivity activity);
 }
 
