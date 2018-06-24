@@ -3,9 +3,7 @@ package ru.geekbrains.weatherapp.view.dialogs.newcity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,24 +13,14 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.presenter.dialog.IDialogPresenter;
-import ru.geekbrains.weatherapp.screens.FragmentFactory;
+import ru.geekbrains.weatherapp.view.dialogs.DialogView;
 
-public class NewCityDialog extends DialogFragment implements INewCityDialog {
-
-    private IDialogPresenter mPresenter;
+public class NewCityDialog extends DialogView implements INewCityDialog {
 
     private TextInputEditText mCityNameEditText;
 
     public static NewCityDialog newInstance() {
         return new NewCityDialog();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mPresenter = FragmentFactory.getDialogPresenter(Objects.requireNonNull(getActivity()));
-        mPresenter.attachView(this);
     }
 
     @NonNull
