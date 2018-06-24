@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
@@ -61,7 +62,7 @@ public class WeatherView extends Fragment implements IWeatherView {
         mTvDayOfWeek = layout.findViewById(R.id.week_day);
         mTvDate = layout.findViewById(R.id.date);
 
-        mPresenter.viewIsReady();
+        mPresenter.viewIsReady(Objects.requireNonNull(getActivity()).getApplicationContext());
 
         return layout;
     }
@@ -97,12 +98,12 @@ public class WeatherView extends Fragment implements IWeatherView {
 
     @Override
     public void setDate(String date) {
-
+        mTvDate.setText(date);
     }
 
     @Override
     public void setDayOfWeek(String day) {
-
+        mTvDayOfWeek.setText(day);
     }
 
     @Override

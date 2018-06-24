@@ -1,5 +1,6 @@
 package ru.geekbrains.weatherapp.presenter.weather;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -37,9 +38,9 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
     }
 
     @Override
-    public void viewIsReady() {
+    public void viewIsReady(Context context) {
         setSettings();
-        setDate();
+        setDate(context);
     }
 
     private void setSettings() {
@@ -56,8 +57,8 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
                 .getBoolean(Constants.PARAM_HUMIDITY, true));
     }
 
-    private void setDate() {
-        Locale locale = getResources().getConfiguration().locale;
+    private void setDate(Context context) {
+        Locale locale = context.getResources().getConfiguration().locale;
         mView.setDate(String.format("%s %s", mModel.time().getDayOfMonth(locale),
                 mModel.time().getMonth(locale)));
 
