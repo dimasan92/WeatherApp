@@ -15,4 +15,10 @@ public interface IWeatherView extends IView {
     void setDate(String date);
 
     void setDayOfWeek(String day);
+
+    void setPressure(String value);
+
+    void setHumidity(String value);
+
+    void setWind(String value);
 }

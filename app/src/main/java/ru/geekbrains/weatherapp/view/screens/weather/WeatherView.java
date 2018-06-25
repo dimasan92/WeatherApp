@@ -107,6 +107,21 @@ public class WeatherView extends Fragment implements IWeatherView {
     }
 
     @Override
+    public void setPressure(String value) {
+        mTvPressureValue.setText(value);
+    }
+
+    @Override
+    public void setHumidity(String value) {
+        mTvHumidityValue.setText(value);
+    }
+
+    @Override
+    public void setWind(String value) {
+        mTvWindValue.setText(value);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
