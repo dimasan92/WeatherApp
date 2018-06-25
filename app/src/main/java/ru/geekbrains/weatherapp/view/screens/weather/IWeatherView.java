@@ -25,4 +25,6 @@ public interface IWeatherView extends IView {
     void startWeatherService();
 
     void registerReceivers();
+
+    void unregisterReceivers();
 }

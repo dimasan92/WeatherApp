@@ -67,6 +67,11 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
         mView.setWind(result);
     }
 
+    @Override
+    public void viewIsDestroyed() {
+        mView.unregisterReceivers();
+    }
+
     private void setSettings() {
         Bundle bundle = getArguments();
         if (bundle == null) {

@@ -155,8 +155,17 @@ public class WeatherView extends Fragment implements IWeatherView {
     }
 
     @Override
+    public void unregisterReceivers() {
+        Context context = Objects.requireNonNull(getActivity()).getApplicationContext();
+
+        context.unregisterReceiver(mFinishReceiver);
+        context.unregisterReceiver(mUpdateReceiver);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
+        mPresenter.viewIsDestroyed();
         mPresenter.detachView();
     }
 

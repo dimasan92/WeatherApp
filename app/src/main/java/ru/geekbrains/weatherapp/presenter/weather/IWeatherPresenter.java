@@ -12,4 +12,6 @@ public interface IWeatherPresenter extends IPresenter {
     void weatherDataUpdated(Intent intent);
 
     void weatherDataFinished(Intent intent);
+
+    void viewIsDestroyed();
 }
