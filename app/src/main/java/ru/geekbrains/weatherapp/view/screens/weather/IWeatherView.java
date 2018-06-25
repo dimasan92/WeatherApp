@@ -21,4 +21,8 @@ public interface IWeatherView extends IView {
     void setHumidity(String value);
 
     void setWind(String value);
+
+    void startWeatherService();
+
+    void registerReceivers();
 }

@@ -1,5 +1,9 @@
 package ru.geekbrains.weatherapp.view.screens.weather;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,12 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Locale;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.presenter.weather.IWeatherPresenter;
+import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.common.FragmentFactory;
+import ru.geekbrains.weatherapp.model.weathermodel.WeatherService;
+import ru.geekbrains.weatherapp.presenter.weather.IWeatherPresenter;
+import ru.geekbrains.weatherapp.presenter.weather.WeatherPresenter;
 
 public class WeatherView extends Fragment implements IWeatherView {
 
@@ -29,6 +35,9 @@ public class WeatherView extends Fragment implements IWeatherView {
     private TextView mTvHumidityValue;
     private TextView mTvDate;
     private TextView mTvDayOfWeek;
+
+    private FinishReceiver mFinishReceiver;
+    private UpdateReceiver mUpdateReceiver;
 
     public static WeatherView newInstance(Bundle bundle) {
         WeatherView view = new WeatherView();
@@ -122,8 +131,48 @@ public class WeatherView extends Fragment implements IWeatherView {
     }
 
     @Override
+    public void startWeatherService() {
+        Context context = Objects.requireNonNull(getActivity()).getApplicationContext();
+        Intent intent = new Intent(context, WeatherService.class);
+        context.startService(intent);
+    }
+
+    @Override
+    public void registerReceivers() {
+        mFinishReceiver = new FinishReceiver();
+        mUpdateReceiver = new UpdateReceiver();
+        Context context = Objects.requireNonNull(getActivity()).getApplicationContext();
+
+        IntentFilter intentFilter = new IntentFilter(
+                Constants.ACTION_WEATHER_SERVICE_FINISH);
+        intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        context.registerReceiver(mFinishReceiver, intentFilter);
+
+        IntentFilter updateIntentFilter = new IntentFilter(
+                Constants.ACTION_WEATHER_SERVICE_UPDATE);
+        updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        context.registerReceiver(mUpdateReceiver, updateIntentFilter);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
+    }
+
+    public class FinishReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mPresenter.weatherDataUpdated(intent);
+        }
+    }
+
+    public class UpdateReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mPresenter.weatherDataFinished(intent);
+        }
     }
 }

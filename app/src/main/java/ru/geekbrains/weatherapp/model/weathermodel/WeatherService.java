@@ -2,7 +2,6 @@ package ru.geekbrains.weatherapp.model.weathermodel;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.Context;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

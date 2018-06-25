@@ -18,8 +18,6 @@ import ru.geekbrains.weatherapp.view.screens.weather.IWeatherView;
 public class WeatherPresenter extends Presenter implements IWeatherPresenter {
 
     private IWeatherView mView;
-    private FinishReceiver mFinishReceiver;
-    private UpdateReceiver mUpdateReceiver;
 
     public static WeatherPresenter newInstance(Bundle bundle) {
         WeatherPresenter presenter = new WeatherPresenter();
@@ -50,10 +48,23 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
 
         mView.setWind("Загрузка данных");
 
-        Intent intent = new Intent(context, WeatherService.class);
-        context.startService(intent);
+        mView.startWeatherService();
 
-        registerReceivers(context);
+        mView.registerReceivers();
+    }
+
+    @Override
+    public void weatherDataUpdated(Intent intent) {
+        String result = intent
+                .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_FINISH);
+        mView.setWind(result);
+    }
+
+    @Override
+    public void weatherDataFinished(Intent intent) {
+        String result = intent
+                .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_UPDATE);
+        mView.setWind(result);
     }
 
     private void setSettings() {
@@ -76,41 +87,5 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
                 mModel.time().getMonth(locale)));
 
         mView.setDayOfWeek(mModel.time().getDayOfWeek(locale));
-    }
-
-    private void registerReceivers(Context context){
-        mFinishReceiver = new FinishReceiver();
-        mUpdateReceiver = new UpdateReceiver();
-
-        IntentFilter intentFilter = new IntentFilter(
-                Constants.ACTION_WEATHER_SERVICE_FINISH);
-        intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        context.registerReceiver(mFinishReceiver, intentFilter);
-
-        // Регистрируем второй приёмник
-        IntentFilter updateIntentFilter = new IntentFilter(
-                Constants.ACTION_WEATHER_SERVICE_UPDATE);
-        updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        context.registerReceiver(mUpdateReceiver, updateIntentFilter);
-    }
-
-    public class FinishReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String result = intent
-                    .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_FINISH);
-            mView.setWind(result);
-        }
-    }
-
-    public class UpdateReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String result = intent
-                    .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_UPDATE);
-            mView.setWind(result);
-        }
     }
 }
