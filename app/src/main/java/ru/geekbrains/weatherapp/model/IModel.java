@@ -4,6 +4,7 @@ import ru.geekbrains.weatherapp.model.citiesmodel.CitiesSubject;
 import ru.geekbrains.weatherapp.model.citiesmodel.ICitiesData;
 import ru.geekbrains.weatherapp.model.sensorsmodel.ISensorsData;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsSubject;
+import ru.geekbrains.weatherapp.model.settingsmodel.ISettingsData;
 import ru.geekbrains.weatherapp.model.timemodel.ITimeData;
 
 public interface IModel {
@@ -13,6 +14,8 @@ public interface IModel {
     ISensorsData sensors();
 
     ITimeData time();
+
+    ISettingsData settings();
 
     CitiesSubject citiesSubject();
 
