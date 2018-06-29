@@ -121,12 +121,19 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
     public class Settings implements ISettings {
 
         @Override
+        public void viewIsReady() {
+            ((ISettingsDialog) mDialog).setWindParam(mModel.settings().getParamWind());
+            ((ISettingsDialog) mDialog).setPressureParam(mModel.settings().getParamPressure());
+            ((ISettingsDialog) mDialog).setHumidityParam(mModel.settings().getParamHumidity());
+        }
+
+        @Override
         public void onParamsChooseClick() {
-            Intent intent = new Intent();
-            intent.putExtra(Constants.PARAM_PRESSURE, ((ISettingsDialog) mDialog).getPressureParam());
-            intent.putExtra(Constants.PARAM_WIND, ((ISettingsDialog) mDialog).getWindParam());
-            intent.putExtra(Constants.PARAM_HUMIDITY, ((ISettingsDialog) mDialog).getHumidityParam());
-            ((ISettingsDialog) mDialog).sendResult(Activity.RESULT_OK, intent);
+            mModel.settings().saveIndState(
+                    ((ISettingsDialog) mDialog).getWindParam(),
+                    ((ISettingsDialog) mDialog).getPressureParam(),
+                    ((ISettingsDialog) mDialog).getHumidityParam()
+            );
         }
     }
 }
