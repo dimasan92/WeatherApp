@@ -29,4 +29,5 @@
     <string name="gPa">гПа</string>
     <string name="sensors_dialog_title">Показания датчиков:</string>
     <string name="no_sensor">Датчик\nотсутствует!</string>
+    <string name="city_is_not_exists">Город не существует</string>
 </resources>

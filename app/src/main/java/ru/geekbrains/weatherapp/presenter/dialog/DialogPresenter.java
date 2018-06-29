@@ -3,6 +3,9 @@ package ru.geekbrains.weatherapp.presenter.dialog;
 import android.app.Activity;
 import android.content.Intent;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
@@ -71,12 +74,35 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
                 return;
             }
 
-            if (mModel.cities().addCity(enteredText)) {
-                ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
-                ((INewCityDialog) mDialog).close();
-            } else {
-                ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
+            ((INewCityDialog) mDialog).startWeatherService(enteredText);
+            ((INewCityDialog) mDialog).registerReceiver();
+        }
+
+        @Override
+        public void weatherDataFinished(Intent intent) {
+            String result = intent
+                    .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_FINISH);
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                int cod = jsonObject.getInt("cod");
+                if (cod != 404){
+                    if (mModel.cities().addCity(((INewCityDialog) mDialog).getEnteredText())) {
+                        ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
+                        ((INewCityDialog) mDialog).close();
+                    } else {
+                        ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
+                    }
+                } else {
+                    ((INewCityDialog) mDialog).showError(R.string.city_is_not_exists);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+        }
+
+        @Override
+        public void viewIsDestroyed() {
+            ((INewCityDialog) mDialog).unregisterReceiver();
         }
 
         private boolean isIncorrectCityName(String enteredText) {
