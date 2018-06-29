@@ -2,7 +2,7 @@ package ru.geekbrains.weatherapp.model.settingsmodel;
 
 public interface ISettingsData {
 
-    void saveIndState(boolean temperature, boolean pressure, boolean humidity);
+    void saveIndState(boolean wind, boolean pressure, boolean humidity);
 
     boolean getParamWind();
 
