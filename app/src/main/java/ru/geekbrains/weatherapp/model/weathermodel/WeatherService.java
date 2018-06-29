@@ -2,16 +2,21 @@ package ru.geekbrains.weatherapp.model.weathermodel;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.io.IOException;
 
-import javax.net.ssl.HttpsURLConnection;
-
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import ru.geekbrains.weatherapp.common.Constants;
 
 public class WeatherService extends IntentService {
+
+    private static final String OPEN_WEATHER_KEY = "480baf035826bf73a51c11f97d2faa17";
+    private static final String UNIT_FORMAT_METRIC = "metric";
 
     public WeatherService() {
         super("WeatherService");
@@ -19,40 +24,40 @@ public class WeatherService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        HttpsURLConnection urlConnection = null;
-        try {
-            URL url = new URL("https://geekbrains.ru/");
-            urlConnection = (HttpsURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(10000);
-            updateData("Подготовка данных");
-            urlConnection.connect();
-            updateData("Соединение");
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(urlConnection.getInputStream()));
-            StringBuilder buf = new StringBuilder();
-            updateData("Получение данных");
+        OkHttpClient client = new OkHttpClient();
+        Request.Builder builder = new Request.Builder();
+        builder.url(getUrl(intent));
+        Request request = builder.build();
 
-            String line = null;
-            int numLine = 0;
-
-            while ((line = in.readLine()) != null) {
-                numLine++;
-                updateData(String.format("Строка %d", numLine));
-                buf.append(line);
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                finishData("Ошибка загрузки");
             }
-            finishData("Данные загружены");
 
-        } catch (Exception e) {
-            finishData("Ошибка загрузки");
-        } finally {
-            if (urlConnection != null) urlConnection.disconnect();
-        }
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
+                try {
+                    String answer = null;
+                    if (response.body() != null) {
+                        answer = response.body().string();
+                    }
+                    finishData(answer);
+                } catch (IOException e) {
+                    finishData("Ошибка загрузки");
+                }
+            }
+        });
     }
 
-    private void updateData(String data) {
-        sendResult(data, Constants.ACTION_WEATHER_SERVICE_UPDATE,
-                Constants.EXTRA_WEATHER_SERVICE_UPDATE);
+    @NonNull
+    private String getUrl(Intent intent) {
+        StringBuilder sb = new StringBuilder("https://api.openweathermap.org/data/2.5/weather?");
+        sb = sb.append("q=").append(intent.getStringExtra(Constants.CITY_NAME))
+                .append("&units=").append(UNIT_FORMAT_METRIC)
+                .append("&APPID=").append(OPEN_WEATHER_KEY);
+        return sb.toString();
     }
 
     private void finishData(String data) {
