@@ -33,7 +33,7 @@ public class WeatherService extends IntentService {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                finishData("Ошибка загрузки");
+                finishData(Constants.DOWNLOAD_ERROR);
             }
 
             @Override
@@ -45,7 +45,7 @@ public class WeatherService extends IntentService {
                     }
                     finishData(answer);
                 } catch (IOException e) {
-                    finishData("Ошибка загрузки");
+                    finishData(Constants.DOWNLOAD_ERROR);
                 }
             }
         });
@@ -61,6 +61,9 @@ public class WeatherService extends IntentService {
     }
 
     private void finishData(String data) {
+        if (data == null) {
+            data = Constants.DOWNLOAD_ERROR;
+        }
         sendResult(data, Constants.ACTION_WEATHER_SERVICE_FINISH,
                 Constants.EXTRA_WEATHER_SERVICE_FINISH);
     }

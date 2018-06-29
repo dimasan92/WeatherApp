@@ -16,4 +16,7 @@ public class Constants {
 
     // cities set preference
     public static final String SAVED_SET_OF_CITIES = "saved_set_of_cities";
+
+    // download
+    public static final String DOWNLOAD_ERROR = "download error";
 }
