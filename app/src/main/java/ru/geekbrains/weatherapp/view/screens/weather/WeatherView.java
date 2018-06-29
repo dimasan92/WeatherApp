@@ -39,8 +39,10 @@ public class WeatherView extends Fragment implements IWeatherView {
     private FinishReceiver mFinishReceiver;
     private UpdateReceiver mUpdateReceiver;
 
-    public static WeatherView newInstance(Bundle bundle) {
+    public static WeatherView newInstance(String cityName) {
         WeatherView view = new WeatherView();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.CITY_NAME, cityName);
         view.setArguments(bundle);
         return view;
     }

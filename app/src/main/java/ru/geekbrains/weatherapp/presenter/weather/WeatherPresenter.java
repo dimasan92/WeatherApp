@@ -78,12 +78,9 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
             return;
         }
         mView.setCity(bundle.getString(Constants.CITY_NAME, ""));
-        mView.setVisibilityWindParam(bundle
-                .getBoolean(Constants.PARAM_WIND, true));
-        mView.setVisibilityPressureParam(bundle
-                .getBoolean(Constants.PARAM_PRESSURE, true));
-        mView.setVisibilityHumidityParam(bundle
-                .getBoolean(Constants.PARAM_HUMIDITY, true));
+        mView.setVisibilityWindParam(mModel.settings().getParamWind());
+        mView.setVisibilityPressureParam(mModel.settings().getParamPressure());
+        mView.setVisibilityHumidityParam(mModel.settings().getParamHumidity());
     }
 
     private void setDate(Context context) {
