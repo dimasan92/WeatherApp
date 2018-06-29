@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsObserver;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.dialogs.newcity.INewCityDialog;
@@ -88,22 +89,26 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
         }
     }
 
-    public class SensorsIndications implements ISensorsIndications {
+    public class SensorsIndications implements ISensorsIndications, SensorsObserver {
 
         @Override
         public void viewIsReady() {
             updateSensors();
+            mModel.sensorsSubject().registerSensorsObserver(this);
         }
 
+        @Override
         public void dialogIsVisible() {
             mModel.sensors().sensorsActivate();
         }
 
+        @Override
         public void dialogIsInvisible() {
             mModel.sensors().sensorsDeactivate();
         }
 
-        private void updateSensors() {
+        @Override
+        public void updateSensors() {
             ((SensorsIndicationsDialog) mDialog)
                     .setTemperature(mModel.sensors().getTemperatureInd());
             ((SensorsIndicationsDialog) mDialog)
