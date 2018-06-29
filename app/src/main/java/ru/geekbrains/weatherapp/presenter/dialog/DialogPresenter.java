@@ -12,6 +12,7 @@ import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsObserver;
 import ru.geekbrains.weatherapp.presenter.Presenter;
+import ru.geekbrains.weatherapp.utils.ParseWeatherUtils;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.dialogs.newcity.INewCityDialog;
 import ru.geekbrains.weatherapp.view.dialogs.sensorsindications.SensorsIndicationsDialog;
@@ -82,21 +83,16 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
         public void weatherDataFinished(Intent intent) {
             String result = intent
                     .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_FINISH);
-            try {
-                JSONObject jsonObject = new JSONObject(result);
-                int cod = jsonObject.getInt("cod");
-                if (cod != 404){
-                    if (mModel.cities().addCity(((INewCityDialog) mDialog).getEnteredText())) {
-                        ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
-                        ((INewCityDialog) mDialog).close();
-                    } else {
-                        ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
-                    }
+            int cod = ParseWeatherUtils.getCod(result);
+            if (cod != ParseWeatherUtils.ERROR_CODE) {
+                if (mModel.cities().addCity(((INewCityDialog) mDialog).getEnteredText())) {
+                    ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
+                    ((INewCityDialog) mDialog).close();
                 } else {
-                    ((INewCityDialog) mDialog).showError(R.string.city_is_not_exists);
+                    ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } else {
+                ((INewCityDialog) mDialog).showError(R.string.city_is_not_exists);
             }
         }
 
