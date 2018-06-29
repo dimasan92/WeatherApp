@@ -1,16 +1,12 @@
 package ru.geekbrains.weatherapp.presenter.weather;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import java.util.Locale;
 
 import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.weathermodel.WeatherService;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.screens.weather.IWeatherView;
@@ -47,29 +43,6 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
         setDate(context);
 
         mView.setWind("Загрузка данных");
-
-        mView.startWeatherService();
-
-        mView.registerReceivers();
-    }
-
-    @Override
-    public void weatherDataUpdated(Intent intent) {
-        String result = intent
-                .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_FINISH);
-        mView.setWind(result);
-    }
-
-    @Override
-    public void weatherDataFinished(Intent intent) {
-        String result = intent
-                .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_UPDATE);
-        mView.setWind(result);
-    }
-
-    @Override
-    public void viewIsDestroyed() {
-        mView.unregisterReceivers();
     }
 
     private void setSettings() {
