@@ -117,17 +117,17 @@ public class FragmentFactory {
         dialog.show(fm, SENSORS_INDICATIONS_DIALOG_TAG);
     }
 
-    public static void showSettingsDialog(FragmentActivity activity, Bundle bundle,
+    public static void showSettingsDialog(FragmentActivity activity,
                                           Fragment fragment, int requestParams) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        SettingsDialog dialog = SettingsDialog.newInstance(bundle);
+        SettingsDialog dialog = SettingsDialog.newInstance();
         dialog.setTargetFragment(fragment, requestParams);
         dialog.show(fm, SETTINGS_DIALOG_TAG);
     }
 
-    public static void showWeatherScreen(FragmentActivity activity, Bundle bundle) {
+    public static void showWeatherScreen(FragmentActivity activity, String cityName) {
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_fragment, WeatherView.newInstance(bundle));
+        ft.replace(R.id.main_fragment, WeatherView.newInstance(cityName));
         ft.addToBackStack(null);
         ft.commit();
     }
