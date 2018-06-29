@@ -77,7 +77,7 @@ public class FragmentFactory {
         return wp;
     }
 
-    public static IWeatherPresenter getWeatherPresenter(FragmentActivity activity, Bundle bundle){
+    public static IWeatherPresenter getWeatherPresenter(FragmentActivity activity, Bundle bundle) {
         FragmentManager fm = activity.getSupportFragmentManager();
         WeatherPresenter wp = (WeatherPresenter) fm.findFragmentByTag(WEATHER_PRESENTER_TAG);
 
@@ -117,11 +117,9 @@ public class FragmentFactory {
         dialog.show(fm, SENSORS_INDICATIONS_DIALOG_TAG);
     }
 
-    public static void showSettingsDialog(FragmentActivity activity,
-                                          Fragment fragment, int requestParams) {
+    public static void showSettingsDialog(FragmentActivity activity) {
         FragmentManager fm = activity.getSupportFragmentManager();
         SettingsDialog dialog = SettingsDialog.newInstance();
-        dialog.setTargetFragment(fragment, requestParams);
         dialog.show(fm, SETTINGS_DIALOG_TAG);
     }
 

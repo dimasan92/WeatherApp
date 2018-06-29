@@ -1,8 +1,5 @@
 package ru.geekbrains.weatherapp.presenter.welcome;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import java.util.ArrayList;
@@ -10,16 +7,13 @@ import java.util.List;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.common.FragmentFactory;
 import ru.geekbrains.weatherapp.model.citiesmodel.CitiesObserver;
 import ru.geekbrains.weatherapp.presenter.Presenter;
-import ru.geekbrains.weatherapp.common.FragmentFactory;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.screens.welcome.IWelcomeView;
 
 public class WelcomePresenter extends Presenter implements IWelcomePresenter, CitiesObserver {
-
-    private static final int REQUEST_PARAMS = 0;
 
     private IWelcomeView mView;
 
@@ -66,8 +60,7 @@ public class WelcomePresenter extends Presenter implements IWelcomePresenter, Ci
     }
 
     public void onMenuItemSettingsClick() {
-        FragmentFactory.showSettingsDialog(Objects.requireNonNull(getActivity()),
-                WelcomePresenter.this, REQUEST_PARAMS);
+        FragmentFactory.showSettingsDialog(Objects.requireNonNull(getActivity()));
     }
 
     @Override
