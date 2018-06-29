@@ -3,11 +3,16 @@ package ru.geekbrains.weatherapp.presenter.dialog;
 import android.app.Activity;
 import android.content.Intent;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsObserver;
 import ru.geekbrains.weatherapp.presenter.Presenter;
+import ru.geekbrains.weatherapp.utils.ParseWeatherUtils;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.dialogs.newcity.INewCityDialog;
 import ru.geekbrains.weatherapp.view.dialogs.sensorsindications.SensorsIndicationsDialog;
@@ -70,12 +75,30 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
                 return;
             }
 
-            if (mModel.cities().addCity(enteredText)) {
-                ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
-                ((INewCityDialog) mDialog).close();
+            ((INewCityDialog) mDialog).startWeatherService(enteredText);
+            ((INewCityDialog) mDialog).registerReceiver();
+        }
+
+        @Override
+        public void weatherDataFinished(Intent intent) {
+            String result = intent
+                    .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_FINISH);
+            int cod = ParseWeatherUtils.getCod(result);
+            if (cod != ParseWeatherUtils.ERROR_CODE) {
+                if (mModel.cities().addCity(((INewCityDialog) mDialog).getEnteredText())) {
+                    ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
+                    ((INewCityDialog) mDialog).close();
+                } else {
+                    ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
+                }
             } else {
-                ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
+                ((INewCityDialog) mDialog).showError(R.string.city_is_not_exists);
             }
+        }
+
+        @Override
+        public void viewIsDestroyed() {
+            ((INewCityDialog) mDialog).unregisterReceiver();
         }
 
         private boolean isIncorrectCityName(String enteredText) {
@@ -88,22 +111,26 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
         }
     }
 
-    public class SensorsIndications implements ISensorsIndications {
+    public class SensorsIndications implements ISensorsIndications, SensorsObserver {
 
         @Override
         public void viewIsReady() {
             updateSensors();
+            mModel.sensorsSubject().registerSensorsObserver(this);
         }
 
+        @Override
         public void dialogIsVisible() {
             mModel.sensors().sensorsActivate();
         }
 
+        @Override
         public void dialogIsInvisible() {
             mModel.sensors().sensorsDeactivate();
         }
 
-        private void updateSensors() {
+        @Override
+        public void updateSensors() {
             ((SensorsIndicationsDialog) mDialog)
                     .setTemperature(mModel.sensors().getTemperatureInd());
             ((SensorsIndicationsDialog) mDialog)
@@ -116,12 +143,19 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
     public class Settings implements ISettings {
 
         @Override
+        public void viewIsReady() {
+            ((ISettingsDialog) mDialog).setWindParam(mModel.settings().getParamWind());
+            ((ISettingsDialog) mDialog).setPressureParam(mModel.settings().getParamPressure());
+            ((ISettingsDialog) mDialog).setHumidityParam(mModel.settings().getParamHumidity());
+        }
+
+        @Override
         public void onParamsChooseClick() {
-            Intent intent = new Intent();
-            intent.putExtra(Constants.PARAM_PRESSURE, ((ISettingsDialog) mDialog).getPressureParam());
-            intent.putExtra(Constants.PARAM_WIND, ((ISettingsDialog) mDialog).getWindParam());
-            intent.putExtra(Constants.PARAM_HUMIDITY, ((ISettingsDialog) mDialog).getHumidityParam());
-            ((ISettingsDialog) mDialog).sendResult(Activity.RESULT_OK, intent);
+            mModel.settings().saveIndState(
+                    ((ISettingsDialog) mDialog).getWindParam(),
+                    ((ISettingsDialog) mDialog).getPressureParam(),
+                    ((ISettingsDialog) mDialog).getHumidityParam()
+            );
         }
     }
 }

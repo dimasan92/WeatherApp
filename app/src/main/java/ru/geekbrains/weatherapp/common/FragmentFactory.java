@@ -77,7 +77,7 @@ public class FragmentFactory {
         return wp;
     }
 
-    public static IWeatherPresenter getWeatherPresenter(FragmentActivity activity, Bundle bundle){
+    public static IWeatherPresenter getWeatherPresenter(FragmentActivity activity, Bundle bundle) {
         FragmentManager fm = activity.getSupportFragmentManager();
         WeatherPresenter wp = (WeatherPresenter) fm.findFragmentByTag(WEATHER_PRESENTER_TAG);
 
@@ -117,17 +117,15 @@ public class FragmentFactory {
         dialog.show(fm, SENSORS_INDICATIONS_DIALOG_TAG);
     }
 
-    public static void showSettingsDialog(FragmentActivity activity, Bundle bundle,
-                                          Fragment fragment, int requestParams) {
+    public static void showSettingsDialog(FragmentActivity activity) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        SettingsDialog dialog = SettingsDialog.newInstance(bundle);
-        dialog.setTargetFragment(fragment, requestParams);
+        SettingsDialog dialog = SettingsDialog.newInstance();
         dialog.show(fm, SETTINGS_DIALOG_TAG);
     }
 
-    public static void showWeatherScreen(FragmentActivity activity, Bundle bundle) {
+    public static void showWeatherScreen(FragmentActivity activity, String cityName) {
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_fragment, WeatherView.newInstance(bundle));
+        ft.replace(R.id.main_fragment, WeatherView.newInstance(cityName));
         ft.addToBackStack(null);
         ft.commit();
     }

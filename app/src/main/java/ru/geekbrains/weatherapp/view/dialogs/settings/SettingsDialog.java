@@ -22,10 +22,8 @@ public class SettingsDialog extends DialogView implements ISettingsDialog {
     private CheckBox mCbWindCheckBox;
     private CheckBox mCbHumidityCheckBox;
 
-    public static SettingsDialog newInstance(Bundle bundle) {
-        SettingsDialog dialog = new SettingsDialog();
-        dialog.setArguments(bundle);
-        return dialog;
+    public static SettingsDialog newInstance() {
+        return new SettingsDialog();
     }
 
     @NonNull
@@ -37,12 +35,7 @@ public class SettingsDialog extends DialogView implements ISettingsDialog {
         mCbWindCheckBox = v.findViewById(R.id.cb_wind);
         mCbHumidityCheckBox = v.findViewById(R.id.cb_humidity);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            mPressureCheckBox.setChecked(bundle.getBoolean(Constants.PARAM_PRESSURE));
-            mCbWindCheckBox.setChecked(bundle.getBoolean(Constants.PARAM_WIND));
-            mCbHumidityCheckBox.setChecked(bundle.getBoolean(Constants.PARAM_HUMIDITY));
-        }
+        mPresenter.settings().viewIsReady();
 
         return new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setView(v)
@@ -70,11 +63,17 @@ public class SettingsDialog extends DialogView implements ISettingsDialog {
     }
 
     @Override
-    public void sendResult(int resultCode, Intent intent) {
-        if (getTargetFragment() == null) {
-            return;
-        }
+    public void setWindParam(boolean paramIsSet) {
+        mCbWindCheckBox.setChecked(paramIsSet);
+    }
 
-        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
+    @Override
+    public void setPressureParam(boolean paramIsSet) {
+        mPressureCheckBox.setChecked(paramIsSet);
+    }
+
+    @Override
+    public void setHumidityParam(boolean paramIsSet) {
+        mCbHumidityCheckBox.setChecked(paramIsSet);
     }
 }
