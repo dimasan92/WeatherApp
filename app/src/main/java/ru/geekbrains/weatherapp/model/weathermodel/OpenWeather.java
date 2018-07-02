@@ -7,7 +7,7 @@ import ru.geekbrains.weatherapp.model.weathermodel.data.WeatherRequest;
 
 interface OpenWeather {
     @GET("data/2.5/weather")
-    Call<WeatherRequest> loadWeather(@Query("q") String cityCountry,
-                                     @Query("appid") String keyApi,
-                                     @Query("units") String units);
+    Call<WeatherRequest> loadWeather(@Query("q") String city,
+                                     @Query("units") String units,
+                                     @Query("appid") String keyApi);
 }

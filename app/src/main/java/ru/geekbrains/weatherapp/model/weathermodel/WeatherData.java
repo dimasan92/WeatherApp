@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.geekbrains.weatherapp.model.weathermodel.data.WeatherRequest;
 
-public class WeatherData implements IWeatherData{
+public class WeatherData implements IWeatherData {
     private static final String BASE_URL = "http://api.openweathermap.org/";
     private static final String OPEN_WEATHER_KEY = "480baf035826bf73a51c11f97d2faa17";
     private static final String UNIT_FORMAT_METRIC = "metric";
@@ -17,11 +17,11 @@ public class WeatherData implements IWeatherData{
     private OpenWeather mOpenWeather;
     private WeatherRequest mRequest;
 
-    public WeatherData(){
+    public WeatherData() {
         init();
     }
 
-    private void init(){
+    private void init() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -30,14 +30,15 @@ public class WeatherData implements IWeatherData{
     }
 
     @Override
-    public void request(String city){
+    public void request(String city) {
         mOpenWeather.loadWeather(city, OPEN_WEATHER_KEY, UNIT_FORMAT_METRIC)
                 .enqueue(new Callback<WeatherRequest>() {
                     @Override
                     public void onResponse(@NonNull Call<WeatherRequest> call,
                                            @NonNull Response<WeatherRequest> response) {
-                        if (response.body() != null)
-                           mRequest = response.body();
+                        if (response.body() != null) {
+                            mRequest = response.body();
+                        }
                     }
 
                     @Override
@@ -49,7 +50,7 @@ public class WeatherData implements IWeatherData{
 
     @Override
     public int getCod() {
-        if(mRequest == null){
+        if (mRequest == null) {
             return 0;
         }
         return mRequest.getCod();
@@ -57,7 +58,7 @@ public class WeatherData implements IWeatherData{
 
     @Override
     public float getTemp() {
-        if(mRequest == null){
+        if (mRequest == null) {
             return 0f;
         }
         return mRequest.getMain().getTemp();
@@ -65,7 +66,7 @@ public class WeatherData implements IWeatherData{
 
     @Override
     public int getPressure() {
-        if(mRequest == null){
+        if (mRequest == null) {
             return 0;
         }
         return mRequest.getMain().getPressure();
@@ -73,7 +74,7 @@ public class WeatherData implements IWeatherData{
 
     @Override
     public int getHumidity() {
-        if(mRequest == null){
+        if (mRequest == null) {
             return 0;
         }
         return mRequest.getMain().getHumidity();
@@ -81,7 +82,7 @@ public class WeatherData implements IWeatherData{
 
     @Override
     public float getWindSpeed() {
-        if(mRequest == null){
+        if (mRequest == null) {
             return 0;
         }
         return mRequest.getWind().getSpeed();
@@ -89,7 +90,7 @@ public class WeatherData implements IWeatherData{
 
     @Override
     public int getClouds() {
-        if(mRequest == null){
+        if (mRequest == null) {
             return 0;
         }
         return mRequest.getClouds().getAll();
@@ -97,7 +98,7 @@ public class WeatherData implements IWeatherData{
 
     @Override
     public String getName() {
-        if(mRequest == null){
+        if (mRequest == null) {
             return null;
         }
         return mRequest.getName();

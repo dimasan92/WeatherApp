@@ -77,6 +77,10 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
         private void checkCityName(String cityName) {
             mModel.weather().request(cityName);
             int cod = mModel.weather().getCod();
+            if(cod == 0){
+                ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
+                return;
+            }
             if (cod != ERROR_CODE) {
                 if (mModel.cities().addCity(mModel.weather().getName())) {
                     ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
