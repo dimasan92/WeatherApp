@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import java.util.Locale;
 
 import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.model.settingsmodel.SettingsData;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.screens.weather.IWeatherView;
@@ -51,9 +52,14 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
             return;
         }
         mView.setCity(bundle.getString(Constants.CITY_NAME, ""));
-        mView.setVisibilityWindParam(mModel.settings().getParamWind());
-        mView.setVisibilityPressureParam(mModel.settings().getParamPressure());
-        mView.setVisibilityHumidityParam(mModel.settings().getParamHumidity());
+
+        if(getActivity() == null){
+            return;
+        }
+        Context context = getActivity().getApplicationContext();
+        mView.setVisibilityWindParam(SettingsData.getParamWind(context));
+        mView.setVisibilityPressureParam(SettingsData.getParamPressure(context));
+        mView.setVisibilityHumidityParam(SettingsData.getParamHumidity(context));
     }
 
     private void setDate(Context context) {

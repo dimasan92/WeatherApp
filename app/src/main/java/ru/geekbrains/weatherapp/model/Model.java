@@ -10,7 +10,6 @@ import ru.geekbrains.weatherapp.model.citiesmodel.CitiesSubject;
 import ru.geekbrains.weatherapp.model.citiesmodel.ICitiesData;
 import ru.geekbrains.weatherapp.model.sensorsmodel.ISensorsData;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsSubject;
-import ru.geekbrains.weatherapp.model.settingsmodel.ISettingsData;
 import ru.geekbrains.weatherapp.model.timemodel.ITimeData;
 
 public class Model extends Fragment implements IModel {
@@ -18,7 +17,6 @@ public class Model extends Fragment implements IModel {
     private ICitiesData mCities;
     private ISensorsData mSensors;
     private ITimeData mTime;
-    private ISettingsData mSettings;
 
     public static Model newInstance() {
         return new Model();
@@ -54,15 +52,6 @@ public class Model extends Fragment implements IModel {
             mTime = ModelFactory.getTime();
         }
         return mTime;
-    }
-
-    @Override
-    public ISettingsData settings() {
-        if (mSettings == null) {
-            mSettings = ModelFactory
-                    .getSettings(Objects.requireNonNull(getActivity()).getApplicationContext());
-        }
-        return mSettings;
     }
 
     @Override

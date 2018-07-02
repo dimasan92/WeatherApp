@@ -1,16 +1,14 @@
 package ru.geekbrains.weatherapp.presenter.dialog;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsObserver;
+import ru.geekbrains.weatherapp.model.settingsmodel.SettingsData;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.utils.ParseWeatherUtils;
 import ru.geekbrains.weatherapp.view.IView;
@@ -144,14 +142,22 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
 
         @Override
         public void viewIsReady() {
-            ((ISettingsDialog) mDialog).setWindParam(mModel.settings().getParamWind());
-            ((ISettingsDialog) mDialog).setPressureParam(mModel.settings().getParamPressure());
-            ((ISettingsDialog) mDialog).setHumidityParam(mModel.settings().getParamHumidity());
+            if (getActivity() == null) {
+                return;
+            }
+            Context context = getActivity().getApplicationContext();
+            ((ISettingsDialog) mDialog).setWindParam(SettingsData.getParamWind(context));
+            ((ISettingsDialog) mDialog).setPressureParam(SettingsData.getParamPressure(context));
+            ((ISettingsDialog) mDialog).setHumidityParam(SettingsData.getParamHumidity(context));
         }
 
         @Override
         public void onParamsChooseClick() {
-            mModel.settings().saveIndState(
+            if (getActivity() == null) {
+                return;
+            }
+            Context context = getActivity().getApplicationContext();
+            SettingsData.saveIndState(context,
                     ((ISettingsDialog) mDialog).getWindParam(),
                     ((ISettingsDialog) mDialog).getPressureParam(),
                     ((ISettingsDialog) mDialog).getHumidityParam()
