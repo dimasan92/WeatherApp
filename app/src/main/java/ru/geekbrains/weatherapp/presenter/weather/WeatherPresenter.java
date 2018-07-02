@@ -39,23 +39,18 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
 
     @Override
     public void viewIsReady(Context context) {
-        setSettings();
+        setSettings(context);
         setDate(context);
 
         mView.setWind("Загрузка данных");
     }
 
-    private void setSettings() {
+    private void setSettings(Context context) {
         Bundle bundle = getArguments();
         if (bundle == null) {
             return;
         }
         mView.setCity(bundle.getString(Constants.CITY_NAME, ""));
-
-        if (getActivity() == null) {
-            return;
-        }
-        Context context = getActivity().getApplicationContext();
         mView.setVisibilityWindParam(SettingsData.getParamWind(context));
         mView.setVisibilityPressureParam(SettingsData.getParamPressure(context));
         mView.setVisibilityHumidityParam(SettingsData.getParamHumidity(context));

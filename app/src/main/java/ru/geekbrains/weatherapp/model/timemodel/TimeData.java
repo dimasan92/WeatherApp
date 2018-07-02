@@ -6,7 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class TimeData {
+public final class TimeData {
+
+    private TimeData() {
+    }
 
     public static String getDayOfWeek(Context context) {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE",

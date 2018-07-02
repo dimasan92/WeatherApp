@@ -141,11 +141,7 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
     public class Settings implements ISettings {
 
         @Override
-        public void viewIsReady() {
-            if (getActivity() == null) {
-                return;
-            }
-            Context context = getActivity().getApplicationContext();
+        public void viewIsReady(Context context) {
             ((ISettingsDialog) mDialog).setWindParam(SettingsData.getParamWind(context));
             ((ISettingsDialog) mDialog).setPressureParam(SettingsData.getParamPressure(context));
             ((ISettingsDialog) mDialog).setHumidityParam(SettingsData.getParamHumidity(context));
