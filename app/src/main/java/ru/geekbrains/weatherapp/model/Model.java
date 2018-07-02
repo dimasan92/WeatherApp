@@ -10,11 +10,13 @@ import ru.geekbrains.weatherapp.model.citiesmodel.CitiesSubject;
 import ru.geekbrains.weatherapp.model.citiesmodel.ICitiesData;
 import ru.geekbrains.weatherapp.model.sensorsmodel.ISensorsData;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsSubject;
+import ru.geekbrains.weatherapp.model.weathermodel.IWeatherData;
 
 public class Model extends Fragment implements IModel {
 
     private ICitiesData mCities;
     private ISensorsData mSensors;
+    private IWeatherData mWeather;
 
     public static Model newInstance() {
         return new Model();
@@ -42,6 +44,14 @@ public class Model extends Fragment implements IModel {
                     .getSensors(Objects.requireNonNull(getActivity()).getApplicationContext());
         }
         return mSensors;
+    }
+
+    @Override
+    public IWeatherData weather() {
+        if (mWeather == null) {
+            mWeather = ModelFactory.getWeather();
+        }
+        return mWeather;
     }
 
     @Override
