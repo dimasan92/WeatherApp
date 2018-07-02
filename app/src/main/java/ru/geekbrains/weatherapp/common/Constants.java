@@ -2,12 +2,6 @@ package ru.geekbrains.weatherapp.common;
 
 public class Constants {
 
-    // service constants
-    public static final String ACTION_WEATHER_SERVICE_UPDATE = "weather_service_update_action";
-    public static final String ACTION_WEATHER_SERVICE_FINISH = "weather_service_finish_action";
-    public static final String EXTRA_WEATHER_SERVICE_UPDATE = "weather_service_update_extra";
-    public static final String EXTRA_WEATHER_SERVICE_FINISH = "weather_service_finish_extra";
-
     // params
     public static final String CITY_NAME = "city_name";
     public static final String PARAM_PRESSURE = "param_pressure";

@@ -1,16 +1,13 @@
 package ru.geekbrains.weatherapp.presenter.dialog;
 
 import android.content.Context;
-import android.content.Intent;
 
 import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsObserver;
 import ru.geekbrains.weatherapp.model.settingsmodel.SettingsData;
 import ru.geekbrains.weatherapp.presenter.Presenter;
-import ru.geekbrains.weatherapp.utils.ParseWeatherUtils;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.dialogs.newcity.INewCityDialog;
 import ru.geekbrains.weatherapp.view.dialogs.sensorsindications.SensorsIndicationsDialog;
@@ -63,6 +60,7 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
     }
 
     public class NewCity implements INewCity {
+        private static final int ERROR_CODE = 404;
 
         private Pattern checkCityName = Pattern.compile("^[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]+$");
 
@@ -73,17 +71,14 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
                 return;
             }
 
-            ((INewCityDialog) mDialog).startWeatherService(enteredText);
-            ((INewCityDialog) mDialog).registerReceiver();
+            checkCityName(enteredText);
         }
 
-        @Override
-        public void weatherDataFinished(Intent intent) {
-            String result = intent
-                    .getStringExtra(Constants.EXTRA_WEATHER_SERVICE_FINISH);
-            int cod = ParseWeatherUtils.getCod(result);
-            if (cod != ParseWeatherUtils.ERROR_CODE) {
-                if (mModel.cities().addCity(((INewCityDialog) mDialog).getEnteredText())) {
+        private void checkCityName(String cityName) {
+            mModel.weather().request(cityName);
+            int cod = mModel.weather().getCod();
+            if (cod != ERROR_CODE) {
+                if (mModel.cities().addCity(mModel.weather().getName())) {
                     ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
                     ((INewCityDialog) mDialog).close();
                 } else {
@@ -92,11 +87,6 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
             } else {
                 ((INewCityDialog) mDialog).showError(R.string.city_is_not_exists);
             }
-        }
-
-        @Override
-        public void viewIsDestroyed() {
-            ((INewCityDialog) mDialog).unregisterReceiver();
         }
 
         private boolean isIncorrectCityName(String enteredText) {

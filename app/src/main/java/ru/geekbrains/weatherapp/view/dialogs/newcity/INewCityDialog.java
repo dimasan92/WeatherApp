@@ -12,11 +12,5 @@ public interface INewCityDialog extends IView {
 
     void makeToast(int stringId);
 
-    void startWeatherService(String city);
-
-    void registerReceiver();
-
-    void unregisterReceiver();
-
     void close();
 }

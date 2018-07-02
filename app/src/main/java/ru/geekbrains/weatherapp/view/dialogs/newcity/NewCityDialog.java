@@ -1,10 +1,6 @@
 package ru.geekbrains.weatherapp.view.dialogs.newcity;
 
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -17,14 +13,11 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.common.Constants;
-import ru.geekbrains.weatherapp.model.weathermodel.WeatherService;
 import ru.geekbrains.weatherapp.view.dialogs.DialogView;
 
 public class NewCityDialog extends DialogView implements INewCityDialog {
 
     private TextInputEditText mCityNameEditText;
-    private FinishReceiver mFinishReceiver;
 
     public static NewCityDialog newInstance() {
         return new NewCityDialog();
@@ -74,49 +67,7 @@ public class NewCityDialog extends DialogView implements INewCityDialog {
     }
 
     @Override
-    public void startWeatherService(String cityName) {
-        Context context = Objects.requireNonNull(getActivity()).getApplicationContext();
-        Intent intent = new Intent(context, WeatherService.class);
-        intent.putExtra(Constants.CITY_NAME, cityName);
-        context.startService(intent);
-    }
-
-    @Override
     public void close() {
         super.dismiss();
-    }
-
-    @Override
-    public void registerReceiver() {
-        mFinishReceiver = new FinishReceiver();
-        Context context = Objects.requireNonNull(getActivity()).getApplicationContext();
-
-        IntentFilter intentFilter = new IntentFilter(
-                Constants.ACTION_WEATHER_SERVICE_FINISH);
-        intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        context.registerReceiver(mFinishReceiver, intentFilter);
-    }
-
-    @Override
-    public void unregisterReceiver() {
-        if (mFinishReceiver == null) {
-            return;
-        }
-        Context context = Objects.requireNonNull(getActivity()).getApplicationContext();
-        context.unregisterReceiver(mFinishReceiver);
-    }
-
-    public class FinishReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            mPresenter.newCity().weatherDataFinished(intent);
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        mPresenter.newCity().viewIsDestroyed();
-        super.onDestroy();
     }
 }
