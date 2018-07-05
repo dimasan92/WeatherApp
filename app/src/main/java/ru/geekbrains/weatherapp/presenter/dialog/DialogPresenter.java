@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsObserver;
 import ru.geekbrains.weatherapp.model.settingsmodel.SettingsData;
+import ru.geekbrains.weatherapp.model.weathermodel.WeatherListener;
+import ru.geekbrains.weatherapp.model.weathermodel.data.WeatherRequest;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.dialogs.newcity.INewCityDialog;
@@ -70,8 +72,8 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
             if (isIncorrectCityName(enteredText)) {
                 return;
             }
-
-            checkCityName(enteredText);
+            mModel.weather().setWeatherListener(weatherListener());
+            mModel.weather().request(enteredText);
         }
 
         private void checkCityName(String cityName) {
@@ -100,6 +102,20 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
             }
             ((INewCityDialog) mDialog).showError(R.string.incorrect_city_name);
             return true;
+        }
+
+        private WeatherListener weatherListener(){
+            return new WeatherListener() {
+                @Override
+                public void onSuccess(WeatherRequest request) {
+
+                }
+
+                @Override
+                public void onFailure(String error) {
+
+                }
+            }
         }
     }
 
