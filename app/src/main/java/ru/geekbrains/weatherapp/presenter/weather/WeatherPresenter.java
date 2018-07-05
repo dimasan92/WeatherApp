@@ -118,7 +118,7 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
             wind = getString(R.string.wind_strong_gale);
         } else if (speed > 25.1 && speed <= 29.0) {
             wind = getString(R.string.wind_whole_gale);
-        } else {
+        } else if (speed > 29.0){
             wind = getString(R.string.wind_storm);
         }
         return wind;
