@@ -4,9 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import java.util.Locale;
-
 import ru.geekbrains.weatherapp.common.Constants;
+import ru.geekbrains.weatherapp.model.settingsmodel.SettingsData;
+import ru.geekbrains.weatherapp.model.timemodel.TimeData;
 import ru.geekbrains.weatherapp.presenter.Presenter;
 import ru.geekbrains.weatherapp.view.IView;
 import ru.geekbrains.weatherapp.view.screens.weather.IWeatherView;
@@ -39,28 +39,27 @@ public class WeatherPresenter extends Presenter implements IWeatherPresenter {
 
     @Override
     public void viewIsReady(Context context) {
-        setSettings();
+        setSettings(context);
         setDate(context);
 
         mView.setWind("Загрузка данных");
     }
 
-    private void setSettings() {
+    private void setSettings(Context context) {
         Bundle bundle = getArguments();
         if (bundle == null) {
             return;
         }
         mView.setCity(bundle.getString(Constants.CITY_NAME, ""));
-        mView.setVisibilityWindParam(mModel.settings().getParamWind());
-        mView.setVisibilityPressureParam(mModel.settings().getParamPressure());
-        mView.setVisibilityHumidityParam(mModel.settings().getParamHumidity());
+        mView.setVisibilityWindParam(SettingsData.getParamWind(context));
+        mView.setVisibilityPressureParam(SettingsData.getParamPressure(context));
+        mView.setVisibilityHumidityParam(SettingsData.getParamHumidity(context));
     }
 
     private void setDate(Context context) {
-        Locale locale = context.getResources().getConfiguration().locale;
-        mView.setDate(String.format("%s %s", mModel.time().getDayOfMonth(locale),
-                mModel.time().getMonth(locale)));
+        mView.setDate(String.format("%s %s", TimeData.getDayOfMonth(context),
+                TimeData.getMonth(context)));
 
-        mView.setDayOfWeek(mModel.time().getDayOfWeek(locale));
+        mView.setDayOfWeek(TimeData.getDayOfWeek(context));
     }
 }

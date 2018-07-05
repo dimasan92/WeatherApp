@@ -35,7 +35,7 @@ public class SettingsDialog extends DialogView implements ISettingsDialog {
         mCbWindCheckBox = v.findViewById(R.id.cb_wind);
         mCbHumidityCheckBox = v.findViewById(R.id.cb_humidity);
 
-        mPresenter.settings().viewIsReady();
+        mPresenter.settings().viewIsReady(getActivity());
 
         return new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setView(v)

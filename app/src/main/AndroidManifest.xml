@@ -19,9 +19,6 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".model.weathermodel.WeatherService"
-            android:exported="false"/>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import java.util.Set;
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 
+//will replace with DB
 public class CitiesData implements ICitiesData, CitiesSubject {
 
     private static final String PREFERENCES_NAME = "list_of_cities";
