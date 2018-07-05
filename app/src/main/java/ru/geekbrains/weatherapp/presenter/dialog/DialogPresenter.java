@@ -1,10 +1,12 @@
 package ru.geekbrains.weatherapp.presenter.dialog;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.regex.Pattern;
 
 import ru.geekbrains.weatherapp.R;
+import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.model.sensorsmodel.SensorsObserver;
 import ru.geekbrains.weatherapp.model.settingsmodel.SettingsData;
 import ru.geekbrains.weatherapp.model.weathermodel.WeatherListener;
@@ -16,6 +18,8 @@ import ru.geekbrains.weatherapp.view.dialogs.sensorsindications.SensorsIndicatio
 import ru.geekbrains.weatherapp.view.dialogs.settings.ISettingsDialog;
 
 public class DialogPresenter extends Presenter implements IDialogPresenter {
+
+    private static final String TAG = DialogPresenter.class.getSimpleName();
 
     private IView mDialog;
 
@@ -62,7 +66,6 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
     }
 
     public class NewCity implements INewCity {
-        private static final int ERROR_CODE = 404;
 
         private Pattern checkCityName = Pattern.compile("^[А-ЯA-Z][а-яa-zА-ЯA-Z\\-]+$");
 
@@ -76,25 +79,6 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
             mModel.weather().request(enteredText);
         }
 
-        private void checkCityName(String cityName) {
-            mModel.weather().request(cityName);
-            int cod = mModel.weather().getCod();
-            if(cod == 0){
-                ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
-                return;
-            }
-            if (cod != ERROR_CODE) {
-                if (mModel.cities().addCity(mModel.weather().getName())) {
-                    ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
-                    ((INewCityDialog) mDialog).close();
-                } else {
-                    ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
-                }
-            } else {
-                ((INewCityDialog) mDialog).showError(R.string.city_is_not_exists);
-            }
-        }
-
         private boolean isIncorrectCityName(String enteredText) {
             if (checkCityName.matcher(enteredText).matches()) {
                 ((INewCityDialog) mDialog).hideError();
@@ -104,18 +88,28 @@ public class DialogPresenter extends Presenter implements IDialogPresenter {
             return true;
         }
 
-        private WeatherListener weatherListener(){
+        private WeatherListener weatherListener() {
             return new WeatherListener() {
                 @Override
                 public void onSuccess(WeatherRequest request) {
-
+                    if (mModel.cities().addCity(request.getName())) {
+                        ((INewCityDialog) mDialog).makeToast(R.string.success_add_city);
+                        ((INewCityDialog) mDialog).close();
+                    } else {
+                        ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
+                    }
                 }
 
                 @Override
                 public void onFailure(String error) {
-
+                    if (error.equals(String.valueOf(Constants.ERROR_DATA_CODE))) {
+                        ((INewCityDialog) mDialog).showError(R.string.city_is_not_exists);
+                    } else {
+                        ((INewCityDialog) mDialog).makeToast(R.string.fail_add_city);
+                        Log.e(TAG, error);
+                    }
                 }
-            }
+            };
         }
     }
 

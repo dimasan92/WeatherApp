@@ -21,6 +21,8 @@ public class WeatherView extends Fragment implements IWeatherView {
     private IWeatherPresenter mPresenter;
 
     private TextView mTvCityName;
+    private TextView mTvCurrentTemperature;
+    private TextView mTvDescription;
     private TextView mTvWindTitle;
     private TextView mTvWindValue;
     private TextView mTvPressureTitle;
@@ -55,6 +57,8 @@ public class WeatherView extends Fragment implements IWeatherView {
         View layout = inflater.inflate(R.layout.fragment_weather, container, false);
 
         mTvCityName = layout.findViewById(R.id.tv_city);
+        mTvCurrentTemperature = layout.findViewById(R.id.current_weather);
+        mTvDescription = layout.findViewById(R.id.tv_description);
         mTvWindTitle = layout.findViewById(R.id.tv_title_wind);
         mTvWindValue = layout.findViewById(R.id.tv_wind);
         mTvPressureTitle = layout.findViewById(R.id.tv_title_pressure);
@@ -67,11 +71,6 @@ public class WeatherView extends Fragment implements IWeatherView {
         mPresenter.viewIsReady(Objects.requireNonNull(getActivity()).getApplicationContext());
 
         return layout;
-    }
-
-    @Override
-    public void setCity(String cityName) {
-        mTvCityName.setText(cityName);
     }
 
     @Override
@@ -99,6 +98,12 @@ public class WeatherView extends Fragment implements IWeatherView {
     }
 
     @Override
+    public void setCity(String cityName) {
+        mTvCityName.setText(cityName);
+    }
+
+
+    @Override
     public void setDate(String date) {
         mTvDate.setText(date);
     }
@@ -106,6 +111,16 @@ public class WeatherView extends Fragment implements IWeatherView {
     @Override
     public void setDayOfWeek(String day) {
         mTvDayOfWeek.setText(day);
+    }
+
+    @Override
+    public void setCurrentTemperature(String temperature) {
+        mTvCurrentTemperature.setText(temperature);
+    }
+
+    @Override
+    public void setDescription(String description) {
+        mTvDescription.setText(description);
     }
 
     @Override

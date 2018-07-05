@@ -1,20 +1,20 @@
 <resources>
     <string name="app_name">Weather</string>
+
     <string name="temperature_11">+11 &#8451;</string>
     <string name="temperature_22">+22 &#8451;</string>
     <string name="temperature_10">+10 &#8451;</string>
     <string name="cloudiness_clearly">Clearly</string>
+
     <string name="time_of_day_day">Day</string>
     <string name="time_of_day_night">Night</string>
     <string name="title_wind">Wind</string>
     <string name="title_pressure">Pressure</string>
     <string name="title_humidity">Humidity</string>
     <string name="title_temperature">Temperature</string>
-    <string name="wind_calm">Calm</string>
     <string name="pressure_759">759 mm Hg</string>
     <string name="humidity_93">93%</string>
     <string name="city_name_request">City</string>
-    <string name="btn_watch_the_weather">Watch the weather</string>
     <string name="incorrect_city_name">Enter the name of the city!</string>
     <string name="btn_choose_city">Choose city from list</string>
     <string name="add_city_name">Add the city</string>
@@ -29,4 +29,17 @@
     <string name="sensors_dialog_title">Sensor readings:</string>
     <string name="no_sensor">No sensor!</string>
     <string name="city_is_not_exists">City is not exists</string>
+    <string name="wind_calm">Calm</string>
+    <string name="wind_light_air">Light air</string>
+    <string name="wind_light_breeze">Light breeze</string>
+    <string name="wind_gentle_breeze">Gentle breeze</string>
+    <string name="wind_moderate_breeze">Moderate breeze</string>
+    <string name="wind_fresh_breeze">Fresh breeze</string>
+    <string name="wind_strong_breeze">Strong breeze</string>
+    <string name="wind_moderate_gale">Moderate gale</string>
+    <string name="wind_fresh_gale">Fresh gale</string>
+    <string name="wind_strong_gale">Strong gale</string>
+    <string name="wind_whole_gale">Whole gale</string>
+    <string name="wind_storm">Storm</string>
+    <string name="wind_hurricane">Hurricane</string>
 </resources>

@@ -69,7 +69,7 @@ public class WelcomePresenter extends Presenter implements IWelcomePresenter, Ci
     }
 
     private void updateList() {
-        List<String> cities = new ArrayList<>(mModel.cities().getCities());
+        List<String> cities = mModel.cities().getCities();
         mView.updateListView(cities);
     }
 }
