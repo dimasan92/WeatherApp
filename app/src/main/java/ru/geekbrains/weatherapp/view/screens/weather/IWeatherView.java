@@ -4,8 +4,6 @@ import ru.geekbrains.weatherapp.view.IView;
 
 public interface IWeatherView extends IView {
 
-    void setCity(String cityName);
-
     void setVisibilityWindParam(boolean visible);
 
     void setVisibilityPressureParam(boolean visible);
@@ -15,6 +13,12 @@ public interface IWeatherView extends IView {
     void setDate(String date);
 
     void setDayOfWeek(String day);
+
+    void setCity(String cityName);
+
+    void setCurrentTemperature(String temperature);
+
+    void setDescription(String description);
 
     void setPressure(String value);
 
