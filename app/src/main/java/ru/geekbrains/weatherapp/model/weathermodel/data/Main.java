@@ -3,38 +3,29 @@ package ru.geekbrains.weatherapp.model.weathermodel.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Main {
+public final class Main {
     @SerializedName("temp")
-    @Expose
-    private float temp;
+    private final float temp;
     @SerializedName("pressure")
-    @Expose
-    private int pressure;
+    private final int pressure;
     @SerializedName("humidity")
-    @Expose
-    private int humidity;
+    private final int humidity;
+
+    public Main(float temp, int pressure, int humidity) {
+        this.temp = temp;
+        this.pressure = pressure;
+        this.humidity = humidity;
+    }
 
     public float getTemp() {
         return temp;
-    }
-
-    public void setTemp(float temp) {
-        this.temp = temp;
     }
 
     public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
-        this.pressure = pressure;
-    }
-
     public int getHumidity() {
         return humidity;
-    }
-
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
     }
 }

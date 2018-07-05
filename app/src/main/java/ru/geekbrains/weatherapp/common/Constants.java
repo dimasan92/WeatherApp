@@ -13,4 +13,5 @@ public class Constants {
 
     // download
     public static final String DOWNLOAD_ERROR = "download error";
+    public static final int ERROR_DATA_CODE = 404;
 }

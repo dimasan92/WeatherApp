@@ -9,6 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.model.weathermodel.data.WeatherRequest;
 
 public class WeatherData implements IWeatherData {
@@ -17,7 +18,8 @@ public class WeatherData implements IWeatherData {
     private static final String UNIT_FORMAT_METRIC = "metric";
 
     private OpenWeather mOpenWeather;
-    private WeatherRequest mRequest;
+
+    private WeatherListener mListener;
 
     public WeatherData() {
         init();
@@ -45,70 +47,24 @@ public class WeatherData implements IWeatherData {
                     @Override
                     public void onResponse(@NonNull Call<WeatherRequest> call,
                                            @NonNull Response<WeatherRequest> response) {
-                        if (response.body() != null) {
+                        if (response.code() == Constants.ERROR_DATA_CODE
+                                || response.body() == null) {
+                            mListener.onFailure(String.valueOf(response.code()));
+                        } else{
+                            mListener.onSuccess(response.body());
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<WeatherRequest> call,
                                           @NonNull Throwable t) {
+                        mListener.onFailure(t.getMessage());
                     }
                 });
     }
 
     @Override
-    public int getCod() {
-        if (mRequest == null) {
-            return 0;
-        }
-        return mRequest.getCod();
-    }
-
-    @Override
-    public float getTemp() {
-        if (mRequest == null) {
-            return 0f;
-        }
-        return mRequest.getMain().getTemp();
-    }
-
-    @Override
-    public int getPressure() {
-        if (mRequest == null) {
-            return 0;
-        }
-        return mRequest.getMain().getPressure();
-    }
-
-    @Override
-    public int getHumidity() {
-        if (mRequest == null) {
-            return 0;
-        }
-        return mRequest.getMain().getHumidity();
-    }
-
-    @Override
-    public float getWindSpeed() {
-        if (mRequest == null) {
-            return 0;
-        }
-        return mRequest.getWind().getSpeed();
-    }
-
-    @Override
-    public int getClouds() {
-        if (mRequest == null) {
-            return 0;
-        }
-        return mRequest.getClouds().getAll();
-    }
-
-    @Override
-    public String getName() {
-        if (mRequest == null) {
-            return null;
-        }
-        return mRequest.getName();
+    public void setWeatherListener(WeatherListener listener) {
+        mListener = listener;
     }
 }
