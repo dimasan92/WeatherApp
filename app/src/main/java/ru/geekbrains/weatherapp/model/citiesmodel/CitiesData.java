@@ -20,9 +20,7 @@ public class CitiesData implements ICitiesData, CitiesSubject {
     public CitiesData(@NonNull Context context) {
         mObservers = new ArrayList<>();
 
-        CitiesDatabase database = App.getInstance().getDatabase();
-
-        mCities = database.citiesDAO();
+        mCities = App.getInstance().getDao();
     }
 
     @Override

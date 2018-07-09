@@ -3,6 +3,7 @@ package ru.geekbrains.weatherapp;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
+import ru.geekbrains.weatherapp.model.database.CitiesDao;
 import ru.geekbrains.weatherapp.model.database.CitiesDatabase;
 
 public class App extends Application {
@@ -11,22 +12,25 @@ public class App extends Application {
 
     public static App instance;
 
-    private CitiesDatabase database;
+    private CitiesDao mDao;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        database = Room.databaseBuilder(this, CitiesDatabase.class, DATABASE)
-                .allowMainThreadQueries()
-                .build();
     }
 
     public static App getInstance() {
         return instance;
     }
 
-    public CitiesDatabase getDatabase() {
-        return database;
+    public CitiesDao getDao() {
+        if(mDao == null){
+            CitiesDatabase database = Room.databaseBuilder(this, CitiesDatabase.class, DATABASE)
+                    .allowMainThreadQueries()
+                    .build();
+            mDao = database.citiesDAO();
+        }
+        return mDao;
     }
 }
