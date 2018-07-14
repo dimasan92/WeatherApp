@@ -7,19 +7,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import ru.geekbrains.weatherapp.R;
-import ru.geekbrains.weatherapp.model.IModel;
-import ru.geekbrains.weatherapp.model.Model;
-import ru.geekbrains.weatherapp.presenter.dialog.DialogPresenter;
-import ru.geekbrains.weatherapp.presenter.dialog.IDialogPresenter;
-import ru.geekbrains.weatherapp.presenter.weather.IWeatherPresenter;
-import ru.geekbrains.weatherapp.presenter.weather.WeatherPresenter;
-import ru.geekbrains.weatherapp.presenter.welcome.IWelcomePresenter;
-import ru.geekbrains.weatherapp.presenter.welcome.WelcomePresenter;
-import ru.geekbrains.weatherapp.view.screens.weather.WeatherView;
-import ru.geekbrains.weatherapp.view.dialogs.newcity.NewCityDialog;
-import ru.geekbrains.weatherapp.view.dialogs.sensorsindications.SensorsIndicationsDialog;
-import ru.geekbrains.weatherapp.view.dialogs.settings.SettingsDialog;
-import ru.geekbrains.weatherapp.view.screens.welcome.WelcomeView;
+import ru.geekbrains.weatherapp.screens.model.IModel;
+import ru.geekbrains.weatherapp.screens.model.Model;
+import ru.geekbrains.weatherapp.screens.presenter.dialog.DialogPresenter;
+import ru.geekbrains.weatherapp.screens.presenter.dialog.IDialogPresenter;
+import ru.geekbrains.weatherapp.screens.presenter.weather.WeatherPresenter;
+import ru.geekbrains.weatherapp.screens.view.dialogs.newcity.NewCityDialog;
+import ru.geekbrains.weatherapp.screens.view.dialogs.sensorsindications.SensorsIndicationsDialog;
+import ru.geekbrains.weatherapp.screens.view.dialogs.settings.SettingsDialog;
+import ru.geekbrains.weatherapp.screens.view.screens.weather.WeatherView;
+import ru.geekbrains.weatherapp.screens.welcome.implementations.WelcomeView;
+import ru.geekbrains.weatherapp.screens.welcome.contracts.IWelcomePresenter;
+import ru.geekbrains.weatherapp.screens.welcome.implementations.WelcomePresenter;
 
 public class FragmentFactory {
 
@@ -63,32 +62,32 @@ public class FragmentFactory {
         return model;
     }
 
-    public static IWelcomePresenter getWelcomePresenter(FragmentActivity activity) {
-        FragmentManager fm = activity.getSupportFragmentManager();
-        WelcomePresenter wp = (WelcomePresenter) fm.findFragmentByTag(WELCOME_PRESENTER_TAG);
-
-        if (wp == null) {
-            wp = WelcomePresenter.newInstance();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.add(wp, WELCOME_PRESENTER_TAG);
-            ft.commit();
-        }
-
-        return wp;
+    public static void getWelcomePresenter(FragmentActivity activity) {
+//        FragmentManager fm = activity.getSupportFragmentManager();
+//        WelcomePresenter wp = (WelcomePresenter) fm.findFragmentByTag(WELCOME_PRESENTER_TAG);
+//
+//        if (wp == null) {
+//            wp = WelcomePresenter.newInstance();
+//            FragmentTransaction ft = fm.beginTransaction();
+//            ft.add(wp, WELCOME_PRESENTER_TAG);
+//            ft.commit();
+//        }
+//
+//        return wp;
     }
 
-    public static IWeatherPresenter getWeatherPresenter(FragmentActivity activity, Bundle bundle) {
-        FragmentManager fm = activity.getSupportFragmentManager();
-        WeatherPresenter wp = (WeatherPresenter) fm.findFragmentByTag(WEATHER_PRESENTER_TAG);
-
-        if (wp == null) {
-            wp = WeatherPresenter.newInstance(bundle);
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.add(wp, WEATHER_PRESENTER_TAG);
-            ft.commit();
-        }
-
-        return wp;
+    public static void getWeatherPresenter(FragmentActivity activity, Bundle bundle) {
+//        FragmentManager fm = activity.getSupportFragmentManager();
+//        WeatherPresenter wp = (WeatherPresenter) fm.findFragmentByTag(WEATHER_PRESENTER_TAG);
+//
+//        if (wp == null) {
+//            wp = WeatherPresenter.newInstance(bundle);
+//            FragmentTransaction ft = fm.beginTransaction();
+//            ft.add(wp, WEATHER_PRESENTER_TAG);
+//            ft.commit();
+//        }
+//
+//        return wp;
     }
 
     public static IDialogPresenter getDialogPresenter(FragmentActivity activity) {
