@@ -5,6 +5,13 @@ public class Constants {
     // database
     public static final String DB_CITIES_NAME = "citiesDB";
 
+    // net
+    public static final String BASE_URL = "http://api.openweathermap.org/";
+    public static final String CURRENT_WEATHER_URL = "data/2.5/weather";
+    public static final String QUERY_CITY = "q";
+    public static final String QUERY_UNITS = "units";
+    public static final String QUERY_APPID = "appid";
+
     // params
     public static final String CITY_NAME = "city_name";
     public static final String PARAM_PRESSURE = "param_pressure";
