@@ -1,28 +1,41 @@
 package ru.geekbrains.weatherapp.application;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
 
-import ru.geekbrains.weatherapp.application.di.AppComponent;
-import ru.geekbrains.weatherapp.application.di.DaggerAppComponent;
-import ru.geekbrains.weatherapp.application.di.DatabaseModule;
-import ru.geekbrains.weatherapp.database.CitiesDao;
-import ru.geekbrains.weatherapp.database.CitiesDatabase;
+import ru.geekbrains.weatherapp.di.application.AppComponent;
+import ru.geekbrains.weatherapp.di.application.DaggerAppComponent;
+import ru.geekbrains.weatherapp.di.application.DatabaseModule;
+import ru.geekbrains.weatherapp.di.screen.ScreenComponent;
 
 public class App extends Application {
 
-    private static AppComponent sAppComponent;
+    private static App instance;
+
+    private AppComponent mAppComponent;
+    private ScreenComponent mScreenComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sAppComponent = DaggerAppComponent
+        instance = this;
+        mAppComponent = DaggerAppComponent
                 .builder()
                 .databaseModule(new DatabaseModule(getApplicationContext()))
                 .build();
     }
 
-    public static AppComponent getAppComponent(){
-        return sAppComponent;
+    public static App getApp() {
+        return instance;
+    }
+
+    public ScreenComponent getScreenComponent() {
+        if (mScreenComponent == null) {
+            mScreenComponent = mAppComponent.getScreenComponent();
+        }
+        return mScreenComponent;
+    }
+
+    public void clearScreenComponent() {
+        mScreenComponent = null;
     }
 }

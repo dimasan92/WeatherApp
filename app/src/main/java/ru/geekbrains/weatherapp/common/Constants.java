@@ -2,6 +2,9 @@ package ru.geekbrains.weatherapp.common;
 
 public class Constants {
 
+    // database
+    public static final String DB_CITIES_NAME = "citiesDB";
+
     // params
     public static final String CITY_NAME = "city_name";
     public static final String PARAM_PRESSURE = "param_pressure";
