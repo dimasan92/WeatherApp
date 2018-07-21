@@ -1,12 +1,50 @@
 <resources>
 
-    <style name="WeatherAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--themes-->
+    <style name="WeatherAppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
+
+    <!--styles-->
+
+    <style name="AppBackgroundStyle">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="AppBarBackgroundStyle">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="AppBarTitleStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/city_name_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppBarSubtitleStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/date_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CurrentTemperatureStyle">
+        <item name="android:textColor">@color/colorPrimaryLight</item>
+        <item name="android:textSize">@dimen/current_temp_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DescriptionStyle">
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:textSize">@dimen/description_size</item>
+    </style>
+
+    <style name="ParamStyle">
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:textSize">@dimen/param_size</item>
+    </style>
+
 
     <style name="WeatherFragmentTheme" parent="WeatherAppTheme">
         <item name="android:textColor">@color/colorAzure</item>
@@ -41,18 +79,11 @@
     </style>
 
     <style name="WelcomeBackgroundImage">
-        <item name="android:foreground">@color/filterDark</item>
-        <item name="android:scaleType">centerCrop</item>
-    </style>
-
-    <style name="WeatherBackgroundImage">
-        <item name="android:foreground">@color/filterMedium</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
 
     <style name="chooseCityItem">
         <item name="android:textSize">@dimen/text_middle</item>
-        <item name="android:background">@color/filterDark</item>
         <item name="android:textColor">@color/colorAzure</item>
         <item name="android:layout_marginTop">@dimen/offset_very_small</item>
         <item name="android:padding">@dimen/offset_very_small</item>

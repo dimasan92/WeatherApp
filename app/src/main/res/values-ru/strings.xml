@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Погода</string>
+
+    <string name="navigation_favourites">Избранные</string>
+    <string name="navigation_home">Главная</string>
+    <string name="navigation_settings">Настройки</string>
+
+    <string name="title_wind">Ветер:</string>
+    <string name="title_pressure">Давление: </string>
+    <string name="title_humidity">Влажность:</string>
+
     <string name="temperature_11">+11 &#8451;</string>
     <string name="temperature_22">+22 &#8451;</string>
     <string name="temperature_10">+10 &#8451;</string>
     <string name="cloudiness_clearly">Ясно</string>
     <string name="time_of_day_day">День</string>
     <string name="time_of_day_night">Ночь</string>
-    <string name="title_wind">Ветер</string>
-    <string name="title_pressure">Давление</string>
-    <string name="title_humidity">Влажность</string>
     <string name="title_temperature">Температура</string>
     <string name="pressure_759">759 мм рт. ст.</string>
     <string name="humidity_93">93%</string>

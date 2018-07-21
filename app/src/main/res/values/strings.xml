@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Weather</string>
 
+    <string name="navigation_favourites">Favourites</string>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_settings">Settings</string>
+
+    <string name="title_pressure">Pressure:</string>
+    <string name="title_humidity">Humidity:</string>
+    <string name="title_temperature">Temperature:</string>
+
     <string name="temperature_11">+11 &#8451;</string>
     <string name="temperature_22">+22 &#8451;</string>
     <string name="temperature_10">+10 &#8451;</string>
@@ -9,9 +17,6 @@
     <string name="time_of_day_day">Day</string>
     <string name="time_of_day_night">Night</string>
     <string name="title_wind">Wind</string>
-    <string name="title_pressure">Pressure</string>
-    <string name="title_humidity">Humidity</string>
-    <string name="title_temperature">Temperature</string>
     <string name="pressure_759">759 mm Hg</string>
     <string name="humidity_93">93%</string>
     <string name="city_name_request">City</string>
