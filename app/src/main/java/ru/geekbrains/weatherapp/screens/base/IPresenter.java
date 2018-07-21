@@ -1,11 +1,15 @@
 package ru.geekbrains.weatherapp.screens.base;
 
-public interface IPresenter<T extends IView> {
+import java.util.List;
 
-    void attachView(T view);
+import io.reactivex.functions.Consumer;
+
+public interface IPresenter<V extends IView> {
+
+    void attachView(V view);
 
     void detachView();
 
-//    void assignModel(FragmentActivity activity);
+    void getDataForToolBar(Consumer<List<String>> toolbarSetter);
 }
 

@@ -6,12 +6,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.application.App;
-import ru.geekbrains.weatherapp.di.screen.ScreenComponent;
 import ru.geekbrains.weatherapp.screens.favorites.implementations.FavoritesView;
 import ru.geekbrains.weatherapp.screens.main.implementations.MainView;
 import ru.geekbrains.weatherapp.screens.settings.implementations.SettingsView;
@@ -22,6 +25,12 @@ public class AppActivity extends AppCompatActivity {
     BottomNavigationView mBottomNavigationView;
     @BindView(R.id.appbar_background)
     ImageView mAppBarBackground;
+    @BindView(R.id.tv_appbar_title)
+    TextView mTvAppbarTitle;
+    @BindView(R.id.tv_appbar_subtitle_top)
+    TextView mTvAppbarSubtitleTop;
+    @BindView(R.id.tv_appbar_subtitle_bottom)
+    TextView mTvAppbarSubtitleBottom;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mListener =
             item -> {
@@ -38,6 +47,14 @@ public class AppActivity extends AppCompatActivity {
                 }
                 return false;
             };
+
+    private Consumer<List<String>> toolbarSetter = (list) -> {
+        mTvAppbarTitle.setText(list.get(0));
+        if(list.size() == 3){
+            mTvAppbarSubtitleTop.setText(list.get(1));
+            mTvAppbarSubtitleBottom.setText(list.get(2));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,22 +101,23 @@ public class AppActivity extends AppCompatActivity {
 
     private void initFavouritesScreen() {
         setFavoritesToolbar();
+        App.getApp().clearScreenComponent();
         FavoritesView favoritesView = FavoritesView.newInstance();
-        initComponent().inject(favoritesView);
         initFragment(favoritesView);
     }
 
     private void initMainScreen() {
         setMainToolbar();
+        App.getApp().clearScreenComponent();
         MainView mainView = MainView.newInstance();
-        initComponent().inject(mainView);
         initFragment(mainView);
+        mainView.getDataForToolbar(toolbarSetter);
     }
 
     private void initSettingsScreen() {
         setSettingsToolbar();
+        App.getApp().clearScreenComponent();
         SettingsView settingsView = SettingsView.newInstance();
-        initComponent().inject(settingsView);
         initFragment(settingsView);
     }
 
@@ -109,11 +127,6 @@ public class AppActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    private ScreenComponent initComponent() {
-        App.getApp().clearScreenComponent();
-        return App.getApp().getScreenComponent();
-    }
-
     private void setFavoritesToolbar() {
         mAppBarBackground.setImageResource(R.drawable.toolbar_favorites);
     }
@@ -121,7 +134,7 @@ public class AppActivity extends AppCompatActivity {
     private void setMainToolbar() {
         mAppBarBackground.setImageResource(R.drawable.toolbar_main);
     }
-    
+
     private void setSettingsToolbar() {
         mAppBarBackground.setImageResource(R.drawable.toolbar_settings);
     }

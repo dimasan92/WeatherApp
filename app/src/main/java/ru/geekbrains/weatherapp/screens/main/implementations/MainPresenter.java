@@ -1,24 +1,31 @@
-package ru.geekbrains.weatherapp.screens.presenter.weather;
+package ru.geekbrains.weatherapp.screens.main.implementations;
 
-import ru.geekbrains.weatherapp.screens.base.IView;
+import java.util.List;
 
-public class WeatherPresenter  implements IWeatherPresenter {
-    @Override
-    public void attachView(IView view) {
+import io.reactivex.functions.Consumer;
+import ru.geekbrains.weatherapp.screens.base.BasePresenter;
+import ru.geekbrains.weatherapp.screens.main.contracts.IMainModel;
+import ru.geekbrains.weatherapp.screens.main.contracts.IMainPresenter;
+import ru.geekbrains.weatherapp.screens.main.contracts.IMainView;
 
+public class MainPresenter<V extends IMainView, M extends IMainModel>
+        extends BasePresenter<V, M> implements IMainPresenter<V> {
+
+    public MainPresenter(M model) {
+        mModel = model;
     }
 
     @Override
-    public void detachView() {
+    public void getDataForToolBar(Consumer<List<String>> toolbarSetter){
 
     }
 
-//    private static final String TAG = WeatherPresenter.class.getSimpleName();
+//    private static final String TAG = MainPresenter.class.getSimpleName();
 //
-//    private IWeatherView mView;
+//    private IMainView mView;
 //
-//    public static WeatherPresenter newInstance(Bundle bundle) {
-//        WeatherPresenter presenter = new WeatherPresenter();
+//    public static MainPresenter newInstance(Bundle bundle) {
+//        MainPresenter presenter = new MainPresenter();
 //        presenter.setArguments(bundle);
 //        return presenter;
 //    }
@@ -31,7 +38,7 @@ public class WeatherPresenter  implements IWeatherPresenter {
 //
 //    @Override
 //    public void attachView(IView view) {
-//        mView = (IWeatherView) view;
+//        mView = (IMainView) view;
 //    }
 //
 //    @Override

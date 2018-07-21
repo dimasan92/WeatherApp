@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.util.regex.Pattern;
 
+import io.reactivex.functions.Consumer;
 import ru.geekbrains.weatherapp.R;
 import ru.geekbrains.weatherapp.common.Constants;
 import ru.geekbrains.weatherapp.model.currentweather.WeatherResponce;
@@ -72,6 +73,11 @@ public class DialogPresenter extends Fragment implements IDialogPresenter {
 
     @Override
     public void detachView() {
+
+    }
+
+    @Override
+    public void getDataForToolBar(Consumer toolbarSetter) {
 
     }
 
