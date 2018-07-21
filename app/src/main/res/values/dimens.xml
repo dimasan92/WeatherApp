@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="appbar_height">80dp</dimen>
+    <dimen name="icon_current_weather_size">140dp</dimen>
+    <dimen name="icon_forecast_weather_size">50dp</dimen>
+
+    <dimen name="appbar_subtitle_text_size">14sp</dimen>
+    <dimen name="appbar_title_text_size">22sp</dimen>
+    <dimen name="current_temp_text_size">50sp</dimen>
+    <dimen name="description_text_size">20sp</dimen>
+    <dimen name="param_text_size">12sp</dimen>
+    <dimen name="forecast_title_text_size">12sp</dimen>
+    <dimen name="forecast_temp_text_size">16sp</dimen>
+
+    <dimen name="appbar_title_offset">10dp</dimen>
+    <dimen name="appbar_subtitle_offset">10dp</dimen>
+    <dimen name="degree_offset">10dp</dimen>
+    <dimen name="params_offset">10dp</dimen>
+    <dimen name="title_param_offset">10dp</dimen>
+    <dimen name="forecast_offset">5dp</dimen>
+    <dimen name="forecast_elevation">10dp</dimen>
+    <dimen name="forecast_corner_radius">10dp</dimen>
+
+
     <dimen name="sensor_dialog_margin_hor">10dp</dimen>
     <dimen name="sensor_dialog_margin_ver">10dp</dimen>
     <dimen name="offset_small">16dp</dimen>
