@@ -11,6 +11,7 @@
     <string name="title_humidity">Влажность:</string>
 
     <string name="city_name_request">Введите город</string>
+    <string name="empty_cities_list">Список городов пуст</string>
 
 
     <string name="incorrect_city_name">Введите название города!</string>
