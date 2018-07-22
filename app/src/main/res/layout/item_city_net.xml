@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/item_city_offset"
+    android:elevation="@dimen/item_city_elevation"
+    app:cardBackgroundColor="@color/colorPrimaryTransparent"
+    app:cardCornerRadius="@dimen/item_city_corner_radius"
+    tools:targetApi="lollipop">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_item_city_name_net"
+            style="style/ItemCityNameStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_city_offset" />
+
+        <TextView
+            android:id="@+id/tv_item_city_coordinate_net"
+            style="@style/ItemCityCoordStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_city_offset" />
+
+        <ImageView
+            android:id="@+id/iv_icon_city_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

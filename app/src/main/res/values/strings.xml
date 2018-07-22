@@ -10,7 +10,7 @@
     <string name="title_temperature">Temperature:</string>
 
     <string name="city_name_request">Enter the city</string>
-    <string name="empty_cities_list">The list of cities is empty</string>
+    <string name="empty_cities_list">The list of saved cities is empty</string>
 
     <string name="toolbar_title_favorites">Cities</string>
     <string name="toolbar_title_settings">Settings</string>
