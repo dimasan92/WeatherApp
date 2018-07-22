@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,10 +51,8 @@ public class AppActivity extends AppCompatActivity {
 
     private Consumer<List<String>> toolbarSetter = (list) -> {
         mTvAppbarTitle.setText(list.get(0));
-        if(list.size() == 3){
-            mTvAppbarSubtitleTop.setText(list.get(1));
-            mTvAppbarSubtitleBottom.setText(list.get(2));
-        }
+        mTvAppbarSubtitleTop.setText(list.get(1));
+        mTvAppbarSubtitleBottom.setText(list.get(2));
     };
 
     @Override
@@ -129,13 +128,28 @@ public class AppActivity extends AppCompatActivity {
 
     private void setFavoritesToolbar() {
         mAppBarBackground.setImageResource(R.drawable.toolbar_favorites);
+        setSubtitlesVisibility(false);
+        mTvAppbarTitle.setText(R.string.toolbar_title_favorites);
     }
 
     private void setMainToolbar() {
         mAppBarBackground.setImageResource(R.drawable.toolbar_main);
+        setSubtitlesVisibility(true);
     }
 
     private void setSettingsToolbar() {
         mAppBarBackground.setImageResource(R.drawable.toolbar_settings);
+        setSubtitlesVisibility(false);
+        mTvAppbarTitle.setText(R.string.toolbar_title_settings);
+    }
+
+    private void setSubtitlesVisibility(boolean v) {
+        if (v) {
+            mTvAppbarSubtitleTop.setVisibility(View.VISIBLE);
+            mTvAppbarSubtitleBottom.setVisibility(View.VISIBLE);
+        } else {
+            mTvAppbarSubtitleTop.setVisibility(View.GONE);
+            mTvAppbarSubtitleBottom.setVisibility(View.GONE);
+        }
     }
 }

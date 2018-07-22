@@ -12,6 +12,11 @@
     <string name="city_name_request">Enter the city</string>
     <string name="empty_cities_list">The list of cities is empty</string>
 
+    <string name="toolbar_title_favorites">Cities</string>
+    <string name="toolbar_title_settings">Settings</string>
+
+
+
     <string name="incorrect_city_name">Enter the name of the city!</string>
     <string name="btn_choose_city">Choose city from list</string>
     <string name="add_city_name">Add the city</string>
