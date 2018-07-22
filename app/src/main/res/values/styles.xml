@@ -55,19 +55,27 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-
-
-    <style name="CityNameEnter">
-        <item name="android:ems">8</item>
-        <item name="android:textSize">@dimen/text_little</item>
-        <item name="android:textColorHint">@android:color/black</item>
-        <item name="android:textColor">@android:color/black</item>
+    <style name="ItemCityTempStyle">
+        <item name="android:textSize">@dimen/item_city_temp_text_size</item>
     </style>
 
-    <style name="MainTemperatureParam">
-        <item name="android:textSize">@dimen/text_very_big</item>
-        <item name="android:gravity">center_vertical</item>
+    <style name="ItemCityNameStyle">
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:textSize">@dimen/item_city_name_text_size</item>
     </style>
+
+    <style name="ItemCityCoordStyle">
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:textSize">@dimen/item_city_coord_text_size</item>
+    </style>
+
+    <style name="SearchCityStyle">
+        <item name="android:textSize">@dimen/search_city_text_size</item>
+        <item name="android:textColorHint">@color/colorPrimaryLight</item>
+        <item name="android:textColor">@color/colorAzure</item>
+    </style>
+
+
 
     <style name="TinyLightText">
         <item name="android:textSize">@dimen/text_tiny</item>
@@ -81,12 +89,8 @@
     </style>
 
     <style name="LittleLightText">
-        <item name="android:textSize">@dimen/text_little</item>
+        <item name="android:textSize">@dimen/search_city_text_size</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="WelcomeBackgroundImage">
-        <item name="android:scaleType">centerCrop</item>
     </style>
 
     <style name="chooseCityItem">

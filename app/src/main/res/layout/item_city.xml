@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/item_city_offset"
+    android:elevation="@dimen/item_city_elevation"
+    app:cardBackgroundColor="@color/colorPrimaryTransparent"
+    app:cardCornerRadius="@dimen/item_city_corner_radius"
+    tools:targetApi="lollipop">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_item_city_temperature"
+            style="@style/ItemCityTempStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_city_weather_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_city_weather_icon"
+            android:layout_width="@dimen/icon_city_weather_size"
+            android:layout_height="@dimen/icon_city_weather_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_item_city_coordinate"
+            app:layout_constraintStart_toStartOf="@id/tv_item_city_temperature"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_item_city_name"
+            style="style/ItemCityNameStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_city_offset"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_city_coordinate"
+            app:layout_constraintEnd_toEndOf="@id/tv_item_city_coordinate"
+            app:layout_constraintStart_toStartOf="@id/tv_item_city_coordinate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item_city_coordinate"
+            style="@style/ItemCityCoordStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/item_city_offset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_city_weather_icon"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_city_name" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

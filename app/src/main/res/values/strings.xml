@@ -9,17 +9,9 @@
     <string name="title_humidity">Humidity:</string>
     <string name="title_temperature">Temperature:</string>
 
-    <string name="temperature_11">+11 &#8451;</string>
-    <string name="temperature_22">+22 &#8451;</string>
-    <string name="temperature_10">+10 &#8451;</string>
-    <string name="cloudiness_clearly">Clearly</string>
+    <string name="city_name_request">Enter the city</string>
 
-    <string name="time_of_day_day">Day</string>
-    <string name="time_of_day_night">Night</string>
-    <string name="title_wind">Wind</string>
-    <string name="pressure_759">759 mm Hg</string>
-    <string name="humidity_93">93%</string>
-    <string name="city_name_request">City</string>
+
     <string name="incorrect_city_name">Enter the name of the city!</string>
     <string name="btn_choose_city">Choose city from list</string>
     <string name="add_city_name">Add the city</string>
