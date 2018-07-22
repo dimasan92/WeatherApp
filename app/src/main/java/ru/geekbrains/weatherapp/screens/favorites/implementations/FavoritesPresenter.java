@@ -1,15 +1,18 @@
-package ru.geekbrains.weatherapp.screens.welcome.implementations;
+package ru.geekbrains.weatherapp.screens.favorites.implementations;
 
-import ru.geekbrains.weatherapp.screens.welcome.contracts.IWelcomeModel;
-import ru.geekbrains.weatherapp.screens.welcome.contracts.IWelcomePresenter;
-import ru.geekbrains.weatherapp.screens.welcome.contracts.IWelcomeView;
+import java.util.List;
 
-public class WelcomePresenter<T extends IWelcomeView> implements IWelcomePresenter<T>{
+import io.reactivex.functions.Consumer;
+import ru.geekbrains.weatherapp.screens.favorites.contracts.IFavoritesModel;
+import ru.geekbrains.weatherapp.screens.favorites.contracts.IFavoritesPresenter;
+import ru.geekbrains.weatherapp.screens.favorites.contracts.IFavoritesView;
+
+public class FavoritesPresenter<T extends IFavoritesView> implements IFavoritesPresenter<T> {
 
     private T mView;
-    private IWelcomeModel mModel;
+    private IFavoritesModel mModel;
 
-    public WelcomePresenter(IWelcomeModel model) {
+    public FavoritesPresenter(IFavoritesModel model) {
         mModel = model;
     }
 
@@ -22,6 +25,11 @@ public class WelcomePresenter<T extends IWelcomeView> implements IWelcomePresent
     @Override
     public void detachView() {
         mView = null;
+    }
+
+    @Override
+    public void getDataForToolBar(Consumer<List<String>> toolbarSetter) {
+
     }
 
     @Override

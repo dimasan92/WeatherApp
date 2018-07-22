@@ -1,9 +1,9 @@
-package ru.geekbrains.weatherapp.screens.welcome.contracts;
+package ru.geekbrains.weatherapp.screens.favorites.contracts;
 
 import ru.geekbrains.weatherapp.screens.base.IPresenter;
 import ru.geekbrains.weatherapp.screens.base.IView;
 
-public interface IWelcomePresenter<T extends IView> extends IPresenter<T> {
+public interface IFavoritesPresenter<T extends IView> extends IPresenter<T> {
 
     void viewIsReady();
 

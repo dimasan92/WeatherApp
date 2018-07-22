@@ -1,15 +1,15 @@
-package ru.geekbrains.weatherapp.screens.welcome.implementations;
+package ru.geekbrains.weatherapp.screens.favorites.implementations;
 
 import ru.geekbrains.weatherapp.database.CitiesDao;
-import ru.geekbrains.weatherapp.screens.welcome.contracts.IWelcomeModel;
+import ru.geekbrains.weatherapp.screens.favorites.contracts.IFavoritesModel;
 
-public class WelcomeModel implements IWelcomeModel {
+public class FavoritesModel implements IFavoritesModel {
 
     private CitiesDao mDao;
 
 //    private List<CitiesObserver> mObservers;
 
-    public WelcomeModel(CitiesDao dao) {
+    public FavoritesModel(CitiesDao dao) {
         mDao = dao;
 //        mObservers = new ArrayList<>();
     }
