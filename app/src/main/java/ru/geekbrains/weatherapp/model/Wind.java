@@ -1,8 +1,9 @@
-package ru.geekbrains.weatherapp.model.currentweather;
+package ru.geekbrains.weatherapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
 public final class Wind {
+
     @SerializedName("speed")
     private final float speed;
 

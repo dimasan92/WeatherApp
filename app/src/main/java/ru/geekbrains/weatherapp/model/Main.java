@@ -1,4 +1,4 @@
-package ru.geekbrains.weatherapp.model.currentweather;
+package ru.geekbrains.weatherapp.model;
 
 import com.google.gson.annotations.SerializedName;
 

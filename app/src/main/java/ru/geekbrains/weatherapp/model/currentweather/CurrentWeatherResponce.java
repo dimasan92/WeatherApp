@@ -2,9 +2,15 @@ package ru.geekbrains.weatherapp.model.currentweather;
 
 import com.google.gson.annotations.SerializedName;
 
-public final class WeatherResponce {
+import ru.geekbrains.weatherapp.model.Clouds;
+import ru.geekbrains.weatherapp.model.Main;
+import ru.geekbrains.weatherapp.model.Weather;
+import ru.geekbrains.weatherapp.model.Wind;
+
+public final class CurrentWeatherResponce {
+
     @SerializedName("weather")
-    private Weather[] weather;
+    private final Weather[] weather;
     @SerializedName("main")
     private final Main main;
     @SerializedName("wind")
@@ -16,7 +22,7 @@ public final class WeatherResponce {
     @SerializedName("cod")
     private final int cod;
 
-    public WeatherResponce(Weather[] weather, Main main, Wind wind, Clouds clouds, String name, int cod) {
+    public CurrentWeatherResponce(Weather[] weather, Main main, Wind wind, Clouds clouds, String name, int cod) {
         this.weather = weather;
         this.main = main;
         this.wind = wind;
