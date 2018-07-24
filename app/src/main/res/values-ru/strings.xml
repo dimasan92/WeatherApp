@@ -6,15 +6,26 @@
     <string name="navigation_home">Главная</string>
     <string name="navigation_settings">Настройки</string>
 
+    <string name="settings_title_params">Отображаемы параметры</string>
+    <string name="settings_title_unit">Единицы измерения температуры</string>
+    <string name="settings_title_sens">Сенсоры телефон</string>
+
     <string name="title_wind">Ветер:</string>
     <string name="title_pressure">Давление:</string>
     <string name="title_humidity">Влажность:</string>
+    <string name="title_temperature">Температура:</string>
+    <string name="settings_wind">ветер</string>
+    <string name="settings_pressure">давление</string>
+    <string name="settings_humidity">влажность</string>
 
     <string name="city_name_request">Введите город</string>
     <string name="empty_cities_list">Список сохраненных городов пуст</string>
 
     <string name="toolbar_title_favorites">Города</string>
     <string name="toolbar_title_settings">Настройки</string>
+
+    <string name="coordinate_string">шир: %1$.2f, дол: %2f</string>
+
 
 
     <string name="incorrect_city_name">Введите название города!</string>

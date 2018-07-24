@@ -16,6 +16,8 @@
     <dimen name="item_city_name_text_size">20sp</dimen>
     <dimen name="item_city_coord_text_size">12sp</dimen>
     <dimen name="search_city_text_size">18sp</dimen>
+    <dimen name="settings_block_title_text_size">20sp</dimen>
+    <dimen name="settings_inner_text_size">14sp</dimen>
 
     <dimen name="appbar_title_offset">10dp</dimen>
     <dimen name="appbar_subtitle_offset">10dp</dimen>
@@ -23,6 +25,7 @@
     <dimen name="params_offset">10dp</dimen>
     <dimen name="title_param_offset">10dp</dimen>
     <dimen name="search_city_offset">10dp</dimen>
+    <dimen name="settings_offset">5dp</dimen>
 
     <dimen name="item_forecast_elevation">10dp</dimen>
     <dimen name="item_forecast_offset">5dp</dimen>
@@ -30,6 +33,12 @@
     <dimen name="item_city_offset">5dp</dimen>
     <dimen name="item_city_elevation">10dp</dimen>
     <dimen name="item_city_corner_radius">5dp</dimen>
+
+    <dimen name="settings_card_elevation">10dp</dimen>
+    <dimen name="settings_card_offset">5dp</dimen>
+    <dimen name="settings_card_corner_radius">5dp</dimen>
+    <dimen name="settings_inner_offset">10dp</dimen>
+
 
     <dimen name="sensor_dialog_margin_hor">10dp</dimen>
     <dimen name="sensor_dialog_margin_ver">10dp</dimen>

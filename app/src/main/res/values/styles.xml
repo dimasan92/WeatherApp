@@ -29,7 +29,6 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
-
     <style name="CurrentTemperatureStyle">
         <item name="android:textSize">@dimen/current_temp_text_size</item>
         <item name="android:textStyle">bold</item>
@@ -75,6 +74,15 @@
         <item name="android:textColor">@color/colorAzure</item>
     </style>
 
+    <style name="SettingsBlockTitleStyle">
+        <item name="android:textColor">@color/colorAzure</item>
+        <item name="android:textSize">@dimen/settings_block_title_text_size</item>
+    </style>
+
+    <style name="SettingsInnerTextStyle">
+        <item name="android:textColor">@color/colorPrimaryLight</item>
+        <item name="android:textSize">@dimen/settings_inner_text_size</item>
+    </style>
 
 
     <style name="TinyLightText">
