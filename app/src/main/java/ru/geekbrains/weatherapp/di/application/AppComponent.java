@@ -4,10 +4,11 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ru.geekbrains.weatherapp.di.screen.ScreenComponent;
+import ru.geekbrains.weatherapp.di.screen.SettingsModule;
 
 @Singleton
 @Component(modules = {DatabaseModule.class, WeatherApiModule.class, NetModule.class})
 public interface AppComponent {
 
-    ScreenComponent getScreenComponent();
+    ScreenComponent getScreenComponent(SettingsModule module);
 }

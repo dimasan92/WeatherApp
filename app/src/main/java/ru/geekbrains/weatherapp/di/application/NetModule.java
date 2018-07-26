@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -20,8 +20,8 @@ public class NetModule {
 
     @Singleton
     @Provides
-    RxJavaCallAdapterFactory provideRxFactory() {
-        return RxJavaCallAdapterFactory.create();
+    RxJava2CallAdapterFactory provideRxFactory() {
+        return RxJava2CallAdapterFactory.create();
     }
 
     @Singleton
