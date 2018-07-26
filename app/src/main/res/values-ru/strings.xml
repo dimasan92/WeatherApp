@@ -8,7 +8,7 @@
 
     <string name="settings_title_params">Отображаемы параметры</string>
     <string name="settings_title_unit">Единицы измерения температуры</string>
-    <string name="settings_title_sens">Сенсоры телефон</string>
+    <string name="settings_title_sens">Сенсоры телефона</string>
 
     <string name="title_wind">Ветер:</string>
     <string name="title_pressure">Давление:</string>
@@ -18,6 +18,8 @@
     <string name="settings_pressure">давление</string>
     <string name="settings_humidity">влажность</string>
 
+    <string name="unit_gPa">гПа</string>
+
     <string name="city_name_request">Введите город</string>
     <string name="empty_cities_list">Список сохраненных городов пуст</string>
 
@@ -25,7 +27,9 @@
     <string name="toolbar_title_settings">Настройки</string>
 
     <string name="coordinate_string">шир: %1$.2f, дол: %2f</string>
+    <string name="sensor_press_string">%1$.2f гПа</string>
 
+    <string name="no_sensor">Датчик\nотсутствует!</string>
 
 
     <string name="incorrect_city_name">Введите название города!</string>
@@ -38,9 +42,7 @@
     <string name="menu_item_settings">Настройки</string>
     <string name="weather_through_sensors">Текущее местоположение(через датчики телефона)</string>
     <string name="celsius_degree">&#8451;</string>
-    <string name="gPa">гПа</string>
     <string name="sensors_dialog_title">Показания датчиков:</string>
-    <string name="no_sensor">Датчик\nотсутствует!</string>
     <string name="city_is_not_exists">Город не существует</string>
     <string name="wind_calm">Штиль</string>
     <string name="wind_light_air">Тихий</string>
