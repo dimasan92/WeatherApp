@@ -7,5 +7,7 @@ public interface IPresenter<V extends IView> {
     void detachView();
 
     void viewIsReady();
+
+    void dispose();
 }
 

@@ -11,7 +11,6 @@ import ru.geekbrains.weatherapp.ui.screens.settings.contracts.ISettingsModel;
 import ru.geekbrains.weatherapp.ui.screens.settings.contracts.ISettingsPresenter;
 import ru.geekbrains.weatherapp.ui.screens.settings.contracts.ISettingsView;
 import ru.geekbrains.weatherapp.utils.ConverterUtils;
-import ru.geekbrains.weatherapp.utils.PrefsUtils;
 
 public class SettingsPresenter<V extends ISettingsView, M extends ISettingsModel>
         extends BasePresenter<V, M> implements ISettingsPresenter<V> {
@@ -38,18 +37,18 @@ public class SettingsPresenter<V extends ISettingsView, M extends ISettingsModel
             mDisposables.add(showPressReadings());
             mDisposables.add(showHumReadings());
         } else {
-            unsubscribe();
+            dispose();
         }
     }
 
     @Override
     public void detachView() {
         saveCurrentState();
-        unsubscribe();
         super.detachView();
     }
 
-    private void unsubscribe(){
+    @Override
+    public void dispose(){
         mModel.disposeSensListeners();
         mDisposables.clear();
     }

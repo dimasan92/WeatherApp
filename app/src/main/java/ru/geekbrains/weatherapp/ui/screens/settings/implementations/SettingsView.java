@@ -170,5 +170,6 @@ public class SettingsView extends Fragment implements ISettingsView {
     public void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
+        mPresenter.dispose();
     }
 }
