@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="ru.geekbrains.weatherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/WeatherAppTheme">
-        <activity android:name=".ui.AppActivity"
+        <activity
+            android:name=".ui.AppActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +22,12 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".services.WeatherFbMessagingService">
+        <service android:name=".services.WeatherFbMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        />
     </application>
 
 </manifest>
